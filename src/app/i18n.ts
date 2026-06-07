@@ -22,6 +22,18 @@ export const i18n = createI18n({
           kodshim: 'Kodshim — Temple offerings',
           tahorot: 'Tahorot — Purity',
         },
+        sederShort: {
+          zeraim: 'Zeraim',
+          moed: 'Moed',
+          nashim: 'Nashim',
+          nezikin: 'Nezikin',
+          kodshim: 'Kodshim',
+          tahorot: 'Tahorot',
+        },
+        tractate: {
+          berakhot: 'Berakhot',
+          sukkah: 'Sukkah',
+        },
       },
       app: {
         title: 'Web Mishnah',
@@ -86,6 +98,18 @@ export const i18n = createI18n({
           nezikin: 'נזיקין — נזקין ודינים',
           kodshim: 'קדשים — קרבנות',
           tahorot: 'טהרות — טומאה וטהרה',
+        },
+        sederShort: {
+          zeraim: 'זרעים',
+          moed: 'מועד',
+          nashim: 'נשים',
+          nezikin: 'נזיקין',
+          kodshim: 'קדשים',
+          tahorot: 'טהרות',
+        },
+        tractate: {
+          berakhot: 'ברכות',
+          sukkah: 'סוכה',
         },
       },
       app: {

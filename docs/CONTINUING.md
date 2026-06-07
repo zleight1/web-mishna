@@ -117,12 +117,13 @@ The app auto-discovers chapters via `import.meta.glob` in `StaticContentLoader` 
 
 Optional polish:
 
-| Task                | File                                                                                                       |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Tractate sort order | [src/content/catalogOrder.ts](../src/content/catalogOrder.ts) — `TRACTATE_ORDER`                           |
-| Seder label (i18n)  | [src/app/i18n.ts](../src/app/i18n.ts) — `catalog.seder.<order>`                                            |
-| Tractate icon       | [src/features/catalog/CatalogIcon.vue](../src/features/catalog/CatalogIcon.vue) — `kind="tractate"` branch |
-| Seder icon          | Same file — `kind="seder"` branch                                                                          |
+| Task                | File                                                                                                                   |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Tractate sort order | [src/content/catalogOrder.ts](../src/content/catalogOrder.ts) — `TRACTATE_ORDER`                                       |
+| Seder label (i18n)  | [src/app/i18n.ts](../src/app/i18n.ts) — `catalog.seder.<order>` (headings), `catalog.sederShort.<order>` (breadcrumbs) |
+| Tractate names      | [src/content/catalogLabels.ts](../src/content/catalogLabels.ts) — `tractateDisplayName()` + `catalog.tractate.<slug>`  |
+| Tractate icon       | [src/features/catalog/CatalogIcon.vue](../src/features/catalog/CatalogIcon.vue) — `kind="tractate"` branch             |
+| Seder icon          | Same file — `kind="seder"` branch                                                                                      |
 
 ### 5. Test
 

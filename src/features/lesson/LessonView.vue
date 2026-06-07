@@ -9,7 +9,8 @@ import { xpFromResult } from '@features/progress/xp'
 import BilingualReader from '@features/reader/BilingualReader.vue'
 import MishnahTextPanel from '@features/reader/MishnahTextPanel.vue'
 import { visualAidRegistry } from '@features/visual/registry'
-import { buildLessonBreadcrumbs, sederLabelKey } from '@content/catalogNav'
+import { sederDisplayName } from '@content/catalogLabels'
+import { buildLessonBreadcrumbs } from '@content/catalogNav'
 import { AppButton, AppCard, CatalogBreadcrumb, LangToggle, LessonStepper } from '@ui/index'
 import { useLessonMachine } from './useLessonMachine'
 
@@ -49,11 +50,7 @@ const chapterTitle = computed(
   () => chapterData.value?.title[lang.value] ?? chapterData.value?.title.en ?? '',
 )
 
-const sederName = computed(() => {
-  const key = sederLabelKey(props.order)
-  const label = t(key)
-  return label === key ? props.order : label
-})
+const sederName = computed(() => sederDisplayName(props.order, t, 'short'))
 
 const breadcrumbs = computed(() => {
   if (!currentMishnah.value || !chapterData.value) return []

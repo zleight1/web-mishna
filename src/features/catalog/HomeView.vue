@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import type { Catalog } from '@core/contracts/content-loader'
 import { groupCatalogBySeder } from '@content/catalogOrder'
+import { sederDisplayName } from '@content/catalogLabels'
 import { useServices } from '@app/providers'
 import { useProgressStore } from '@features/progress/store'
 import { AppLogo, LangToggle } from '@ui/index'
@@ -55,9 +56,7 @@ onMounted(async () => {
 watch(() => route.hash, scrollToSederHash)
 
 function sederLabel(order: string) {
-  const key = `catalog.seder.${order}`
-  const translated = t(key)
-  return translated === key ? order : translated
+  return sederDisplayName(order, t, 'full')
 }
 </script>
 

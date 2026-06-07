@@ -4,7 +4,8 @@ import { useI18n } from 'vue-i18n'
 import { useServices } from '@app/providers'
 import { useAppLanguage } from '@app/useAppLanguage'
 import { useProgressStore } from '@features/progress/store'
-import { buildLessonBreadcrumbs, sederLabelKey } from '@content/catalogNav'
+import { sederDisplayName } from '@content/catalogLabels'
+import { buildLessonBreadcrumbs } from '@content/catalogNav'
 import { CatalogBreadcrumb, LangToggle } from '@ui/index'
 import ChapterMap from './ChapterMap.vue'
 
@@ -38,11 +39,7 @@ const chapterTitle = computed(
   () => chapterEntry.value?.title[lang.value] ?? chapterEntry.value?.title.en ?? '',
 )
 
-const sederName = computed(() => {
-  const key = sederLabelKey(props.order)
-  const label = t(key)
-  return label === key ? props.order : label
-})
+const sederName = computed(() => sederDisplayName(props.order, t, 'short'))
 
 const breadcrumbs = computed(() =>
   chapterEntry.value
