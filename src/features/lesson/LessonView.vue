@@ -8,7 +8,8 @@ import { useProgressStore } from '@features/progress/store'
 import BilingualReader from '@features/reader/BilingualReader.vue'
 import MishnahTextPanel from '@features/reader/MishnahTextPanel.vue'
 import { visualAidRegistry } from '@features/visual/registry'
-import { AppButton, AppCard, LangToggle } from '@ui/index'
+import { buildLessonBreadcrumbs, sederLabelKey } from '@content/catalogNav'
+import { AppButton, AppCard, CatalogBreadcrumb, LangToggle, LessonStepper } from '@ui/index'
 import { useLessonMachine } from './useLessonMachine'
 
 const props = defineProps<{
@@ -41,6 +42,30 @@ const visualRenderer = computed(() => {
   return visualAidRegistry.get(aid.kind)
 })
 
+const chapterTitle = computed(
+  () => chapterData.value?.title[lang.value] ?? chapterData.value?.title.en ?? '',
+)
+
+const sederName = computed(() => {
+  const key = sederLabelKey(props.order)
+  const label = t(key)
+  return label === key ? props.order : label
+})
+
+const breadcrumbs = computed(() => {
+  if (!currentMishnah.value || !chapterData.value) return []
+  return buildLessonBreadcrumbs({
+    homeLabel: t('app.title'),
+    order: props.order,
+    tractate: props.tractate,
+    chapter: props.chapter,
+    mishnah: props.mishnah,
+    sederName: sederName.value,
+    chapterTitle: chapterTitle.value,
+    mishnahLabel: lang.value === 'he' ? currentMishnah.value.heRef : currentMishnah.value.ref,
+  })
+})
+
 onMounted(async () => {
   await progress.load()
   chapterData.value = await useServices().content.loadChapter(
@@ -65,31 +90,19 @@ async function finishLesson() {
 </script>
 
 <template>
-  <div v-if="currentMishnah" class="space-y-6">
-    <div class="flex items-center justify-between">
-      <h2 class="text-xl font-semibold">
-        {{ lang === 'he' ? currentMishnah.heRef : currentMishnah.ref }}
-      </h2>
+  <div v-if="currentMishnah" class="lesson-shell">
+    <div class="lesson-top">
+      <CatalogBreadcrumb :items="breadcrumbs" :nav-label="t('catalog.breadcrumb')" />
       <LangToggle />
     </div>
 
-    <div class="flex gap-2 text-sm">
-      <span :class="{ 'font-bold text-[var(--color-primary)]': machine.stage.value === 'read' }">{{
-        t('app.read')
-      }}</span>
-      <span>→</span>
-      <span
-        :class="{ 'font-bold text-[var(--color-primary)]': machine.stage.value === 'practice' }"
-        >{{ t('app.practice') }}</span
-      >
-      <span>→</span>
-      <span
-        :class="{ 'font-bold text-[var(--color-primary)]': machine.stage.value === 'recall' }"
-        >{{ t('app.recall') }}</span
-      >
-    </div>
+    <h2 class="lesson-title">
+      {{ lang === 'he' ? currentMishnah.heRef : currentMishnah.ref }}
+    </h2>
 
-    <AppCard v-if="machine.stage.value === 'read'">
+    <LessonStepper :stage="machine.stage.value" />
+
+    <AppCard v-if="machine.stage.value === 'read'" accent>
       <BilingualReader :mishnah="currentMishnah" :lang="lang" />
       <component
         :is="visualRenderer?.component"
@@ -135,17 +148,81 @@ async function finishLesson() {
       />
     </AppCard>
 
-    <AppCard v-else-if="machine.stage.value === 'complete'">
-      <p class="text-lg font-semibold text-[var(--color-success)]">{{ t('app.complete') }}</p>
+    <AppCard v-else-if="machine.stage.value === 'complete'" accent>
+      <div class="lesson-complete-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6" />
+          <path
+            d="m8 12 2.5 2.5L16 9"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <p class="lesson-complete-title">{{ t('app.complete') }}</p>
       <p class="mt-2 text-sm">
         {{ t('app.xp') }}: {{ progress.state?.xp }} · {{ t('app.streak') }}:
         {{ progress.state?.streak }}
       </p>
-      <AppButton class="mt-4" @click="finishLesson">{{ t('app.saveProgress') }}</AppButton>
-      <RouterLink to="/" class="ms-3 text-sm text-[var(--color-primary)]"
-        >← {{ t('app.home') }}</RouterLink
-      >
+      <div class="mt-4 flex flex-wrap gap-3">
+        <AppButton @click="finishLesson">{{ t('app.saveProgress') }}</AppButton>
+        <RouterLink
+          :to="`/learn/${order}/${tractate}/${chapter}`"
+          class="text-sm font-semibold text-[var(--color-primary)] hover:underline"
+        >
+          {{ t('catalog.backToChapter') }}
+        </RouterLink>
+      </div>
     </AppCard>
   </div>
   <p v-else class="text-[var(--color-text-muted)]">{{ t('app.loadingLesson') }}</p>
 </template>
+
+<style scoped>
+.lesson-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lesson-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.lesson-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.lesson-complete-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-success) 12%, white);
+  color: var(--color-success);
+}
+
+.lesson-complete-badge svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.lesson-complete-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-success);
+  margin: 0;
+  font-family: var(--font-display);
+}
+</style>

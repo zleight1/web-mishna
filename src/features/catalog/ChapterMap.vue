@@ -25,10 +25,14 @@ const nodes = computed(() =>
 const chapterTitle = computed(() => props.chapter.title[lang.value] ?? props.chapter.title.en ?? '')
 const doneCount = computed(() => nodes.value.filter((n) => n.done).length)
 const totalCount = computed(() => nodes.value.length)
+const chapterPct = computed(() =>
+  totalCount.value > 0 ? Math.round((doneCount.value / totalCount.value) * 100) : 0,
+)
 </script>
 
 <template>
-  <AppCard padding="sm" class="chapter-card">
+  <AppCard padding="sm" accent class="chapter-card">
+    <div class="chapter-accent" aria-hidden="true" />
     <div class="chapter-header">
       <CatalogIcon :id="chapter.tractate" kind="tractate" />
       <div class="chapter-header-text">
@@ -41,6 +45,15 @@ const totalCount = computed(() => nodes.value.length)
             })
           }}
         </p>
+        <div
+          class="chapter-progress"
+          role="progressbar"
+          :aria-valuenow="chapterPct"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <span class="chapter-progress-fill" :style="{ width: `${chapterPct}%` }" />
+        </div>
       </div>
     </div>
 
@@ -65,7 +78,7 @@ const totalCount = computed(() => nodes.value.length)
             </svg>
             <svg v-else viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path
-                d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm.75 4.75a.75.75 0 0 0-1.5 0v3.5a.75.75 0 0 0 .22.53l2.5 2.25a.75.75 0 1 0 1-1.12l-2.28-2.05V6.75Z"
+                d="M7.5 5.5a4 4 0 0 1 7.17-2.3.75.75 0 0 1-1.3.75 2.5 2.5 0 1 0-3.57 3.14.75.75 0 0 1-1.02 1.1A4 4 0 0 1 7.5 5.5ZM10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1.25 4.25a.75.75 0 0 0-1.5 0v3.5a.75.75 0 0 0 .22.53l2.5 2.25a.75.75 0 1 0 1-1.12l-2.28-2.05V6.75Z"
               />
             </svg>
             <span>{{ n.done ? t('app.done') : t('app.start') }}</span>
@@ -78,41 +91,73 @@ const totalCount = computed(() => nodes.value.length)
 
 <style scoped>
 .chapter-card {
+  position: relative;
   overflow: hidden;
+}
+
+.chapter-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--color-accent), var(--color-primary));
 }
 
 .chapter-header {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.85rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--color-border);
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.8rem;
+  padding-left: 0.35rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
 }
 
 .chapter-header-text {
   min-width: 0;
+  flex: 1;
 }
 
 .chapter-title {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1.25;
   margin: 0;
+  color: var(--color-primary);
 }
 
 .chapter-meta {
-  margin: 0.15rem 0 0;
-  font-size: 0.75rem;
+  margin: 0.2rem 0 0;
+  font-size: 0.74rem;
   color: var(--color-text-muted);
+}
+
+.chapter-progress {
+  height: 0.3rem;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--color-border));
+  overflow: hidden;
+}
+
+.chapter-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--color-success),
+    color-mix(in srgb, var(--color-success) 70%, var(--color-accent))
+  );
 }
 
 .mishnah-grid {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 0.35rem;
   display: grid;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
 @media (min-width: 520px) {
@@ -125,8 +170,8 @@ const totalCount = computed(() => nodes.value.length)
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.55rem 0.65rem;
-  border-radius: 0.65rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.75rem;
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   text-decoration: none;
@@ -134,29 +179,37 @@ const totalCount = computed(() => nodes.value.length)
   transition:
     border-color 0.15s,
     box-shadow 0.15s,
-    transform 0.15s;
+    transform 0.12s,
+    background 0.15s;
 }
 
 .mishnah-link:hover {
-  border-color: var(--color-primary);
-  box-shadow: 0 2px 8px rgb(30 77 107 / 0.08);
+  border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-border));
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+  background: var(--color-surface-elevated);
 }
 
 .mishnah-link--done {
-  background: color-mix(in srgb, var(--color-success) 6%, white);
-  border-color: color-mix(in srgb, var(--color-success) 25%, var(--color-border));
+  background: color-mix(in srgb, var(--color-success) 7%, white);
+  border-color: color-mix(in srgb, var(--color-success) 28%, var(--color-border));
 }
 
 .mishnah-num {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  background: color-mix(in srgb, var(--color-primary) 12%, white);
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-primary) 14%, white),
+    color-mix(in srgb, var(--color-accent) 12%, white)
+  );
   color: var(--color-primary);
   flex-shrink: 0;
 }
@@ -170,7 +223,7 @@ const totalCount = computed(() => nodes.value.length)
 
 .mishnah-label {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .mishnah-ref {
@@ -186,8 +239,10 @@ const totalCount = computed(() => nodes.value.length)
   align-items: center;
   gap: 0.2rem;
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   flex-shrink: 0;
+  padding: 0.2rem 0.35rem;
+  border-radius: 999px;
 }
 
 .mishnah-status svg {
@@ -197,9 +252,11 @@ const totalCount = computed(() => nodes.value.length)
 
 .mishnah-status--done {
   color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 10%, white);
 }
 
 .mishnah-status--todo {
   color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-border) 40%, white);
 }
 </style>

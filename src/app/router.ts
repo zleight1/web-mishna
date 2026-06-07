@@ -15,6 +15,12 @@ export const router = createRouter({
       props: true,
     },
     {
+      path: '/learn/:order/:tractate/:chapter',
+      name: 'chapter',
+      component: () => import('@features/catalog/ChapterView.vue'),
+      props: true,
+    },
+    {
       path: '/credits',
       name: 'credits',
       component: () => import('@features/catalog/CreditsView.vue'),

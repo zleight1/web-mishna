@@ -5,16 +5,43 @@ test('lesson smoke: home to lesson flow', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('heading', { name: 'Web Mishnah' }).first()).toBeVisible()
   await page.getByText('Mishnah 1').first().click()
-  await expect(page.getByText('Mishnah Berakhot 1:1')).toBeVisible({ timeout: 10000 })
+  await expect(page.getByRole('heading', { name: 'Mishnah Berakhot 1:1' })).toBeVisible({
+    timeout: 10000,
+  })
   await page
     .getByRole('button', { name: /Practice/i })
     .first()
     .click()
 })
 
+test('nested nav: lesson → chapter → home', async ({ page }) => {
+  await page.goto('/learn/zeraim/berakhot/1/1')
+  await expect(page.getByRole('heading', { name: 'Mishnah Berakhot 1:1' })).toBeVisible({
+    timeout: 10000,
+  })
+  const breadcrumb = page.getByRole('navigation', { name: 'Breadcrumb' })
+  await expect(breadcrumb).toBeVisible()
+  await breadcrumb.getByRole('link', { name: 'Berakhot Chapter 1' }).click()
+  await expect(page).toHaveURL(/\/learn\/zeraim\/berakhot\/1$/)
+  await expect(breadcrumb).toBeVisible()
+  await breadcrumb.getByRole('link', { name: 'Web Mishnah' }).click()
+  await expect(page).toHaveURL('/')
+})
+
+test('header home link returns to catalog', async ({ page }) => {
+  await page.goto('/learn/moed/sukkah/1/5')
+  await expect(page.getByRole('heading', { name: 'Mishnah Sukkah 1:5' })).toBeVisible({
+    timeout: 10000,
+  })
+  await page.locator('header').getByRole('link', { name: 'Web Mishnah' }).click()
+  await expect(page).toHaveURL('/')
+})
+
 test('lesson page a11y', async ({ page }) => {
   await page.goto('/learn/zeraim/berakhot/1/1')
-  await expect(page.getByText('Mishnah Berakhot 1:1')).toBeVisible({ timeout: 10000 })
+  await expect(page.getByRole('heading', { name: 'Mishnah Berakhot 1:1' })).toBeVisible({
+    timeout: 10000,
+  })
   const results = await new AxeBuilder({ page }).analyze()
   expect(
     results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical'),
