@@ -52,7 +52,9 @@ const chapterPct = computed(() =>
           </svg>
           <svg v-else viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path
-              d="M7.5 5.5a4 4 0 0 1 7.17-2.3.75.75 0 0 1-1.3.75 2.5 2.5 0 1 0-3.57 3.14.75.75 0 0 1-1.02 1.1A4 4 0 0 1 7.5 5.5ZM10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1.25 4.25a.75.75 0 0 0-1.5 0v3.5a.75.75 0 0 0 .22.53l2.5 2.25a.75.75 0 1 0 1-1.12l-2.28-2.05V6.75Z"
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM9.555 7.168A1 1 0 0 0 8 8v4a1 1 0 0 0 1.555.832l3-2a1 1 0 0 0 0-1.664l-3-2Z"
+              clip-rule="evenodd"
             />
           </svg>
           <span>{{ n.done ? t('app.done') : t('app.start') }}</span>
@@ -108,7 +110,9 @@ const chapterPct = computed(() =>
             </svg>
             <svg v-else viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path
-                d="M7.5 5.5a4 4 0 0 1 7.17-2.3.75.75 0 0 1-1.3.75 2.5 2.5 0 1 0-3.57 3.14.75.75 0 0 1-1.02 1.1A4 4 0 0 1 7.5 5.5ZM10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1.25 4.25a.75.75 0 0 0-1.5 0v3.5a.75.75 0 0 0 .22.53l2.5 2.25a.75.75 0 1 0 1-1.12l-2.28-2.05V6.75Z"
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM9.555 7.168A1 1 0 0 0 8 8v4a1 1 0 0 0 1.555.832l3-2a1 1 0 0 0 0-1.664l-3-2Z"
+                clip-rule="evenodd"
               />
             </svg>
             <span>{{ n.done ? t('app.done') : t('app.start') }}</span>
