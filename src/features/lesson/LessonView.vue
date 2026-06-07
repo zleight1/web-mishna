@@ -6,6 +6,7 @@ import { useServices } from '@app/providers'
 import { useAppLanguage } from '@app/useAppLanguage'
 import { useProgressStore } from '@features/progress/store'
 import BilingualReader from '@features/reader/BilingualReader.vue'
+import MishnahTextPanel from '@features/reader/MishnahTextPanel.vue'
 import { visualAidRegistry } from '@features/visual/registry'
 import { AppButton, AppCard, LangToggle } from '@ui/index'
 import { useLessonMachine } from './useLessonMachine'
@@ -103,6 +104,7 @@ async function finishLesson() {
     </AppCard>
 
     <AppCard v-else-if="machine.stage.value === 'practice' && machine.currentPractice.value">
+      <MishnahTextPanel class="mb-4" :mishnah="currentMishnah" :lang="lang" compact />
       <h3 class="mb-3 font-medium">
         {{ machine.currentPractice.value.label[lang] ?? machine.currentPractice.value.label.en }}
       </h3>
@@ -121,6 +123,7 @@ async function finishLesson() {
     </AppCard>
 
     <AppCard v-else-if="machine.stage.value === 'recall' && machine.quizActivity.value">
+      <MishnahTextPanel class="mb-4" :mishnah="currentMishnah" :lang="lang" compact />
       <h3 class="mb-3 font-medium">{{ t('app.recall') }}</h3>
       <component
         :is="machine.quizActivity.value.component"

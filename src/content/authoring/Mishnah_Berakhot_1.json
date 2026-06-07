@@ -3,7 +3,10 @@
   "order": "zeraim",
   "tractate": "berakhot",
   "chapter": 1,
-  "title": { "en": "Berakhot Chapter 1", "he": "משנה ברכות פרק א׳" },
+  "title": {
+    "en": "Berakhot Chapter 1",
+    "he": "משנה ברכות פרק א׳"
+  },
   "mishnayot": [
     {
       "schemaVersion": 1,
@@ -16,19 +19,66 @@
       "number": 1,
       "phrases": [
         {
-          "he": "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּעַרְבִית",
-          "translations": { "en": "From when does one recite Shema in the evening?" },
+          "he": "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּעַרְבִית.",
+          "translations": {
+            "en": "From what time may one recite the Shema in the evening?"
+          },
           "translit": "Me'eimatai korin et shema ba'arvit"
         },
         {
-          "he": "מִשָּׁעָה שֶׁהַכֹּהֲנִים נִכְנָסִים לֶאֱכֹל בִּתְרוּמָתָן",
-          "translations": { "en": "From when the priests enter to eat their teruma" },
+          "he": "מִשָּׁעָה שֶׁהַכֹּהֲנִים נִכְנָסִים לֶאֱכֹל בִּתְרוּמָתָן, עַד סוֹף הָאַשְׁמוּרָה הָרִאשׁוֹנָה, דִּבְרֵי רַבִּי אֱלִיעֶזֶר.",
+          "translations": {
+            "en": "From the time that the priests enter [their houses] in order to eat their terumah until the end of the first watch, the words of Rabbi Eliezer."
+          },
           "translit": "Mishe'ah shehakohanim nichnasim le'echol biterumatan"
         },
         {
-          "he": "עַד סוֹף הָאַשְׁמוּרָה הָרִאשׁוֹנָה",
-          "translations": { "en": "until the end of the first watch" },
-          "translit": "Ad sof ha'ashmurah harishonah"
+          "he": "וַחֲכָמִים אוֹמְרִים, עַד חֲצוֹת.",
+          "translations": {
+            "en": "The sages say: until midnight."
+          }
+        },
+        {
+          "he": "רַבָּן גַּמְלִיאֵל אוֹמֵר, עַד שֶׁיַּעֲלֶה עַמּוּד הַשָּׁחַר.",
+          "translations": {
+            "en": "Rabban Gamaliel says: until dawn."
+          }
+        },
+        {
+          "he": "מַעֲשֶׂה שֶׁבָּאוּ בָנָיו מִבֵּית הַמִּשְׁתֶּה, אָמְרוּ לוֹ, לֹא קָרִינוּ אֶת שְׁמַע.",
+          "translations": {
+            "en": "Once it happened that his sons came home [late] from a wedding feast and they said to him: we have not yet recited the [evening] Shema."
+          }
+        },
+        {
+          "he": "אָמַר לָהֶם, אִם לֹא עָלָה עַמּוּד הַשַּׁחַר, חַיָּבִין אַתֶּם לִקְרוֹת.",
+          "translations": {
+            "en": "He said to them: if it is not yet dawn you are still obligated to recite."
+          }
+        },
+        {
+          "he": "וְלֹא זוֹ בִּלְבַד, אֶלָּא כָּל מַה שֶּׁאָמְרוּ חֲכָמִים עַד חֲצוֹת, מִצְוָתָן עַד שֶׁיַּעֲלֶה עַמּוּד הַשָּׁחַר.",
+          "translations": {
+            "en": "And not in respect to this alone did they so decide, but wherever the sages say “until midnight,” the mitzvah may be performed until dawn."
+          }
+        },
+        {
+          "he": "הֶקְטֵר חֲלָבִים וְאֵבָרִים, מִצְוָתָן עַד שֶׁיַּעֲלֶה עַמּוּד הַשָּׁחַר.",
+          "translations": {
+            "en": "The burning of the fat and the pieces may be performed till dawn."
+          }
+        },
+        {
+          "he": "וְכָל הַנֶּאֱכָלִים לְיוֹם אֶחָד, מִצְוָתָן עַד שֶׁיַּעֲלֶה עַמּוּד הַשָּׁחַר.",
+          "translations": {
+            "en": "Similarly, all [the offerings] that are to be eaten within one day may be eaten till dawn."
+          }
+        },
+        {
+          "he": "אִם כֵּן, לָמָּה אָמְרוּ חֲכָמִים עַד חֲצוֹת, כְּדֵי לְהַרְחִיק אֶת הָאָדָם מִן הָעֲבֵרָה:",
+          "translations": {
+            "en": "Why then did the sages say “until midnight”? In order to keep a man far from transgression."
+          }
         }
       ],
       "quiz": [
@@ -39,9 +89,18 @@
             "he": "עד מתי אומר רבי אליעזר לקרות את שמע בערב?"
           },
           "choices": [
-            { "en": "Until the end of the first watch", "he": "עד סוף האשמורה הראשונה" },
-            { "en": "Until midnight", "he": "עד חצות" },
-            { "en": "Until dawn", "he": "עד עלות השחר" }
+            {
+              "en": "Until the end of the first watch",
+              "he": "עד סוף האשמורה הראשונה"
+            },
+            {
+              "en": "Until midnight",
+              "he": "עד חצות"
+            },
+            {
+              "en": "Until dawn",
+              "he": "עד עלות השחר"
+            }
           ],
           "answerIdx": 0,
           "explanation": {
@@ -56,9 +115,18 @@
             "he": "מה אומרים חכמים?"
           },
           "choices": [
-            { "en": "Until midnight", "he": "עד חצות" },
-            { "en": "Until the first watch", "he": "עד האשמורה הראשונה" },
-            { "en": "Until three hours", "he": "עד שלוש שעות" }
+            {
+              "en": "Until midnight",
+              "he": "עד חצות"
+            },
+            {
+              "en": "Until the first watch",
+              "he": "עד האשמורה הראשונה"
+            },
+            {
+              "en": "Until three hours",
+              "he": "עד שלוש שעות"
+            }
           ],
           "answerIdx": 0
         }
@@ -66,32 +134,50 @@
       "visualAid": {
         "kind": "timeline",
         "range": {
-          "start": { "en": "Nightfall", "he": "צֵאת הַכּוֹכָבִים" },
-          "end": { "en": "Dawn", "he": "עֲלוֹת הַשַּׁחַר" }
+          "start": {
+            "en": "Nightfall",
+            "he": "צֵאת הַכּוֹכָבִים"
+          },
+          "end": {
+            "en": "Dawn",
+            "he": "עֲלוֹת הַשַּׁחַר"
+          }
         },
         "events": [
           {
             "id": "teruma",
             "at": 0.12,
-            "label": { "en": "Priests eat teruma", "he": "כהנים אוכלים תרומה" },
+            "label": {
+              "en": "Priests eat teruma",
+              "he": "כהנים אוכלים תרומה"
+            },
             "marker": "nightfall"
           },
           {
             "id": "first-watch",
             "at": 0.3,
-            "label": { "en": "End of first watch (R. Eliezer)", "he": "סוף האשמורה הראשונה" },
+            "label": {
+              "en": "End of first watch (R. Eliezer)",
+              "he": "סוף האשמורה הראשונה"
+            },
             "marker": "custom"
           },
           {
             "id": "midnight",
             "at": 0.52,
-            "label": { "en": "Midnight (Sages)", "he": "חצות (חכמים)" },
+            "label": {
+              "en": "Midnight (Sages)",
+              "he": "חצות (חכמים)"
+            },
             "marker": "midnight"
           },
           {
             "id": "dawn",
             "at": 0.88,
-            "label": { "en": "Dawn (R. Gamliel)", "he": "עמוד השחר (רבן גמליאל)" },
+            "label": {
+              "en": "Dawn (R. Gamliel)",
+              "he": "עמוד השחר (רבן גמליאל)"
+            },
             "marker": "dawn"
           }
         ]
@@ -114,14 +200,42 @@
       "number": 2,
       "phrases": [
         {
-          "he": "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּשַׁחֲרִית",
-          "translations": { "en": "From when does one recite Shema in the morning?" },
+          "he": "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּשַׁחֲרִית.",
+          "translations": {
+            "en": "From what time may one recite the Shema in the morning?"
+          },
           "translit": "Me'eimatai korin et shema bashacharit"
         },
         {
-          "he": "מִשֶּׁיַּכִּיר בֵּין תְּכֵלֶת לְלָבָן",
-          "translations": { "en": "From when one can distinguish between sky-blue and white" },
+          "he": "מִשֶּׁיַּכִּיר בֵּין תְּכֵלֶת לְלָבָן.",
+          "translations": {
+            "en": "From the time that one can distinguish between blue and white."
+          },
           "translit": "Mishe'yakir bein techelet lelavan"
+        },
+        {
+          "he": "רַבִּי אֱלִיעֶזֶר אוֹמֵר, בֵּין תְּכֵלֶת לְכַרְתִּי.",
+          "translations": {
+            "en": "Rabbi Eliezer says: between blue and green."
+          }
+        },
+        {
+          "he": "וְגוֹמְרָהּ עַד הָנֵץ הַחַמָּה.",
+          "translations": {
+            "en": "And he must finish it by sunrise."
+          }
+        },
+        {
+          "he": "רַבִּי יְהוֹשֻׁעַ אוֹמֵר, עַד שָׁלֹשׁ שָׁעוֹת, שֶׁכֵּן דֶּרֶךְ בְּנֵי מְלָכִים לַעֲמֹד בְּשָׁלֹשׁ שָׁעוֹת.",
+          "translations": {
+            "en": "Rabbi Joshua says: until the third hour of the day, for such is the custom of the children of kings, to rise at the third hour."
+          }
+        },
+        {
+          "he": "הַקּוֹרֵא מִכָּאן וְאֵילָךְ לֹא הִפְסִיד, כְּאָדָם הַקּוֹרֵא בַתּוֹרָה:",
+          "translations": {
+            "en": "If one recites the Shema later he loses nothing, like one who reads in the Torah."
+          }
         }
       ],
       "quiz": [
@@ -132,9 +246,18 @@
             "he": "מתי מתחילים לקרות שמע של שחרית?"
           },
           "choices": [
-            { "en": "When one can distinguish blue from white", "he": "כשמבחין בין תכלת ללבן" },
-            { "en": "At sunrise", "he": "בזריחת החמה" },
-            { "en": "At midnight", "he": "בחצות" }
+            {
+              "en": "When one can distinguish blue from white",
+              "he": "כשמבחין בין תכלת ללבן"
+            },
+            {
+              "en": "At sunrise",
+              "he": "בזריחת החמה"
+            },
+            {
+              "en": "At midnight",
+              "he": "בחצות"
+            }
           ],
           "answerIdx": 0
         }
@@ -142,26 +265,41 @@
       "visualAid": {
         "kind": "timeline",
         "range": {
-          "start": { "en": "Dawn", "he": "עֲלוֹת הַשַּׁחַר" },
-          "end": { "en": "Sunrise", "he": "הַנֵּץ הַחַמָּה" }
+          "start": {
+            "en": "Dawn",
+            "he": "עֲלוֹת הַשַּׁחַר"
+          },
+          "end": {
+            "en": "Sunrise",
+            "he": "הַנֵּץ הַחַמָּה"
+          }
         },
         "events": [
           {
             "id": "dawn-color",
             "at": 0.2,
-            "label": { "en": "Distinguish blue/white", "he": "הבחנה תכלת/לבן" },
+            "label": {
+              "en": "Distinguish blue/white",
+              "he": "הבחנה תכלת/לבן"
+            },
             "marker": "dawn"
           },
           {
             "id": "sunrise",
             "at": 0.5,
-            "label": { "en": "Sunrise (finish by)", "he": "הנץ החמה" },
+            "label": {
+              "en": "Sunrise (finish by)",
+              "he": "הנץ החמה"
+            },
             "marker": "sunrise"
           },
           {
             "id": "three-hours",
             "at": 0.75,
-            "label": { "en": "Three hours (R. Yehoshua)", "he": "שלוש שעות" },
+            "label": {
+              "en": "Three hours (R. Yehoshua)",
+              "he": "שלוש שעות"
+            },
             "marker": "midday"
           }
         ]
@@ -184,16 +322,36 @@
       "number": 3,
       "phrases": [
         {
-          "he": "בֵּית שַׁמַּאי אוֹמְרִים בָּעֶרֶב כָּל אָדָם יַטּוּ וְיִקְרְאוּ",
+          "he": "בֵּית שַׁמַּאי אוֹמְרִים, בָּעֶרֶב כָּל אָדָם יַטּוּ וְיִקְרְאוּ, וּבַבֹּקֶר יַעַמְדוּ, שֶׁנֶּאֱמַר (דברים ו) וּבְשָׁכְבְּךָ וּבְקוּמֶךָ.",
           "translations": {
-            "en": "Beit Shammai say: in the evening every person must recline and recite"
+            "en": "Bet Shammai say: in the evening every man should recline and recite [the Shema], and in the morning he should stand, as it says, “And when you lie down and when you get up” (Deuteronomy 6:7)."
           },
           "translit": "Beit Shammai omrim ba'erev kol adam yatu veyikreu"
         },
         {
-          "he": "וּבֵית הִלֵּל אוֹמְרִים כָּל אָדָם קוֹרֵא כְדַרְכּוֹ",
-          "translations": { "en": "Beit Hillel say: every person recites as he is" },
+          "he": "וּבֵית הִלֵּל אוֹמְרִים, כָּל אָדָם קוֹרֵא כְדַרְכּוֹ, שֶׁנֶּאֱמַר (שם) וּבְלֶכְתְּךָ בַדֶּרֶךְ.",
+          "translations": {
+            "en": "Bet Hillel say that every man should recite in his own way, as it says, “And when you walk by the way” (ibid)."
+          },
           "translit": "Uveit Hillel omrim kol adam kore kedarko"
+        },
+        {
+          "he": "אִם כֵּן, לָמָּה נֶאֱמַר וּבְשָׁכְבְּךָ וּבְקוּמֶךָ, בְּשָׁעָה שֶׁבְּנֵי אָדָם שׁוֹכְבִים, וּבְשָׁעָה שֶׁבְּנֵי אָדָם עוֹמְדִים.",
+          "translations": {
+            "en": "Why then is it said, “And when you lies down and when you get up?” At the time when people lie down and at the time when people rise up."
+          }
+        },
+        {
+          "he": "אָמַר רַבִּי טַרְפוֹן, אֲנִי הָיִיתִי בָא בַדֶּרֶךְ, וְהִטֵּיתִי לִקְרוֹת, כְּדִבְרֵי בֵית שַׁמַּאי, וְסִכַּנְתִּי בְעַצְמִי מִפְּנֵי הַלִּסְטִים.",
+          "translations": {
+            "en": "Rabbi Tarfon said: I was once walking by the way and I reclined to recite the Shema according to the words of Bet Shammai, and I incurred danger from robbers."
+          }
+        },
+        {
+          "he": "אָמְרוּ לוֹ, כְּדַי הָיִיתָ לָחוּב בְּעַצְמְךָ, שֶׁעָבַרְתָּ עַל דִּבְרֵי בֵית הִלֵּל:",
+          "translations": {
+            "en": "They said to him: you deserved to come to harm, because you acted against the words of Bet Hillel."
+          }
         }
       ],
       "quiz": [
@@ -204,9 +362,18 @@
             "he": "מה סוברים בית הלל לגבי קריאת שמע?"
           },
           "choices": [
-            { "en": "Recite in any comfortable position", "he": "קורא כדרכו" },
-            { "en": "Must recline in evening", "he": "חייב להטות בערב" },
-            { "en": "Must stand always", "he": "חייב לעמוד תמיד" }
+            {
+              "en": "Recite in any comfortable position",
+              "he": "קורא כדרכו"
+            },
+            {
+              "en": "Must recline in evening",
+              "he": "חייב להטות בערב"
+            },
+            {
+              "en": "Must stand always",
+              "he": "חייב לעמוד תמיד"
+            }
           ],
           "answerIdx": 0
         }
@@ -229,14 +396,41 @@
       "number": 4,
       "phrases": [
         {
-          "he": "בַּשַּׁחַר מְבָרֵךְ שְׁתַּיִם לְפָנֶיהָ וְאַחַת לְאַחֲרֶיהָ",
-          "translations": { "en": "In the morning one recites two blessings before and one after" },
+          "he": "בַּשַּׁחַר מְבָרֵךְ שְׁתַּיִם לְפָנֶיהָ וְאַחַת לְאַחֲרֶיהָ, וּבָעֶרֶב שְׁתַּיִם לְפָנֶיהָ וּשְׁתַּיִם לְאַחֲרֶיהָ.",
+          "translations": {
+            "en": "In the morning he recites two blessings before it and one after it; in the evening two before it and two after it, one long and one short."
+          },
           "translit": "Bashachar mevarech shtayim lefaneyah ve'achat le'achareyah"
         },
         {
-          "he": "וּבָעֶרֶב שְׁתַּיִם לְפָנֶיהָ וּשְׁתַּיִם לְאַחֲרֶיהָ",
-          "translations": { "en": "and in the evening two before and two after" },
-          "translit": "Uva'erev shtayim lefaneyah ushtayim le'achareyah"
+          "he": "אַחַת אֲרֻכָּה וְאַחַת קְצָרָה.",
+          "translations": {
+            "en": "Where they [the sages] said that a long one should be said, he may not say a short one; where they said a short one he may not say a long one [Where they said] to conclude [with a blessing] he is not permitted to not conclude; where they said to not conclude [with a blessing], he may not conclude."
+          }
+        },
+        {
+          "he": "מָקוֹם שֶׁאָמְרוּ לְהַאֲרִיךְ, אֵינוֹ רַשַּׁאי לְקַצֵּר.",
+          "translations": {
+            "en": ""
+          }
+        },
+        {
+          "he": "לְקַצֵּר, אֵינוֹ רַשַּׁאי לְהַאֲרִיךְ.",
+          "translations": {
+            "en": ""
+          }
+        },
+        {
+          "he": "לַחְתֹּם, אֵינוֹ רַשַּׁאי שֶׁלֹּא לַחְתֹּם.",
+          "translations": {
+            "en": ""
+          }
+        },
+        {
+          "he": "וְשֶׁלֹּא לַחְתֹּם, אֵינוֹ רַשַּׁאי לַחְתֹּם:",
+          "translations": {
+            "en": ""
+          }
         }
       ],
       "quiz": [
@@ -247,9 +441,18 @@
             "he": "כמה ברכות אחר שמע בשחרית?"
           },
           "choices": [
-            { "en": "One", "he": "אחת" },
-            { "en": "Two", "he": "שתיים" },
-            { "en": "Three", "he": "שלוש" }
+            {
+              "en": "One",
+              "he": "אחת"
+            },
+            {
+              "en": "Two",
+              "he": "שתיים"
+            },
+            {
+              "en": "Three",
+              "he": "שלוש"
+            }
           ],
           "answerIdx": 0
         }
@@ -272,16 +475,42 @@
       "number": 5,
       "phrases": [
         {
-          "he": "מַזְכִּירִין יְצִיאַת מִצְרַיִם בַּלֵּילוֹת",
-          "translations": { "en": "The exodus from Egypt is mentioned at night" },
+          "he": "מַזְכִּירִין יְצִיאַת מִצְרַיִם בַּלֵּילוֹת.",
+          "translations": {
+            "en": "They mention the Exodus from Egypt at night."
+          },
           "translit": "Mazkirim yetziat mitzrayim balailot"
         },
         {
-          "he": "יְמֵי חַיֶּיךָ הַיָּמִים כֹּל יְמֵי חַיֶּיךָ הַלֵּילוֹת",
+          "he": "אָמַר רַבִּי אֶלְעָזָר בֶּן עֲזַרְיָה, הֲרֵי אֲנִי כְּבֶן שִׁבְעִים שָׁנָה, וְלֹא זָכִיתִי שֶׁתֵּאָמֵר יְצִיאַת מִצְרַיִם בַּלֵּילוֹת, עַד שֶׁדְּרָשָׁהּ בֶּן זוֹמָא, שֶׁנֶּאֱמַר (דברים טז) לְמַעַן תִּזְכֹּר אֶת יוֹם צֵאתְךָ מֵאֶרֶץ מִצְרַיִם כֹּל יְמֵי חַיֶּיךָ.",
           "translations": {
-            "en": "The days of your life — the days; all the days of your life — the nights"
+            "en": "Rabbi Elazar ben Azaryah said: \"Behold, I am almost a seventy-year old man and I have not succeeded in [understanding why] the Exodus from Egypt should be mentioned at night, until Ben Zoma explained it from a verse (Deuteronomy 16:3): ‘In order that you may remember the day you left Egypt all the days of your life.’ ‘The days of your life’ refers to the days."
+          }
+        },
+        {
+          "he": "יְמֵי חַיֶּיךָ, הַיָּמִים.",
+          "translations": {
+            "en": "‘All the days of your life’ refers to the nights."
           },
           "translit": "Yemei chayecha hayamim, kol yemei chayecha halailot"
+        },
+        {
+          "he": "כֹּל יְמֵי חַיֶּיךָ, הַלֵּילוֹת.",
+          "translations": {
+            "en": "And the sages say: ‘the days of your life’ refers to this world."
+          }
+        },
+        {
+          "he": "וַחֲכָמִים אוֹמְרִים, יְמֵי חַיֶּיךָ, הָעוֹלָם הַזֶּה.",
+          "translations": {
+            "en": "‘All the days of your life’ includes the days of the Messiah."
+          }
+        },
+        {
+          "he": "כֹּל יְמֵי חַיֶּיךָ, לְהָבִיא לִימוֹת הַמָּשִׁיחַ:",
+          "translations": {
+            "en": ""
+          }
         }
       ],
       "quiz": [
@@ -292,9 +521,18 @@
             "he": "מי דרש שמזכירים יציאת מצרים בלילות?"
           },
           "choices": [
-            { "en": "Ben Zoma", "he": "בן זומא" },
-            { "en": "Rabbi Elazar ben Azarya", "he": "רבי אלעזר בן עזריה" },
-            { "en": "Rabban Gamliel", "he": "רבן גמליאל" }
+            {
+              "en": "Ben Zoma",
+              "he": "בן זומא"
+            },
+            {
+              "en": "Rabbi Elazar ben Azarya",
+              "he": "רבי אלעזר בן עזריה"
+            },
+            {
+              "en": "Rabban Gamliel",
+              "he": "רבן גמליאל"
+            }
           ],
           "answerIdx": 0
         }

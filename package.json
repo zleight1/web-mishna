@@ -19,6 +19,7 @@
     "validate:content": "tsx scripts/validate-content.ts",
     "build:content": "tsx scripts/build-content.ts",
     "fetch:sefaria": "tsx scripts/fetch-sefaria.ts",
+    "refresh:phrases": "tsx scripts/refresh-phrases-from-sefaria.ts",
     "size-limit": "size-limit",
     "lhci": "lhci autorun",
     "deps:check": "depcruise src --config .dependency-cruiser.cjs",

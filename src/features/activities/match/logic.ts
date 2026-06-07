@@ -14,7 +14,7 @@ export type MatchAnswer = { links: Record<string, string> }
 
 export function generateMatch(ctx: ActivityContext): MatchState {
   const { mishnah, rng } = ctx
-  const pairs = mishnah.phrases.slice(0, 4).map((p, i) => ({
+  const pairs = mishnah.phrases.map((p, i) => ({
     id: `p${i}`,
     he: p.he,
     en: p.translations.en ?? p.translations[ctx.lang] ?? '',

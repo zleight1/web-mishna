@@ -23,7 +23,13 @@ export function generateCloze(ctx: ActivityContext): ClozeState {
     (w) => w !== answer,
   )
   const options = shuffle([answer, ...shuffle(pool, rng).slice(0, 3)], rng)
-  return { tokens, blankIndex, options, answer, phraseEn: phrase.translations.en ?? '' }
+  return {
+    tokens,
+    blankIndex,
+    options,
+    answer,
+    phraseEn: phrase.translations[ctx.lang] ?? phrase.translations.en ?? '',
+  }
 }
 
 export function validateCloze(state: ClozeState, ans: ClozeAnswer): ActivityResult {

@@ -48,6 +48,7 @@ export const i18n = createI18n({
         tapWordsOrder: 'Tap words in the correct order:',
         reset: 'Reset',
         check: 'Check',
+        fullMishnah: 'Full mishnah',
       },
     },
     he: {
@@ -93,6 +94,7 @@ export const i18n = createI18n({
         tapWordsOrder: 'הקש על המילים בסדר הנכון:',
         reset: 'איפוס',
         check: 'בדוק',
+        fullMishnah: 'משנה שלמה',
       },
     },
   },
