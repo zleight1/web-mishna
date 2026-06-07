@@ -8,15 +8,15 @@ This guide explains how to extend the project after the initial foundation: new 
 
 ## Current state (as of foundation + content v1)
 
-| Area | Shipped |
-|------|---------|
-| **Content** | Berakhot ch. 1 (5 mishnayot), Sukkah ch. 1 (11 mishnayot) |
-| **Visual aids** | `timeline` (Berakhot 1:1–1:2), `diagram2d` (all Sukkah 1 mishnayot) |
-| **Activities** | cloze, reconstruct, match, quiz |
-| **Catalog** | Home grouped by seder, chapter cards, progress badges |
-| **Navigation** | Breadcrumbs, chapter landing (`/learn/:order/:tractate/:chapter`), header home link |
-| **Progress** | localStorage XP, streak, per-mishnah completion |
-| **Hosting** | Cloudflare Pages — https://web-mishna.pages.dev/ |
+| Area            | Shipped                                                                             |
+| --------------- | ----------------------------------------------------------------------------------- |
+| **Content**     | Berakhot ch. 1 (5 mishnayot), Sukkah ch. 1 (11 mishnayot)                           |
+| **Visual aids** | `timeline` (Berakhot 1:1–1:2), `diagram2d` (all Sukkah 1 mishnayot)                 |
+| **Activities**  | cloze, reconstruct, match, quiz                                                     |
+| **Catalog**     | Home grouped by seder, chapter cards, progress badges                               |
+| **Navigation**  | Breadcrumbs, chapter landing (`/learn/:order/:tractate/:chapter`), header home link |
+| **Progress**    | localStorage XP, streak, per-mishnah completion                                     |
+| **Hosting**     | Cloudflare Pages — https://web-mishna.pages.dev/                                    |
 
 ---
 
@@ -117,12 +117,12 @@ The app auto-discovers chapters via `import.meta.glob` in `StaticContentLoader` 
 
 Optional polish:
 
-| Task | File |
-|------|------|
-| Tractate sort order | [src/content/catalogOrder.ts](../src/content/catalogOrder.ts) — `TRACTATE_ORDER` |
-| Seder label (i18n) | [src/app/i18n.ts](../src/app/i18n.ts) — `catalog.seder.<order>` |
-| Tractate icon | [src/features/catalog/CatalogIcon.vue](../src/features/catalog/CatalogIcon.vue) — `kind="tractate"` branch |
-| Seder icon | Same file — `kind="seder"` branch |
+| Task                | File                                                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Tractate sort order | [src/content/catalogOrder.ts](../src/content/catalogOrder.ts) — `TRACTATE_ORDER`                           |
+| Seder label (i18n)  | [src/app/i18n.ts](../src/app/i18n.ts) — `catalog.seder.<order>`                                            |
+| Tractate icon       | [src/features/catalog/CatalogIcon.vue](../src/features/catalog/CatalogIcon.vue) — `kind="tractate"` branch |
+| Seder icon          | Same file — `kind="seder"` branch                                                                          |
 
 ### 5. Test
 
@@ -140,11 +140,11 @@ For a full chapter with diagrams, see [scripts/author-sukkah-ch1.ts](../scripts/
 
 ### Existing kinds
 
-| `kind` | Use case | Entry component |
-|--------|----------|-----------------|
-| `timeline` | Time windows (e.g. Shema) | `src/features/visual/timeline/` |
+| `kind`      | Use case                     | Entry component                  |
+| ----------- | ---------------------------- | -------------------------------- |
+| `timeline`  | Time windows (e.g. Shema)    | `src/features/visual/timeline/`  |
 | `diagram2d` | 2D spatial diagrams (Sukkah) | `src/features/visual/diagram2d/` |
-| `scene3d` | Reserved (not implemented) | — |
+| `scene3d`   | Reserved (not implemented)   | —                                |
 
 ### New `diagram2d` panel
 
@@ -154,7 +154,7 @@ For a full chapter with diagrams, see [scripts/author-sukkah-ch1.ts](../scripts/
 4. Add component tests in `Diagram2dAid.test.ts`
 5. Reference in mishnah JSON: `{ "kind": "diagram2d", "spec": { "type": "your-type", … } }`
 
-### New visual aid *kind* (e.g. map, chart)
+### New visual aid _kind_ (e.g. map, chart)
 
 1. Add variant to `VisualAidSchema` in `schema.ts`
 2. Create `src/features/visual/<kind>/` with `module.ts`:
@@ -204,12 +204,12 @@ Implemented in [useLessonMachine.ts](../src/features/lesson/useLessonMachine.ts)
 
 Routes ([router.ts](../src/app/router.ts)):
 
-| Path | View |
-|------|------|
-| `/` | Home catalog |
-| `/learn/:order/:tractate/:chapter` | Chapter mishnah grid |
-| `/learn/:order/:tractate/:chapter/:mishnah` | Lesson |
-| `/credits` | Attribution |
+| Path                                        | View                 |
+| ------------------------------------------- | -------------------- |
+| `/`                                         | Home catalog         |
+| `/learn/:order/:tractate/:chapter`          | Chapter mishnah grid |
+| `/learn/:order/:tractate/:chapter/:mishnah` | Lesson               |
+| `/credits`                                  | Attribution          |
 
 Breadcrumb helpers: [src/content/catalogNav.ts](../src/content/catalogNav.ts)
 
@@ -228,14 +228,14 @@ Breadcrumb helpers: [src/content/catalogNav.ts](../src/content/catalogNav.ts)
 
 ## Testing strategy
 
-| Layer | Command | Notes |
-|-------|---------|-------|
-| Unit / component | `pnpm test` | Coverage thresholds on core logic |
-| Content | `pnpm validate:content` | All `src/content/data/**/*.json` |
-| Contracts | `tests/contracts/` | Registry + schema smoke |
-| E2e smoke | `pnpm test:e2e` | Home → lesson, nested nav, a11y |
-| E2e matrix | `pnpm test:e2e:matrix` | All browser/viewport projects |
-| Visual | `pnpm test:visual` | Tagged `@visual`; update snapshots when UI changes intentionally |
+| Layer            | Command                 | Notes                                                            |
+| ---------------- | ----------------------- | ---------------------------------------------------------------- |
+| Unit / component | `pnpm test`             | Coverage thresholds on core logic                                |
+| Content          | `pnpm validate:content` | All `src/content/data/**/*.json`                                 |
+| Contracts        | `tests/contracts/`      | Registry + schema smoke                                          |
+| E2e smoke        | `pnpm test:e2e`         | Home → lesson, nested nav, a11y                                  |
+| E2e matrix       | `pnpm test:e2e:matrix`  | All browser/viewport projects                                    |
+| Visual           | `pnpm test:visual`      | Tagged `@visual`; update snapshots when UI changes intentionally |
 
 Playwright serves `pnpm build && pnpm preview` — always builds fresh dist before e2e.
 
@@ -245,11 +245,11 @@ Playwright serves `pnpm build && pnpm preview` — always builds fresh dist befo
 
 ## CI/CD
 
-| Workflow | Trigger | What it runs |
-|----------|---------|--------------|
-| [ci.yml](../.github/workflows/ci.yml) | push / PR | typecheck, lint, deps, test, validate, build, size-limit, e2e |
-| [deploy.yml](../.github/workflows/deploy.yml) | push `main`, PRs | build → Cloudflare Pages |
-| [nightly.yml](../.github/workflows/nightly.yml) | schedule | full e2e matrix |
+| Workflow                                        | Trigger          | What it runs                                                  |
+| ----------------------------------------------- | ---------------- | ------------------------------------------------------------- |
+| [ci.yml](../.github/workflows/ci.yml)           | push / PR        | typecheck, lint, deps, test, validate, build, size-limit, e2e |
+| [deploy.yml](../.github/workflows/deploy.yml)   | push `main`, PRs | build → Cloudflare Pages                                      |
+| [nightly.yml](../.github/workflows/nightly.yml) | schedule         | full e2e matrix                                               |
 
 Production URL: **https://web-mishna.pages.dev/** (SPA fallback in `public/_redirects`).
 
