@@ -27,8 +27,11 @@ describe('default services', () => {
   it('loads catalog from content data', async () => {
     const loader = new StaticContentLoader()
     const catalog = await loader.getCatalog()
-    expect(catalog.chapters.length).toBeGreaterThan(0)
-    expect(catalog.chapters[0]!.mishnayot.length).toBe(5)
+    expect(catalog.chapters.length).toBeGreaterThanOrEqual(2)
+    const berakhot = catalog.chapters.find((c) => c.tractate === 'berakhot')
+    const sukkah = catalog.chapters.find((c) => c.tractate === 'sukkah')
+    expect(berakhot?.mishnayot.length).toBe(5)
+    expect(sukkah?.mishnayot.length).toBe(1)
   })
 
   it('loads a chapter by path', async () => {

@@ -1,12 +1,22 @@
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { ChapterSchema } from '../src/content/schema.ts'
 
-const authoringPath = join(import.meta.dirname, '../src/content/authoring/Mishnah_Berakhot_1.json')
-const outPath = join(import.meta.dirname, '../src/content/data/zeraim/berakhot/1.json')
+const authoringDir = join(import.meta.dirname, '../src/content/authoring')
+const dataRoot = join(import.meta.dirname, '../src/content/data')
 
-const authoring = JSON.parse(readFileSync(authoringPath, 'utf8'))
-const parsed = ChapterSchema.parse(authoring)
-mkdirSync(join(import.meta.dirname, '../src/content/data/zeraim/berakhot'), { recursive: true })
-writeFileSync(outPath, JSON.stringify(parsed, null, 2))
-console.log(`Built ${outPath}`)
+const ORDER_BY_TRACTATE: Record<string, string> = {
+  berakhot: 'zeraim',
+  sukkah: 'moed',
+}
+
+for (const file of readdirSync(authoringDir).filter((f) => f.endsWith('.json'))) {
+  const authoring = JSON.parse(readFileSync(join(authoringDir, file), 'utf8'))
+  const parsed = ChapterSchema.parse(authoring)
+  const order = parsed.order ?? ORDER_BY_TRACTATE[parsed.tractate] ?? parsed.tractate
+  const outDir = join(dataRoot, order, parsed.tractate)
+  const outPath = join(outDir, `${parsed.chapter}.json`)
+  mkdirSync(outDir, { recursive: true })
+  writeFileSync(outPath, JSON.stringify(parsed, null, 2))
+  console.log(`Built ${outPath}`)
+}

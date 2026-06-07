@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "order": "moed",
+  "tractate": "sukkah",
+  "chapter": 1,
+  "title": {
+    "en": "Sukkah Chapter 1",
+    "he": "משנה סוכה פרק א׳"
+  },
+  "mishnayot": [
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-1",
+      "ref": "Mishnah Sukkah 1:1",
+      "heRef": "משנה סוכה א׳:א׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 1,
+      "phrases": [
+        {
+          "he": "סֻכָּה שֶׁהִיא גְבוֹהָה לְמַעְלָה מֵעֶשְׂרִים אַמָּה, פְּסוּלָה.",
+          "translations": {
+            "en": "A sukka that is more than twenty cubits high is unfit."
+          },
+          "translit": "Sukkah shehi gevoha lemaala me'esrim amah, pesulah"
+        },
+        {
+          "he": "רַבִּי יְהוּדָה מַכְשִׁיר.",
+          "translations": {
+            "en": "Rabbi Yehuda deems it fit."
+          }
+        },
+        {
+          "he": "וְשֶׁאֵינָהּ גְּבוֹהָה עֲשָׂרָה טְפָחִים, וְשֶׁאֵין לָהּ שְׁלֹשָׁה דְּפָנוֹת, וְשֶׁחַמָּתָהּ מְרֻבָּה מִצִּלָּתָהּ, פְּסוּלָה.",
+          "translations": {
+            "en": "A sukka that is not even ten handbreadths high, one that does not have three walls, and one whose sunlight is greater than its shade are unfit."
+          }
+        },
+        {
+          "he": "סֻכָּה יְשָׁנָה, בֵּית שַׁמַּאי פּוֹסְלִין, וּבֵית הִלֵּל מַכְשִׁירִין.",
+          "translations": {
+            "en": "An old sukka: Beit Shammai deem it unfit and Beit Hillel deem it fit."
+          }
+        },
+        {
+          "he": "וְאֵיזוֹ הִיא סֻכָּה יְשָׁנָה, כָּל שֶׁעֲשָׂאָהּ קֹדֶם לֶחָג שְׁלשִׁים יוֹם.",
+          "translations": {
+            "en": "Which is an old sukka? Any that one made thirty days before the festival."
+          }
+        },
+        {
+          "he": "אֲבָל אִם עֲשָׂאָהּ לְשֵׁם חָג, אֲפִלּוּ מִתְּחִלַּת הַשָּׁנָה, כְּשֵׁרָה:",
+          "translations": {
+            "en": "But if one made it for the sake of the festival, even from the beginning of the year, it is fit."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq1-1",
+          "prompt": {
+            "en": "Above what height is a sukka unfit (according to the Sages)?",
+            "he": "מעל איזה גובה הסוכה פסולה (לפי חכמים)?"
+          },
+          "choices": [
+            {
+              "en": "Twenty cubits",
+              "he": "עשרים אמה"
+            },
+            {
+              "en": "Ten handbreadths",
+              "he": "עשרה טפחים"
+            },
+            {
+              "en": "Three cubits",
+              "he": "שלוש אמות"
+            }
+          ],
+          "answerIdx": 0,
+          "explanation": {
+            "en": "More than twenty amot high is pasul; Rabbi Yehuda permits.",
+            "he": "גבוהה מעשרים אמה פסולה; רבי יהודה מכשיר"
+          }
+        },
+        {
+          "id": "sq1-2",
+          "prompt": {
+            "en": "What is the minimum height of a fit sukka?",
+            "he": "מהו הגובה המינימלי לסוכה כשרה?"
+          },
+          "choices": [
+            {
+              "en": "Ten handbreadths",
+              "he": "עשרה טפחים"
+            },
+            {
+              "en": "Seven handbreadths",
+              "he": "שבעה טפחים"
+            },
+            {
+              "en": "Four handbreadths",
+              "he": "ארבעה טפחים"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq1-3",
+          "prompt": {
+            "en": "How many walls must a sukka have?",
+            "he": "כמה דפנות צריכה סוכה?"
+          },
+          "choices": [
+            {
+              "en": "Three",
+              "he": "שלוש"
+            },
+            {
+              "en": "Two",
+              "he": "שתיים"
+            },
+            {
+              "en": "Four",
+              "he": "ארבע"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq1-4",
+          "prompt": {
+            "en": "Who deems an old sukka fit?",
+            "he": "מי מכשיר סוכה ישנה?"
+          },
+          "choices": [
+            {
+              "en": "Beit Hillel",
+              "he": "בית הלל"
+            },
+            {
+              "en": "Beit Shammai",
+              "he": "בית שמאי"
+            },
+            {
+              "en": "Rabbi Yehuda",
+              "he": "רבי יהודה"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-dimensions",
+          "title": {
+            "en": "Valid sukka dimensions",
+            "he": "מידות סוכה כשרה"
+          },
+          "minHeightTefachim": 10,
+          "maxHeightAmot": 20,
+          "minWalls": 3,
+          "dispute": {
+            "figure": {
+              "en": "R. Yehuda",
+              "he": "רבי יהודה"
+            },
+            "opinion": {
+              "en": "permits above 20 amot",
+              "he": "מכשיר מעל כ׳ אמה"
+            }
+          }
+        }
+      },
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.1"
+      }
+    }
+  ]
+}

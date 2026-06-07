@@ -30,13 +30,31 @@ const TimelineRangeSchema = z.object({
   end: z.record(z.string(), z.string()),
 })
 
+const LocalizedSchema = z.record(z.string(), z.string())
+
+export const SukkahDimensionsSpecSchema = z.object({
+  type: z.literal('sukkah-dimensions'),
+  title: LocalizedSchema.optional(),
+  minHeightTefachim: z.number().int().positive(),
+  maxHeightAmot: z.number().int().positive(),
+  minWalls: z.number().int().positive(),
+  dispute: z
+    .object({
+      figure: LocalizedSchema,
+      opinion: LocalizedSchema,
+    })
+    .optional(),
+})
+
+export const Diagram2dSpecSchema = z.discriminatedUnion('type', [SukkahDimensionsSpecSchema])
+
 export const VisualAidSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('timeline'),
     range: TimelineRangeSchema.optional(),
     events: z.array(TimelineEventSchema).min(2),
   }),
-  z.object({ kind: z.literal('diagram2d'), spec: z.unknown() }),
+  z.object({ kind: z.literal('diagram2d'), spec: Diagram2dSpecSchema }),
   z.object({ kind: z.literal('scene3d'), model: z.unknown() }),
 ])
 
@@ -72,6 +90,8 @@ export const ChapterSchema = z.object({
 export type Phrase = z.infer<typeof PhraseSchema>
 export type QuizItem = z.infer<typeof QuizItemSchema>
 export type TimelineEvent = z.infer<typeof TimelineEventSchema>
+export type SukkahDimensionsSpec = z.infer<typeof SukkahDimensionsSpecSchema>
+export type Diagram2dSpec = z.infer<typeof Diagram2dSpecSchema>
 export type VisualAid = z.infer<typeof VisualAidSchema>
 export type Mishnah = z.infer<typeof MishnahSchema>
 export type Chapter = z.infer<typeof ChapterSchema>

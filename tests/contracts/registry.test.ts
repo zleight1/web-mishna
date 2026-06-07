@@ -19,7 +19,8 @@ describe('registry contracts', () => {
     expect(activityRegistry.all().length).toBeGreaterThanOrEqual(4)
   })
 
-  it('visual aid registry has timeline renderer', () => {
+  it('visual aid registry has timeline and diagram2d renderers', () => {
     expect(visualAidRegistry.get('timeline')).toBeDefined()
+    expect(visualAidRegistry.get('diagram2d')).toBeDefined()
   })
 })
