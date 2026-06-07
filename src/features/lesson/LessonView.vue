@@ -12,6 +12,7 @@ import { visualAidRegistry } from '@features/visual/registry'
 import { sederDisplayName } from '@content/catalogLabels'
 import { buildLessonBreadcrumbs } from '@content/catalogNav'
 import { AppButton, AppCard, CatalogBreadcrumb, LessonStepper } from '@ui/index'
+import { useCelebration } from '@features/feedback/useCelebration'
 import { useLessonMachine } from './useLessonMachine'
 
 const props = defineProps<{
@@ -27,6 +28,7 @@ const chapterData = ref<Awaited<
   ReturnType<ReturnType<typeof useServices>['content']['loadChapter']>
 > | null>(null)
 const progress = useProgressStore()
+const { celebrate } = useCelebration()
 const lessonXpEarned = ref(0)
 const progressSaved = ref(false)
 
@@ -88,8 +90,11 @@ async function saveLessonProgress() {
 
 watch(
   () => machine.stage.value,
-  (stage) => {
-    if (stage === 'complete') void saveLessonProgress()
+  (stage, prev) => {
+    if (stage === 'complete' && prev !== 'complete') {
+      celebrate('lessonComplete')
+      void saveLessonProgress()
+    }
   },
 )
 </script>
@@ -150,7 +155,7 @@ watch(
       />
     </AppCard>
 
-    <AppCard v-else-if="machine.stage.value === 'complete'" accent>
+    <AppCard v-else-if="machine.stage.value === 'complete'" accent class="lesson-complete-card">
       <div class="lesson-complete-badge" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6" />
@@ -199,6 +204,10 @@ watch(
   font-weight: 700;
   margin: 0;
   color: var(--color-primary);
+}
+
+.lesson-complete-card {
+  animation: feedback-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .lesson-complete-badge {

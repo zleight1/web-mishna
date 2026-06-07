@@ -4,11 +4,13 @@ import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import type { ActivityResult } from '@core/contracts/activity'
 import { AppButton, FeedbackBanner } from '@ui/index'
+import { useCelebration } from '@features/feedback/useCelebration'
 import { validateMatch, type MatchState } from './logic'
 
 const props = defineProps<{ state: MatchState; lang: LangCode }>()
 const emit = defineEmits<{ complete: [ActivityResult] }>()
 const { t } = useI18n()
+const { celebrate } = useCelebration()
 
 const activeHe = ref<string | null>(null)
 const links = ref<Record<string, string>>({})
@@ -22,12 +24,16 @@ function pickHe(id: string) {
 
 function pickEn(en: string) {
   if (done.value || !activeHe.value) return
-  links.value[activeHe.value] = en
+  const pair = props.state.pairs.find((p) => p.id === activeHe.value)
+  const heId = activeHe.value
+  links.value[heId] = en
   activeHe.value = null
+  if (pair) celebrate(pair.en === en ? 'correct' : 'wrong')
 }
 
 function submit() {
   const result = validateMatch(props.state, { links: links.value })
+  if (result.correct) celebrate('perfect')
   feedback.value = {
     variant: result.correct ? 'success' : 'error',
     message: result.correct

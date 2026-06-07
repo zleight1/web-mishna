@@ -4,11 +4,13 @@ import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import type { ActivityResult } from '@core/contracts/activity'
 import { AppButton, WordChip, FeedbackBanner } from '@ui/index'
+import { useCelebration } from '@features/feedback/useCelebration'
 import { validateReconstruct, type ReconstructState } from './logic'
 
 const props = defineProps<{ state: ReconstructState; lang: LangCode }>()
 const emit = defineEmits<{ complete: [ActivityResult] }>()
 const { t } = useI18n()
+const { celebrate } = useCelebration()
 
 const selected = ref<string[]>([])
 const done = ref(false)
@@ -21,6 +23,7 @@ function addWord(word: string) {
 
 function submit() {
   const result = validateReconstruct(props.state, { order: selected.value })
+  celebrate(result.correct ? 'perfect' : result.score >= 0.5 ? 'correct' : 'wrong')
   feedback.value = {
     variant: result.correct ? 'success' : 'error',
     message: result.correct

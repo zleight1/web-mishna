@@ -1,19 +1,24 @@
 <script setup lang="ts">
+import { provide } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { AppLogo, LangToggle } from '@ui/index'
+import { createCelebration, celebrationKey } from '@features/feedback/useCelebration'
+import { AppLogo, CelebrationLayer, LangToggle, SoundToggle } from '@ui/index'
 
 const { t } = useI18n()
+const celebration = createCelebration()
+provide(celebrationKey, celebration)
 </script>
 
 <template>
-  <div class="app-shell">
+  <div class="app-shell" :class="{ 'app-shell--shake': celebration.shaking.value }">
     <header class="app-header">
       <div class="app-header-inner">
         <RouterLink to="/" class="app-brand">
           <AppLogo size="sm" heading-tag="h1" />
         </RouterLink>
         <div class="app-header-center">
+          <SoundToggle :muted="celebration.muted.value" @toggle="celebration.toggleMuted()" />
           <LangToggle />
         </div>
         <nav class="app-nav" aria-label="Site">
@@ -35,6 +40,7 @@ const { t } = useI18n()
     <main class="app-main">
       <RouterView />
     </main>
+    <CelebrationLayer :burst="celebration.burst.value" />
   </div>
 </template>
 
@@ -67,7 +73,13 @@ const { t } = useI18n()
 
 .app-header-center {
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 0.45rem;
+}
+
+.app-shell--shake {
+  animation: app-shake 0.42s ease-in-out;
 }
 
 .app-nav {

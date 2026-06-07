@@ -4,11 +4,13 @@ import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import type { ActivityResult } from '@core/contracts/activity'
 import { ChoiceButton, AppButton, FeedbackBanner } from '@ui/index'
+import { useCelebration } from '@features/feedback/useCelebration'
 import { validateQuiz, type QuizState } from './logic'
 
 const props = defineProps<{ state: QuizState; lang: LangCode }>()
 const emit = defineEmits<{ complete: [ActivityResult] }>()
 const { t } = useI18n()
+const { celebrate } = useCelebration()
 
 const current = ref(0)
 const answers = ref<number[]>([])
@@ -23,6 +25,7 @@ function pick(idx: number) {
   if (done.value) return
   picked.value = idx
   showExplanation.value = true
+  celebrate(idx === q().answerIdx ? 'correct' : 'wrong')
 }
 
 function next() {
@@ -34,6 +37,7 @@ function next() {
     current.value++
   } else {
     const result = validateQuiz(props.state, { answers: answers.value })
+    if (result.correct) celebrate('perfect')
     feedback.value = {
       variant: result.correct ? 'success' : 'error',
       message: t('app.quizScore', { pct: Math.round(result.score * 100) }),
