@@ -24,14 +24,19 @@ describe('default services', () => {
     expect(loaded.xp).toBe(10)
   })
 
-  it('loads catalog from content data', async () => {
+  it('loads catalog from content data in seder order', async () => {
     const loader = new StaticContentLoader()
     const catalog = await loader.getCatalog()
     expect(catalog.chapters.length).toBeGreaterThanOrEqual(2)
+    expect(catalog.chapters[0]!.order).toBe('zeraim')
+    expect(catalog.chapters[0]!.tractate).toBe('berakhot')
+    expect(catalog.chapters.at(-1)!.order).toBe('moed')
+    expect(catalog.chapters.at(-1)!.tractate).toBe('sukkah')
     const berakhot = catalog.chapters.find((c) => c.tractate === 'berakhot')
     const sukkah = catalog.chapters.find((c) => c.tractate === 'sukkah')
     expect(berakhot?.mishnayot.length).toBe(5)
     expect(sukkah?.mishnayot.length).toBe(11)
+    expect(berakhot?.mishnayot[0]!.number).toBe(1)
   })
 
   it('loads a chapter by path', async () => {

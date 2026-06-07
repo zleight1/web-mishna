@@ -1,6 +1,7 @@
 import type { Catalog, ContentLoader } from '@core/contracts/content-loader'
 import type { ProgressRepository, ProgressState } from '@core/contracts/progress'
 import type { Scheduler, Telemetry } from '@core/contracts/services'
+import { sortCatalogChapters } from '@content/catalogOrder'
 import { ChapterSchema } from '@content/schema'
 
 const PROGRESS_KEY = 'web-mishna-progress'
@@ -51,20 +52,21 @@ export class StaticContentLoader implements ContentLoader {
   async getCatalog(): Promise<Catalog> {
     if (this.catalogCache) return this.catalogCache
     const chapters = await this.loadAllChapters()
+    const catalogChapters = chapters.map((ch) => ({
+      order: ch.order,
+      tractate: ch.tractate,
+      chapter: ch.chapter,
+      title: ch.title,
+      mishnayot: ch.mishnayot.map((m) => ({
+        id: m.id,
+        ref: m.ref,
+        heRef: m.heRef,
+        number: m.number,
+      })),
+    }))
     this.catalogCache = {
       schemaVersion: 1,
-      chapters: chapters.map((ch) => ({
-        order: ch.order,
-        tractate: ch.tractate,
-        chapter: ch.chapter,
-        title: ch.title,
-        mishnayot: ch.mishnayot.map((m) => ({
-          id: m.id,
-          ref: m.ref,
-          heRef: m.heRef,
-          number: m.number,
-        })),
-      })),
+      chapters: sortCatalogChapters(catalogChapters),
     }
     return this.catalogCache
   }

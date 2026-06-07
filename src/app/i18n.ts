@@ -9,6 +9,21 @@ export const i18n = createI18n({
       app: {
         title: 'Web Mishnah',
         subtitle: 'Learn Mishnah Berakhot',
+        catalog: {
+          kicker: 'Interactive Mishnah study',
+          subtitle: 'Browse by seder — read, practice, and recall each mishnah.',
+          progress: 'Completed',
+          chaptersInSeder: '{n} chapters',
+          mishnayotProgress: '{done} / {total} mishnayot done',
+          seder: {
+            zeraim: 'Zeraim — Agriculture & blessings',
+            moed: 'Moed — Festivals & sacred time',
+            nashim: 'Nashim — Marriage & family',
+            nezikin: 'Nezikin — Damages & courts',
+            kodshim: 'Kodshim — Temple offerings',
+            tahorot: 'Tahorot — Purity',
+          },
+        },
         startLesson: 'Start lesson',
         read: 'Read',
         practice: 'Practice',
@@ -55,6 +70,21 @@ export const i18n = createI18n({
       app: {
         title: 'משנה באינטרנט',
         subtitle: 'לימוד משנה ברכות',
+        catalog: {
+          kicker: 'לימוד משנה אינטראקטיבי',
+          subtitle: 'עיון לפי סדר — קריאה, תרגול וחזרה על כל משנה.',
+          progress: 'הושלמו',
+          chaptersInSeder: '{n} פרקים',
+          mishnayotProgress: '{done} / {total} משניות הושלמו',
+          seder: {
+            zeraim: 'זרעים — ברכות וחקלאות',
+            moed: 'מועד — חגים וזמנים',
+            nashim: 'נשים — אישות ומשפחה',
+            nezikin: 'נזיקין — נזקין ודינים',
+            kodshim: 'קדשים — קרבנות',
+            tahorot: 'טהרות — טומאה וטהרה',
+          },
+        },
         startLesson: 'התחל שיעור',
         read: 'קריאה',
         practice: 'תרגול',
