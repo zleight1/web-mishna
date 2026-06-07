@@ -7,7 +7,7 @@ import { groupCatalogBySeder } from '@content/catalogOrder'
 import { sederDisplayName } from '@content/catalogLabels'
 import { useServices } from '@app/providers'
 import { useProgressStore } from '@features/progress/store'
-import { AppLogo, LangToggle } from '@ui/index'
+import { AppLogo } from '@ui/index'
 import ChapterMap from './ChapterMap.vue'
 import CatalogIcon from './CatalogIcon.vue'
 
@@ -65,13 +65,10 @@ function sederLabel(order: string) {
     <header class="home-hero">
       <div class="home-hero-glow" aria-hidden="true" />
       <div class="home-hero-content">
-        <div class="home-hero-top">
-          <div class="home-hero-copy">
-            <AppLogo size="lg" :show-title="false" />
-            <p class="home-welcome">{{ t('catalog.kicker') }}</p>
-            <p class="home-subtitle">{{ t('catalog.subtitle') }}</p>
-          </div>
-          <LangToggle />
+        <div class="home-hero-copy">
+          <AppLogo size="lg" :show-title="false" />
+          <p class="home-welcome">{{ t('catalog.kicker') }}</p>
+          <p class="home-subtitle">{{ t('catalog.subtitle') }}</p>
         </div>
 
         <div v-if="progress.state" class="home-stats">
@@ -210,13 +207,6 @@ function sederLabel(order: string) {
   opacity: 0.92;
   filter: drop-shadow(0 8px 16px rgb(30 77 107 / 0.12));
   pointer-events: none;
-}
-
-.home-hero-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
 }
 
 .home-welcome {

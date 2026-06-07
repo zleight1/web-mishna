@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { AppLogo } from '@ui/index'
+import { AppLogo, LangToggle } from '@ui/index'
 
 const { t } = useI18n()
 </script>
@@ -13,6 +13,9 @@ const { t } = useI18n()
         <RouterLink to="/" class="app-brand">
           <AppLogo size="sm" heading-tag="h1" />
         </RouterLink>
+        <div class="app-header-center">
+          <LangToggle />
+        </div>
         <nav class="app-nav" aria-label="Site">
           <RouterLink to="/credits" class="app-nav-link">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -53,13 +56,23 @@ const { t } = useI18n()
 }
 
 .app-header-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   max-width: 48rem;
   margin: 0 auto;
   padding: 0.65rem 1rem;
+}
+
+.app-header-center {
+  display: flex;
+  justify-content: center;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .app-brand {

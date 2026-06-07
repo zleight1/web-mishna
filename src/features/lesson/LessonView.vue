@@ -11,7 +11,7 @@ import MishnahTextPanel from '@features/reader/MishnahTextPanel.vue'
 import { visualAidRegistry } from '@features/visual/registry'
 import { sederDisplayName } from '@content/catalogLabels'
 import { buildLessonBreadcrumbs } from '@content/catalogNav'
-import { AppButton, AppCard, CatalogBreadcrumb, LangToggle, LessonStepper } from '@ui/index'
+import { AppButton, AppCard, CatalogBreadcrumb, LessonStepper } from '@ui/index'
 import { useLessonMachine } from './useLessonMachine'
 
 const props = defineProps<{
@@ -96,10 +96,7 @@ watch(
 
 <template>
   <div v-if="currentMishnah" class="lesson-shell">
-    <div class="lesson-top">
-      <CatalogBreadcrumb :items="breadcrumbs" :nav-label="t('catalog.breadcrumb')" />
-      <LangToggle />
-    </div>
+    <CatalogBreadcrumb :items="breadcrumbs" :nav-label="t('catalog.breadcrumb')" />
 
     <h2 class="lesson-title">
       {{ lang === 'he' ? currentMishnah.heRef : currentMishnah.ref }}
@@ -195,13 +192,6 @@ watch(
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.lesson-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
 }
 
 .lesson-title {

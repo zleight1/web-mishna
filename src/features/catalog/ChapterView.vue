@@ -6,7 +6,7 @@ import { useAppLanguage } from '@app/useAppLanguage'
 import { useProgressStore } from '@features/progress/store'
 import { sederDisplayName } from '@content/catalogLabels'
 import { buildLessonBreadcrumbs } from '@content/catalogNav'
-import { CatalogBreadcrumb, LangToggle } from '@ui/index'
+import { CatalogBreadcrumb } from '@ui/index'
 import ChapterMap from './ChapterMap.vue'
 
 const props = defineProps<{
@@ -57,10 +57,7 @@ const breadcrumbs = computed(() =>
 
 <template>
   <div v-if="chapterEntry" class="chapter-view">
-    <div class="chapter-view-header">
-      <CatalogBreadcrumb :items="breadcrumbs" :nav-label="t('catalog.breadcrumb')" />
-      <LangToggle />
-    </div>
+    <CatalogBreadcrumb :items="breadcrumbs" :nav-label="t('catalog.breadcrumb')" />
     <ChapterMap :chapter="chapterEntry" />
   </div>
   <p v-else class="text-[var(--color-text-muted)]">{{ t('app.loadingLesson') }}</p>
@@ -71,12 +68,5 @@ const breadcrumbs = computed(() =>
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.chapter-view-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
 }
 </style>
