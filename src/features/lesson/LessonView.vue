@@ -2,8 +2,8 @@
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import type { LangCode } from '@content/schema'
 import { useServices } from '@app/providers'
+import { useAppLanguage } from '@app/useAppLanguage'
 import { useProgressStore } from '@features/progress/store'
 import BilingualReader from '@features/reader/BilingualReader.vue'
 import { visualAidRegistry } from '@features/visual/registry'
@@ -18,7 +18,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
-const lang = ref<LangCode>('en')
+const { lang } = useAppLanguage()
 const chapterData = ref<Awaited<
   ReturnType<ReturnType<typeof useServices>['content']['loadChapter']>
 > | null>(null)
@@ -66,8 +66,10 @@ async function finishLesson() {
 <template>
   <div v-if="currentMishnah" class="space-y-6">
     <div class="flex items-center justify-between">
-      <h2 class="text-xl font-semibold">{{ currentMishnah.ref }}</h2>
-      <LangToggle v-model="lang" />
+      <h2 class="text-xl font-semibold">
+        {{ lang === 'he' ? currentMishnah.heRef : currentMishnah.ref }}
+      </h2>
+      <LangToggle />
     </div>
 
     <div class="flex gap-2 text-sm">
@@ -95,9 +97,9 @@ async function finishLesson() {
         :aid="currentMishnah.visualAid"
         :lang="lang"
       />
-      <AppButton class="mt-4" @click="machine.advanceFromRead()"
-        >{{ t('app.practice') }} →</AppButton
-      >
+      <AppButton class="mt-4" @click="machine.advanceFromRead()">
+        {{ lang === 'he' ? `← ${t('app.practice')}` : `${t('app.practice')} →` }}
+      </AppButton>
     </AppCard>
 
     <AppCard v-else-if="machine.stage.value === 'practice' && machine.currentPractice.value">
@@ -133,11 +135,14 @@ async function finishLesson() {
     <AppCard v-else-if="machine.stage.value === 'complete'">
       <p class="text-lg font-semibold text-[var(--color-success)]">{{ t('app.complete') }}</p>
       <p class="mt-2 text-sm">
-        XP: {{ progress.state?.xp }} · Streak: {{ progress.state?.streak }}
+        {{ t('app.xp') }}: {{ progress.state?.xp }} · {{ t('app.streak') }}:
+        {{ progress.state?.streak }}
       </p>
-      <AppButton class="mt-4" @click="finishLesson">Save progress</AppButton>
-      <RouterLink to="/" class="ml-3 text-sm text-[var(--color-primary)]">← Home</RouterLink>
+      <AppButton class="mt-4" @click="finishLesson">{{ t('app.saveProgress') }}</AppButton>
+      <RouterLink to="/" class="ms-3 text-sm text-[var(--color-primary)]"
+        >← {{ t('app.home') }}</RouterLink
+      >
     </AppCard>
   </div>
-  <p v-else class="text-[var(--color-text-muted)]">Loading lesson…</p>
+  <p v-else class="text-[var(--color-text-muted)]">{{ t('app.loadingLesson') }}</p>
 </template>

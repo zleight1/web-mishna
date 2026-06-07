@@ -3,6 +3,7 @@ import type { Chapter } from '@content/schema'
 export interface CatalogMishnah {
   id: string
   ref: string
+  heRef: string
   number: number
 }
 

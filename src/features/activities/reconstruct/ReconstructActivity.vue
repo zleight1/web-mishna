@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import type { ActivityResult } from '@core/contracts/activity'
 import { AppButton, WordChip, FeedbackBanner } from '@ui/index'
@@ -7,6 +8,7 @@ import { validateReconstruct, type ReconstructState } from './logic'
 
 const props = defineProps<{ state: ReconstructState; lang: LangCode }>()
 const emit = defineEmits<{ complete: [ActivityResult] }>()
+const { t } = useI18n()
 
 const selected = ref<string[]>([])
 const done = ref(false)
@@ -21,7 +23,9 @@ function submit() {
   const result = validateReconstruct(props.state, { order: selected.value })
   feedback.value = {
     variant: result.correct ? 'success' : 'error',
-    message: result.correct ? 'Perfect order!' : `Score: ${Math.round(result.score * 100)}%`,
+    message: result.correct
+      ? t('app.perfectOrder')
+      : t('app.score', { pct: Math.round(result.score * 100) }),
   }
   done.value = true
   emit('complete', result)
@@ -34,7 +38,7 @@ function reset() {
 
 <template>
   <div class="space-y-4">
-    <p class="text-sm text-[var(--color-text-muted)]">Tap words in the correct order:</p>
+    <p class="text-sm text-[var(--color-text-muted)]">{{ t('app.tapWordsOrder') }}</p>
     <div
       dir="rtl"
       class="flex min-h-12 flex-wrap gap-2 rounded-lg border border-dashed border-[var(--color-border)] p-3"
@@ -52,8 +56,12 @@ function reset() {
       >
     </div>
     <div class="flex gap-2">
-      <AppButton variant="secondary" :disabled="done" @click="reset">Reset</AppButton>
-      <AppButton :disabled="done || selected.length === 0" @click="submit">Check</AppButton>
+      <AppButton variant="secondary" :disabled="done" @click="reset">{{
+        t('app.reset')
+      }}</AppButton>
+      <AppButton :disabled="done || selected.length === 0" @click="submit">{{
+        t('app.check')
+      }}</AppButton>
     </div>
     <FeedbackBanner v-if="feedback" :variant="feedback.variant" :message="feedback.message" />
   </div>

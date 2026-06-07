@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import type { ActivityResult } from '@core/contracts/activity'
 import { AppButton, FeedbackBanner } from '@ui/index'
@@ -7,6 +8,7 @@ import { validateMatch, type MatchState } from './logic'
 
 const props = defineProps<{ state: MatchState; lang: LangCode }>()
 const emit = defineEmits<{ complete: [ActivityResult] }>()
+const { t } = useI18n()
 
 const activeHe = ref<string | null>(null)
 const links = ref<Record<string, string>>({})
@@ -28,7 +30,9 @@ function submit() {
   const result = validateMatch(props.state, { links: links.value })
   feedback.value = {
     variant: result.correct ? 'success' : 'error',
-    message: result.correct ? 'All matched!' : `Score: ${Math.round(result.score * 100)}%`,
+    message: result.correct
+      ? t('app.allMatched')
+      : t('app.score', { pct: Math.round(result.score * 100) }),
   }
   done.value = true
   emit('complete', result)
@@ -38,7 +42,7 @@ function submit() {
 <template>
   <div class="grid gap-4 md:grid-cols-2">
     <div class="space-y-2">
-      <p class="text-xs font-medium text-[var(--color-text-muted)]">Hebrew</p>
+      <p class="text-xs font-medium text-[var(--color-text-muted)]">{{ t('app.hebrew') }}</p>
       <button
         v-for="pair in state.pairs"
         :key="pair.id"
@@ -57,7 +61,7 @@ function submit() {
       </button>
     </div>
     <div class="space-y-2">
-      <p class="text-xs font-medium text-[var(--color-text-muted)]">English</p>
+      <p class="text-xs font-medium text-[var(--color-text-muted)]">{{ t('app.english') }}</p>
       <button
         v-for="en in state.shuffledEn"
         :key="en"
@@ -69,7 +73,7 @@ function submit() {
       </button>
     </div>
     <div class="md:col-span-2">
-      <AppButton :disabled="done" @click="submit">Check matches</AppButton>
+      <AppButton :disabled="done" @click="submit">{{ t('app.checkMatches') }}</AppButton>
       <FeedbackBanner
         v-if="feedback"
         class="mt-3"

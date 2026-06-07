@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import type { ActivityResult } from '@core/contracts/activity'
 import { ChoiceButton, AppButton, FeedbackBanner } from '@ui/index'
@@ -7,6 +8,7 @@ import { validateQuiz, type QuizState } from './logic'
 
 const props = defineProps<{ state: QuizState; lang: LangCode }>()
 const emit = defineEmits<{ complete: [ActivityResult] }>()
+const { t } = useI18n()
 
 const current = ref(0)
 const answers = ref<number[]>([])
@@ -34,7 +36,7 @@ function next() {
     const result = validateQuiz(props.state, { answers: answers.value })
     feedback.value = {
       variant: result.correct ? 'success' : 'error',
-      message: `Quiz score: ${Math.round(result.score * 100)}%`,
+      message: t('app.quizScore', { pct: Math.round(result.score * 100) }),
     }
     done.value = true
     emit('complete', result)
@@ -45,7 +47,7 @@ function next() {
 <template>
   <div class="space-y-4">
     <p class="text-sm text-[var(--color-text-muted)]">
-      Question {{ current + 1 }} / {{ state.questions.length }}
+      {{ t('app.question', { current: current + 1, total: state.questions.length }) }}
     </p>
     <h3 class="text-lg font-medium">{{ q().prompt }}</h3>
     <div class="space-y-2">
@@ -66,7 +68,7 @@ function next() {
       {{ q().explanation }}
     </p>
     <AppButton v-if="showExplanation && !done" @click="next">
-      {{ current < state.questions.length - 1 ? 'Next' : 'Finish' }}
+      {{ current < state.questions.length - 1 ? t('app.next') : t('app.finish') }}
     </AppButton>
     <FeedbackBanner v-if="feedback" :variant="feedback.variant" :message="feedback.message" />
   </div>

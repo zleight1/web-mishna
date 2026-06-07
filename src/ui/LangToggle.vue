@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { LangCode } from '@content/schema'
+import { useAppLanguage } from '@app/useAppLanguage'
 
-const model = defineModel<LangCode>({ required: true })
+const { lang } = useAppLanguage()
 const options: LangCode[] = ['en', 'he']
 </script>
 
@@ -13,10 +14,10 @@ const options: LangCode[] = ['en', 'he']
       type="button"
       class="min-h-9 rounded-md px-3 text-sm capitalize"
       :class="{
-        'bg-[var(--color-primary)] text-white': model === opt,
-        'text-[var(--color-text-muted)]': model !== opt,
+        'bg-[var(--color-primary)] text-white': lang === opt,
+        'text-[var(--color-text-muted)]': lang !== opt,
       }"
-      @click="model = opt"
+      @click="lang = opt"
     >
       {{ opt }}
     </button>

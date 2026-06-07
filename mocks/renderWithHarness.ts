@@ -25,12 +25,18 @@ export function renderWithHarness(
   const baseServices = createServices()
   const services: Services = { ...baseServices, ...options.services }
 
+  const { global: mountGlobal, ...restMount } = mountOptions
+
   return mount(component, {
+    ...restMount,
+    props: options.props,
     global: {
       plugins: [router, i18n],
       provide: { [servicesKey as unknown as string]: services },
+      ...mountGlobal,
+      stubs: {
+        ...(mountGlobal?.stubs ?? {}),
+      },
     },
-    props: options.props,
-    ...mountOptions,
   })
 }

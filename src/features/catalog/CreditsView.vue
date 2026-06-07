@@ -8,22 +8,22 @@ const { t } = useI18n()
   <div class="prose max-w-none space-y-4">
     <h2>{{ t('app.credits') }}</h2>
     <section>
-      <h3 class="font-semibold">Hebrew text</h3>
+      <h3 class="font-semibold">{{ t('app.creditsHebrew') }}</h3>
       <p>
-        Torat Emet 357 (Public Domain) via
+        {{ t('app.creditsToratEmet') }}
         <a href="https://www.sefaria.org" class="text-[var(--color-primary)]">Sefaria</a>
       </p>
     </section>
     <section>
-      <h3 class="font-semibold">English translation</h3>
+      <h3 class="font-semibold">{{ t('app.creditsEnglish') }}</h3>
       <p>
-        Mishnah Yomit by Dr. Joshua Kulp (CC-BY) via
+        {{ t('app.creditsKulp') }}
         <a href="https://www.sefaria.org" class="text-[var(--color-primary)]">Sefaria</a>
       </p>
     </section>
     <section>
-      <h3 class="font-semibold">Application</h3>
-      <p>MIT License. A hobby project for learning Mishnah.</p>
+      <h3 class="font-semibold">{{ t('app.creditsApp') }}</h3>
+      <p>{{ t('app.creditsMit') }} {{ t('app.creditsHobby') }}</p>
     </section>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import type { ActivityResult } from '@core/contracts/activity'
 import { WordChip, FeedbackBanner } from '@ui/index'
@@ -7,6 +8,7 @@ import { validateCloze, type ClozeState } from './logic'
 
 const props = defineProps<{ state: ClozeState; lang: LangCode }>()
 const emit = defineEmits<{ complete: [ActivityResult] }>()
+const { t } = useI18n()
 
 const feedback = ref<{ variant: 'success' | 'error'; message: string } | null>(null)
 const done = ref(false)
@@ -16,7 +18,7 @@ function pick(choice: string) {
   const result = validateCloze(props.state, { choice })
   feedback.value = {
     variant: result.correct ? 'success' : 'error',
-    message: result.correct ? 'Correct!' : 'Try again next time.',
+    message: result.correct ? t('app.correct') : t('app.tryAgain'),
   }
   done.value = true
   emit('complete', result)

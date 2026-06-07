@@ -6,11 +6,9 @@ import { useServices } from '@app/providers'
 import { useProgressStore } from '@features/progress/store'
 import { LangToggle } from '@ui/index'
 import ChapterMap from './ChapterMap.vue'
-import type { LangCode } from '@content/schema'
 
 const { t } = useI18n()
 const catalog = ref<Catalog | null>(null)
-const lang = ref<LangCode>('en')
 const progress = useProgressStore()
 
 onMounted(async () => {
@@ -26,7 +24,7 @@ onMounted(async () => {
         <h2 class="text-2xl font-bold">{{ t('app.title') }}</h2>
         <p class="text-[var(--color-text-muted)]">{{ t('app.subtitle') }}</p>
       </div>
-      <LangToggle v-model="lang" />
+      <LangToggle />
     </div>
     <div v-if="progress.state" class="flex gap-4 text-sm">
       <span>{{ t('app.xp') }}: {{ progress.state.xp }}</span>

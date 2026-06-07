@@ -61,6 +61,7 @@ export class StaticContentLoader implements ContentLoader {
         mishnayot: ch.mishnayot.map((m) => ({
           id: m.id,
           ref: m.ref,
+          heRef: m.heRef,
           number: m.number,
         })),
       })),
