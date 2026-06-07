@@ -20,8 +20,12 @@ const rangeEnd = computed(() => {
 
 const PAD = 8 // percent inset from edges so edge labels don't clip
 
-function position(at: number) {
-  return PAD + at * (100 - 2 * PAD)
+const isRtl = computed(() => props.lang === 'he')
+
+/** Map event `at` (0=start, 1=end) to track position; mirror for Hebrew RTL. */
+function markerPosition(at: number) {
+  const x = PAD + at * (100 - 2 * PAD)
+  return isRtl.value ? 100 - x : x
 }
 
 function labelFor(ev: TimelineEvent) {
@@ -56,7 +60,8 @@ function labelTransform(index: number) {
     if (lanes.value[j] !== lane) continue
     const otherAt = events.value[j]!.at
     if (Math.abs(at - otherAt) < 0.17) {
-      px += at > otherAt ? 12 : -12
+      const later = at > otherAt ? 12 : -12
+      px += isRtl.value ? -later : later
     }
   }
   return px === 0 ? 'translateX(-50%)' : `translateX(calc(-50% + ${px}px))`
@@ -97,14 +102,18 @@ const lanes = computed(() => {
     role="group"
     :aria-label="`${rangeStart} to ${rangeEnd} timeline`"
   >
-    <div class="timeline-shell">
+    <div
+      class="timeline-shell"
+      :class="{ 'timeline-shell--rtl': isRtl }"
+      :dir="isRtl ? 'rtl' : 'ltr'"
+    >
       <ul class="timeline-events">
         <li
           v-for="(ev, index) in events"
           :key="ev.id"
           class="timeline-event"
           :class="`timeline-event--${lanes[index]}`"
-          :style="{ left: `${position(ev.at)}%` }"
+          :style="{ left: `${markerPosition(ev.at)}%` }"
         >
           <div class="timeline-label" :style="{ transform: labelTransform(index) }">
             <span class="timeline-label-short">{{ labelsFor(ev).short }}</span>
@@ -171,13 +180,25 @@ const lanes = computed(() => {
   overflow: hidden;
   box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.12);
   background: linear-gradient(
-    90deg,
+    var(--timeline-flow, 90deg),
     #1e3a5f 0%,
     #2d4f73 25%,
     #4a6fa5 50%,
     #8b9cb8 75%,
     #f4c542 100%
   );
+}
+
+.timeline-shell--rtl {
+  --timeline-flow: 270deg;
+}
+
+.timeline-shell--rtl .timeline-edge--start {
+  text-align: left;
+}
+
+.timeline-shell--rtl .timeline-edge--end {
+  text-align: right;
 }
 
 .timeline-events {

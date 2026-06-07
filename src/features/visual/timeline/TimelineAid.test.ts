@@ -20,4 +20,31 @@ describe('TimelineAid', () => {
     expect(w.findAll('.timeline-event--above').length).toBeGreaterThan(0)
     expect(w.findAll('.timeline-event--below').length).toBeGreaterThan(0)
   })
+
+  it('mirrors layout for Hebrew RTL', () => {
+    const aid = fixtureMishnah.visualAid!
+    if (aid.kind !== 'timeline') return
+    const en = mount(TimelineAid, { props: { aid, lang: 'en' } })
+    const he = mount(TimelineAid, { props: { aid, lang: 'he' } })
+    expect(he.find('.timeline-shell--rtl').exists()).toBe(true)
+    expect(he.find('.timeline-shell').attributes('dir')).toBe('rtl')
+
+    const firstAt = aid.events[0]!.at
+    const enLeft = Number(
+      en
+        .find('.timeline-event')!
+        .attributes('style')!
+        .match(/left:\s*([\d.]+)%/)![1],
+    )
+    const heLeft = Number(
+      he
+        .find('.timeline-event')!
+        .attributes('style')!
+        .match(/left:\s*([\d.]+)%/)![1],
+    )
+    const pad = 8
+    const ltr = pad + firstAt * (100 - 2 * pad)
+    expect(enLeft).toBeCloseTo(ltr, 1)
+    expect(heLeft).toBeCloseTo(100 - ltr, 1)
+  })
 })
