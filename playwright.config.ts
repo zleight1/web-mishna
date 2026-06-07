@@ -12,9 +12,12 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'pnpm build && pnpm preview --port 4173',
+    command: process.env.CI
+      ? 'pnpm preview --port 4173 --host 127.0.0.1'
+      : 'pnpm build && pnpm preview --port 4173 --host 127.0.0.1',
     port: 4173,
     reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
   },
   projects: [
     { name: 'chromium-smoke', use: { ...devices['Desktop Chrome'] } },
