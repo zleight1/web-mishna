@@ -4,12 +4,17 @@ A bilingual (Hebrew + English) interactive web game for learning Mishnah, starti
 
 ## Quickstart
 
+**Run commands from the repo root** (`web-mishna/`), not the parent `work/` folder:
+
 ```bash
+cd web-mishna   # or: cd ~/work/zleight1/web-mishna
 pnpm install
 pnpm dev
 ```
 
 Open http://localhost:5173
+
+Requires **Node 22+** and **pnpm** (`corepack enable && corepack prepare pnpm@latest --activate`).
 
 ## Scripts
 

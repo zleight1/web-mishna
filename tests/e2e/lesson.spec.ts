@@ -6,7 +6,10 @@ test('lesson smoke: home to lesson flow', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Web Mishnah' }).first()).toBeVisible()
   await page.getByText('Mishnah 1').first().click()
   await expect(page.getByText('Mishnah Berakhot 1:1')).toBeVisible({ timeout: 10000 })
-  await page.getByRole('button', { name: /Practice/i }).first().click()
+  await page
+    .getByRole('button', { name: /Practice/i })
+    .first()
+    .click()
 })
 
 test('lesson page a11y', async ({ page }) => {
