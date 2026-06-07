@@ -118,3 +118,22 @@ export function groupCatalogBySeder(chapters: CatalogChapter[]): CatalogSederGro
   }
   return groups
 }
+
+export interface CatalogTractateGroup {
+  order: string
+  tractate: string
+  chapters: CatalogChapter[]
+}
+
+export function groupChaptersByTractate(chapters: CatalogChapter[]): CatalogTractateGroup[] {
+  const groups: CatalogTractateGroup[] = []
+  for (const ch of chapters) {
+    const last = groups[groups.length - 1]
+    if (last?.tractate === ch.tractate) {
+      last.chapters.push(ch)
+    } else {
+      groups.push({ order: ch.order, tractate: ch.tractate, chapters: [ch] })
+    }
+  }
+  return groups
+}

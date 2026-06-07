@@ -1,6 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import type { CatalogChapter } from '@core/contracts/content-loader'
-import { compareCatalogChapters, groupCatalogBySeder, sortCatalogChapters } from './catalogOrder'
+import {
+  compareCatalogChapters,
+  groupCatalogBySeder,
+  groupChaptersByTractate,
+  sortCatalogChapters,
+} from './catalogOrder'
 
 function ch(order: string, tractate: string, chapter: number): CatalogChapter {
   return {
@@ -38,6 +43,16 @@ describe('catalogOrder', () => {
     ])
     expect(groups.map((g) => g.order)).toEqual(['zeraim', 'moed'])
     expect(groups[1]!.chapters.map((c) => c.tractate)).toEqual(['shabbat', 'sukkah'])
+  })
+
+  it('groups consecutive chapters under the same tractate', () => {
+    const groups = groupChaptersByTractate([
+      ch('zeraim', 'berakhot', 1),
+      ch('zeraim', 'berakhot', 2),
+      ch('zeraim', 'peah', 1),
+    ])
+    expect(groups.map((g) => g.tractate)).toEqual(['berakhot', 'peah'])
+    expect(groups[0]!.chapters.map((c) => c.chapter)).toEqual([1, 2])
   })
 
   it('compareCatalogChapters is transitive for tractate order', () => {

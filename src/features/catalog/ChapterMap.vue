@@ -8,7 +8,7 @@ import { AppCard } from '@ui/index'
 import { useProgressStore } from '@features/progress/store'
 import CatalogIcon from './CatalogIcon.vue'
 
-const props = defineProps<{ chapter: CatalogChapter }>()
+const props = defineProps<{ chapter: CatalogChapter; embedded?: boolean }>()
 const { t } = useI18n()
 const { lang } = useAppLanguage()
 const progress = useProgressStore()
@@ -31,7 +31,37 @@ const chapterPct = computed(() =>
 </script>
 
 <template>
-  <AppCard padding="sm" accent class="chapter-card">
+  <ul v-if="embedded" class="mishnah-grid mishnah-grid--embedded">
+    <li v-for="n in nodes" :key="n.id">
+      <RouterLink :to="n.to" class="mishnah-link" :class="{ 'mishnah-link--done': n.done }">
+        <span class="mishnah-num">{{ n.number }}</span>
+        <span class="mishnah-body">
+          <span class="mishnah-label">{{ t('app.mishnah', { n: n.number }) }}</span>
+          <span class="mishnah-ref">{{ n.displayRef }}</span>
+        </span>
+        <span
+          class="mishnah-status"
+          :class="n.done ? 'mishnah-status--done' : 'mishnah-status--todo'"
+        >
+          <svg v-if="n.done" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <svg v-else viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path
+              d="M7.5 5.5a4 4 0 0 1 7.17-2.3.75.75 0 0 1-1.3.75 2.5 2.5 0 1 0-3.57 3.14.75.75 0 0 1-1.02 1.1A4 4 0 0 1 7.5 5.5ZM10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1.25 4.25a.75.75 0 0 0-1.5 0v3.5a.75.75 0 0 0 .22.53l2.5 2.25a.75.75 0 1 0 1-1.12l-2.28-2.05V6.75Z"
+            />
+          </svg>
+          <span>{{ n.done ? t('app.done') : t('app.start') }}</span>
+        </span>
+      </RouterLink>
+    </li>
+  </ul>
+
+  <AppCard v-else padding="sm" accent class="chapter-card">
     <div class="chapter-accent" aria-hidden="true" />
     <div class="chapter-header">
       <CatalogIcon :id="chapter.tractate" kind="tractate" />
@@ -150,6 +180,10 @@ const chapterPct = computed(() =>
     var(--color-success),
     color-mix(in srgb, var(--color-success) 70%, var(--color-accent))
   );
+}
+
+.mishnah-grid--embedded {
+  padding: 0 0 0 0.85rem;
 }
 
 .mishnah-grid {

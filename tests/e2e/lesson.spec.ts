@@ -1,10 +1,20 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+
+async function expandCatalogToBerakhotChapter1(page: Page) {
+  await page.getByRole('button', { name: /Zeraim/i }).click()
+  await page.getByRole('button', { name: /^Berakhot\b/i }).click()
+  await page.getByRole('button', { name: /Berakhot Chapter 1/i }).click()
+}
 
 test('lesson smoke: home to lesson flow', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('heading', { name: 'Web Mishnah' }).first()).toBeVisible()
-  await page.getByText('Mishnah 1').first().click()
+  await expandCatalogToBerakhotChapter1(page)
+  await page
+    .getByRole('link', { name: /Mishnah 1/i })
+    .first()
+    .click()
   await expect(page.getByRole('heading', { name: 'Mishnah Berakhot 1:1' })).toBeVisible({
     timeout: 10000,
   })

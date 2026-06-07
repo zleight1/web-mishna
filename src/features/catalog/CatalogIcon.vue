@@ -7,14 +7,20 @@ defineProps<{
 
 <template>
   <span class="catalog-icon" :class="`catalog-icon--${kind}`" aria-hidden="true">
-    <!-- Zeraim — wheat/grain -->
+    <!-- Zeraim — wheat sheaf (no cross shapes) -->
     <svg v-if="kind === 'seder' && id === 'zeraim'" viewBox="0 0 24 24" fill="none">
+      <path d="M8 20V11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      <path d="M12 20V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      <path d="M16 20V11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
       <path
-        d="M12 3c-3 4-7 5-7 10a7 7 0 1 0 14 0c0-5-4-6-7-10Z"
+        d="M8 11c0-2.5 0-4.5-1-6M12 9c0-3.5 0-5.5-1.5-7M16 11c0-2.5 0-4.5 1-6"
         stroke="currentColor"
         stroke-width="1.6"
+        stroke-linecap="round"
       />
-      <path d="M12 8v8M9 11h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      <ellipse cx="8" cy="8" rx="1.2" ry="2.2" fill="currentColor" opacity="0.35" />
+      <ellipse cx="12" cy="6" rx="1.4" ry="2.6" fill="currentColor" opacity="0.45" />
+      <ellipse cx="16" cy="8" rx="1.2" ry="2.2" fill="currentColor" opacity="0.35" />
     </svg>
     <!-- Moed — calendar -->
     <svg v-else-if="kind === 'seder' && id === 'moed'" viewBox="0 0 24 24" fill="none">

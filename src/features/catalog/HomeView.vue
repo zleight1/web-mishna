@@ -1,20 +1,25 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import type { Catalog } from '@core/contracts/content-loader'
-import { groupCatalogBySeder } from '@content/catalogOrder'
-import { sederDisplayName } from '@content/catalogLabels'
+import { groupCatalogBySeder, groupChaptersByTractate } from '@content/catalogOrder'
+import { sederDisplayName, tractateDisplayName } from '@content/catalogLabels'
+import { chapterPath } from '@content/catalogNav'
 import { useServices } from '@app/providers'
 import { useProgressStore } from '@features/progress/store'
-import { AppLogo } from '@ui/index'
+import { AppLogo, CatalogDisclosure } from '@ui/index'
+import { useAppLanguage } from '@app/useAppLanguage'
 import ChapterMap from './ChapterMap.vue'
 import CatalogIcon from './CatalogIcon.vue'
+import { useCatalogExpansion } from './useCatalogExpansion'
 
 const { t } = useI18n()
 const route = useRoute()
+const { lang } = useAppLanguage()
 const catalog = ref<Catalog | null>(null)
 const progress = useProgressStore()
+const { isOpen, handleExpanded } = useCatalogExpansion()
 
 function scrollToSederHash() {
   const hash = route.hash
@@ -57,6 +62,26 @@ watch(() => route.hash, scrollToSederHash)
 
 function sederLabel(order: string) {
   return sederDisplayName(order, t, 'full')
+}
+
+function tractateGroups(order: string, chapters: Catalog['chapters']) {
+  return groupChaptersByTractate(chapters.filter((ch) => ch.order === order))
+}
+
+function tractateProgress(chapters: Catalog['chapters'][number][]) {
+  const mishnayot = chapters.flatMap((ch) => ch.mishnayot)
+  const done = mishnayot.filter((m) => progress.getMishnahProgress(m.id)?.completed).length
+  return { done, total: mishnayot.length }
+}
+
+function chapterTitle(ch: Catalog['chapters'][number]) {
+  return ch.title[lang.value] ?? ch.title.en ?? ''
+}
+
+function chapterProgress(ch: Catalog['chapters'][number]) {
+  const total = ch.mishnayot.length
+  const done = ch.mishnayot.filter((m) => progress.getMishnahProgress(m.id)?.completed).length
+  return { done, total }
 }
 </script>
 
@@ -135,30 +160,96 @@ function sederLabel(order: string) {
       <img src="/logo.png" alt="" class="home-hero-art" width="160" height="160" />
     </header>
 
-    <section
-      v-for="group in sederGroups"
-      :id="`seder-${group.order}`"
-      :key="group.order"
-      class="seder-section"
-    >
-      <div class="seder-header">
-        <CatalogIcon :id="group.order" kind="seder" />
-        <div>
-          <h2 class="seder-title">{{ sederLabel(group.order) }}</h2>
-          <p class="seder-meta">
-            {{ t('catalog.chaptersInSeder', { n: group.chapters.length }) }}
-          </p>
-        </div>
-      </div>
+    <div class="catalog-tree">
+      <section
+        v-for="group in sederGroups"
+        :id="`seder-${group.order}`"
+        :key="group.order"
+        class="seder-section"
+      >
+        <CatalogDisclosure
+          level="seder"
+          :expanded="isOpen('seder', group.order)"
+          @update:expanded="(open) => handleExpanded(open, 'seder', group.order)"
+        >
+          <template #header>
+            <CatalogIcon :id="group.order" kind="seder" />
+            <div class="seder-heading-text">
+              <h2 class="seder-title">{{ sederLabel(group.order) }}</h2>
+            </div>
+          </template>
+          <template #meta>
+            {{
+              t('catalog.tractatesInSeder', {
+                n: tractateGroups(group.order, group.chapters).length,
+              })
+            }}
+          </template>
 
-      <div class="seder-chapters">
-        <ChapterMap
-          v-for="ch in group.chapters"
-          :key="`${ch.order}-${ch.tractate}-${ch.chapter}`"
-          :chapter="ch"
-        />
-      </div>
-    </section>
+          <CatalogDisclosure
+            v-for="tractate in tractateGroups(group.order, group.chapters)"
+            :key="`${group.order}-${tractate.tractate}`"
+            level="tractate"
+            :expanded="isOpen('tractate', group.order, tractate.tractate)"
+            @update:expanded="
+              (open) => handleExpanded(open, 'tractate', group.order, tractate.tractate)
+            "
+          >
+            <template #header>
+              <CatalogIcon :id="tractate.tractate" kind="tractate" />
+              <span class="tractate-title">{{ tractateDisplayName(tractate.tractate, t) }}</span>
+            </template>
+            <template #meta>
+              {{
+                t('catalog.chaptersInTractate', {
+                  n: tractate.chapters.length,
+                })
+              }}
+              ·
+              {{
+                t('catalog.mishnayotProgress', {
+                  done: tractateProgress(tractate.chapters).done,
+                  total: tractateProgress(tractate.chapters).total,
+                })
+              }}
+            </template>
+
+            <CatalogDisclosure
+              v-for="ch in tractate.chapters"
+              :key="`${ch.order}-${ch.tractate}-${ch.chapter}`"
+              level="chapter"
+              :expanded="isOpen('chapter', ch.order, ch.tractate, String(ch.chapter))"
+              @update:expanded="
+                (open) => handleExpanded(open, 'chapter', ch.order, ch.tractate, String(ch.chapter))
+              "
+            >
+              <template #header>
+                <span class="chapter-heading">
+                  <span class="chapter-heading-title">{{ chapterTitle(ch) }}</span>
+                  <RouterLink
+                    :to="chapterPath(ch.order, ch.tractate, ch.chapter)"
+                    class="chapter-open-link"
+                    @click.stop
+                  >
+                    {{ t('catalog.openChapter') }}
+                  </RouterLink>
+                </span>
+              </template>
+              <template #meta>
+                {{
+                  t('catalog.mishnayotProgress', {
+                    done: chapterProgress(ch).done,
+                    total: chapterProgress(ch).total,
+                  })
+                }}
+              </template>
+
+              <ChapterMap :chapter="ch" embedded />
+            </CatalogDisclosure>
+          </CatalogDisclosure>
+        </CatalogDisclosure>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -320,38 +411,57 @@ function sederLabel(order: string) {
   transition: width 0.3s ease;
 }
 
-.seder-section {
+.catalog-tree {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 0.75rem;
+}
+
+.seder-section {
   scroll-margin-top: 4.5rem;
 }
 
-.seder-header {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px dashed color-mix(in srgb, var(--color-border) 70%, transparent);
+.seder-heading-text {
+  min-width: 0;
 }
 
 .seder-title {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.25;
+}
+
+.tractate-title {
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-primary);
 }
 
-.seder-meta {
-  margin: 0.12rem 0 0;
-  font-size: 0.76rem;
-  color: var(--color-text-muted);
+.chapter-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  min-width: 0;
 }
 
-.seder-chapters {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
+.chapter-heading-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.chapter-open-link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.chapter-open-link:hover {
+  text-decoration: underline;
 }
 
 @media (min-width: 560px) {
