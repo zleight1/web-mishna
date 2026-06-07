@@ -60,8 +60,8 @@
         {
           "id": "sq1-1",
           "prompt": {
-            "en": "Above what height is a sukka unfit (according to the Sages)?",
-            "he": "מעל איזה גובה הסוכה פסולה (לפי חכמים)?"
+            "en": "Above what height is a sukka unfit (Sages)?",
+            "he": "מעל איזה גובה הסוכה פסולה?"
           },
           "choices": [
             {
@@ -77,39 +77,13 @@
               "he": "שלוש אמות"
             }
           ],
-          "answerIdx": 0,
-          "explanation": {
-            "en": "More than twenty amot high is pasul; Rabbi Yehuda permits.",
-            "he": "גבוהה מעשרים אמה פסולה; רבי יהודה מכשיר"
-          }
+          "answerIdx": 0
         },
         {
           "id": "sq1-2",
           "prompt": {
-            "en": "What is the minimum height of a fit sukka?",
-            "he": "מהו הגובה המינימלי לסוכה כשרה?"
-          },
-          "choices": [
-            {
-              "en": "Ten handbreadths",
-              "he": "עשרה טפחים"
-            },
-            {
-              "en": "Seven handbreadths",
-              "he": "שבעה טפחים"
-            },
-            {
-              "en": "Four handbreadths",
-              "he": "ארבעה טפחים"
-            }
-          ],
-          "answerIdx": 0
-        },
-        {
-          "id": "sq1-3",
-          "prompt": {
-            "en": "How many walls must a sukka have?",
-            "he": "כמה דפנות צריכה סוכה?"
+            "en": "Minimum wall count?",
+            "he": "כמה דפנות?"
           },
           "choices": [
             {
@@ -128,9 +102,9 @@
           "answerIdx": 0
         },
         {
-          "id": "sq1-4",
+          "id": "sq1-3",
           "prompt": {
-            "en": "Who deems an old sukka fit?",
+            "en": "Who permits an old sukka?",
             "he": "מי מכשיר סוכה ישנה?"
           },
           "choices": [
@@ -143,8 +117,8 @@
               "he": "בית שמאי"
             },
             {
-              "en": "Rabbi Yehuda",
-              "he": "רבי יהודה"
+              "en": "Rabbi Meir",
+              "he": "רבי מאיר"
             }
           ],
           "answerIdx": 0
@@ -178,6 +152,760 @@
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
         "license": "CC-BY / Public Domain",
         "url": "https://www.sefaria.org/Mishnah_Sukkah.1.1"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-2",
+      "ref": "Mishnah Sukkah 1:2",
+      "heRef": "משנה סוכה א׳:ב׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 2,
+      "phrases": [
+        {
+          "he": "הָעוֹשֶׂה סֻכָּתוֹ תַחַת הָאִילָן, כְּאִלּוּ עֲשָׂאָהּ בְּתוֹךְ הַבָּיִת.",
+          "translations": {
+            "en": "One who establishes his sukka beneath a tree — it is as though he established it inside the house."
+          }
+        },
+        {
+          "he": "סֻכָּה עַל גַּבֵּי סֻכָּה, הָעֶלְיוֹנָה כְשֵׁרָה, וְהַתַּחְתּוֹנָה פְּסוּלָה.",
+          "translations": {
+            "en": "A sukka atop another sukka: the upper is fit and the lower is unfit."
+          }
+        },
+        {
+          "he": "רַבִּי יְהוּדָה אוֹמֵר, אִם אֵין דִּיּוּרִין בָּעֶלְיוֹנָה, הַתַּחְתּוֹנָה כְּשֵׁרָה:",
+          "translations": {
+            "en": "Rabbi Yehuda says: if there are no residents in the upper sukka, the lower sukka is fit."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq2-1",
+          "prompt": {
+            "en": "Sukka under a tree is like…",
+            "he": "סוכה תחת האילן כמו…"
+          },
+          "choices": [
+            {
+              "en": "Inside a house",
+              "he": "בתוך הבית"
+            },
+            {
+              "en": "In a courtyard",
+              "he": "בחצר"
+            },
+            {
+              "en": "On a roof",
+              "he": "על הגג"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq2-2",
+          "prompt": {
+            "en": "Sukka atop sukka — which is fit?",
+            "he": "סוכה על גבי סוכה — מי כשרה?"
+          },
+          "choices": [
+            {
+              "en": "The upper",
+              "he": "העליונה"
+            },
+            {
+              "en": "The lower",
+              "he": "התחתונה"
+            },
+            {
+              "en": "Both",
+              "he": "שתיהן"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-layers",
+          "title": {
+            "en": "Placement rules",
+            "he": "כללי מיקום"
+          }
+        }
+      },
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.2"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-3",
+      "ref": "Mishnah Sukkah 1:3",
+      "heRef": "משנה סוכה א׳:ג׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 3,
+      "phrases": [
+        {
+          "he": "פֵּרַס עָלֶיהָ סָדִין מִפְּנֵי הַחַמָּה, אוֹ תַּחְתֶּיהָ מִפְּנֵי הַנְּשָׁר, אוֹ שֶׁפֵּרַס עַל גַּבֵּי הַקִּינוֹף, פְּסוּלָה.",
+          "translations": {
+            "en": "If one spread a sheet over the sukka for sun, beneath it for falling leaves, or over a four-post bed frame, it is unfit."
+          }
+        },
+        {
+          "he": "אֲבָל פּוֹרֵס הוּא עַל גַּבֵּי נַקְלִיטֵי הַמִּטָּה:",
+          "translations": {
+            "en": "However, one may spread a sheet over the two-post bed frame."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq3-1",
+          "prompt": {
+            "en": "Sheet over kinof (4-post) bed?",
+            "he": "סדין על קינוף?"
+          },
+          "choices": [
+            {
+              "en": "Unfit",
+              "he": "פסול"
+            },
+            {
+              "en": "Fit",
+              "he": "כשר"
+            },
+            {
+              "en": "Fit only at night",
+              "he": "כשר בלילה"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.3"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-4",
+      "ref": "Mishnah Sukkah 1:4",
+      "heRef": "משנה סוכה א׳:ד׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 4,
+      "phrases": [
+        {
+          "he": "הִדְלָה עָלֶיהָ אֶת הַגֶּפֶן וְאֶת הַדְּלַעַת וְאֶת הַקִּסּוֹם וְסִכֵּךְ עַל גַּבָּהּ, פְּסוּלָה.",
+          "translations": {
+            "en": "If one trellised a vine, gourd, or ivy over the sukka while attached to the ground and roofed atop them, it is unfit."
+          }
+        },
+        {
+          "he": "וְאִם הָיָה סִכּוּךְ הַרְבֵּה מֵהֶן, אוֹ שֶׁקְּצָצָן, כְּשֵׁרָה.",
+          "translations": {
+            "en": "If the fit roofing was greater than the plants, or he cut them, it is fit."
+          }
+        },
+        {
+          "he": "זֶה הַכְּלָל, כֹּל שֶׁהוּא מְקַבֵּל טֻמְאָה וְאֵין גִּדּוּלוֹ מִן הָאָרֶץ, אֵין מְסַכְּכִין בּוֹ.",
+          "translations": {
+            "en": "This is the principle: anything susceptible to impurity or not grown from the ground may not be used for schach."
+          }
+        },
+        {
+          "he": "וְכָל דָּבָר שֶׁאֵינוֹ מְקַבֵּל טֻמְאָה וְגִדּוּלוֹ מִן הָאָרֶץ, מְסַכְּכִין בּוֹ:",
+          "translations": {
+            "en": "Anything not susceptible to impurity and grown from the ground may be used for schach."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq4-1",
+          "prompt": {
+            "en": "Trellised vine still attached — fit?",
+            "he": "גפן מחוברת לקרקע — כשר?"
+          },
+          "choices": [
+            {
+              "en": "Unfit",
+              "he": "פסול"
+            },
+            {
+              "en": "Fit",
+              "he": "כשר"
+            },
+            {
+              "en": "Fit if cut",
+              "he": "כשר אם קצץ"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq4-2",
+          "prompt": {
+            "en": "May one use impure vessels for schach?",
+            "he": "מסככים בכלי טומאה?"
+          },
+          "choices": [
+            {
+              "en": "No",
+              "he": "לא"
+            },
+            {
+              "en": "Yes",
+              "he": "כן"
+            },
+            {
+              "en": "Only for walls",
+              "he": "רק לדפנות"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.4"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-5",
+      "ref": "Mishnah Sukkah 1:5",
+      "heRef": "משנה סוכה א׳:ה׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 5,
+      "phrases": [
+        {
+          "he": "חֲבִילֵי קַשׁ וַחֲבִילֵי עֵצִים וַחֲבִילֵי זְרָדִין, אֵין מְסַכְּכִין בָּהֶן.",
+          "translations": {
+            "en": "One may not roof with bundles of straw, wood, or twigs."
+          }
+        },
+        {
+          "he": "וְכֻלָּן שֶׁהִתִּירָן, כְּשֵׁרוֹת.",
+          "translations": {
+            "en": "If one untied them, they are fit."
+          }
+        },
+        {
+          "he": "וְכֻלָּן כְּשֵׁרוֹת לַדְּפָנוֹת:",
+          "translations": {
+            "en": "And all of them are fit for walls."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq5-1",
+          "prompt": {
+            "en": "Tied straw bundles for schach?",
+            "he": "חבילות קש לסכך?"
+          },
+          "choices": [
+            {
+              "en": "Not permitted",
+              "he": "אסור"
+            },
+            {
+              "en": "Permitted",
+              "he": "מותר"
+            },
+            {
+              "en": "Permitted if wet",
+              "he": "מותר אם רטוב"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq5-2",
+          "prompt": {
+            "en": "Tied bundles for walls?",
+            "he": "חבילות לדפנות?"
+          },
+          "choices": [
+            {
+              "en": "Permitted",
+              "he": "מותר"
+            },
+            {
+              "en": "Forbidden",
+              "he": "אסור"
+            },
+            {
+              "en": "Only straw",
+              "he": "רק קש"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.5"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-6",
+      "ref": "Mishnah Sukkah 1:6",
+      "heRef": "משנה סוכה א׳:ו׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 6,
+      "phrases": [
+        {
+          "he": "מְסַכְּכִין בִּנְסָרִים, דִּבְרֵי רַבִּי יְהוּדָה.",
+          "translations": {
+            "en": "One may roof with boards; this is Rabbi Yehuda."
+          }
+        },
+        {
+          "he": "וְרַבִּי מֵאִיר אוֹסֵר.",
+          "translations": {
+            "en": "Rabbi Meir prohibits."
+          }
+        },
+        {
+          "he": "נָתַן עָלֶיהָ נֶסֶר שֶׁהוּא רָחָב אַרְבָּעָה טְפָחִים, כְּשֵׁרָה, וּבִלְבַד שֶׁלֹא יִישַׁן תַּחְתָּיו:",
+          "translations": {
+            "en": "If one placed a board four handbreadths wide atop the sukka, it is fit — provided he does not sleep beneath it."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq6-1",
+          "prompt": {
+            "en": "Who permits roofing with boards?",
+            "he": "מי מתיר נסרים?"
+          },
+          "choices": [
+            {
+              "en": "Rabbi Yehuda",
+              "he": "רבי יהודה"
+            },
+            {
+              "en": "Rabbi Meir",
+              "he": "רבי מאיר"
+            },
+            {
+              "en": "Beit Shammai",
+              "he": "בית שמאי"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq6-2",
+          "prompt": {
+            "en": "4-tefach board on top — may you sleep under it?",
+            "he": "נותן נסר ד׳ — ישן תחתיו?"
+          },
+          "choices": [
+            {
+              "en": "No",
+              "he": "לא"
+            },
+            {
+              "en": "Yes",
+              "he": "כן"
+            },
+            {
+              "en": "Only on Shabbat",
+              "he": "רק בשבת"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.6"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-7",
+      "ref": "Mishnah Sukkah 1:7",
+      "heRef": "משנה סוכה א׳:ז׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 7,
+      "phrases": [
+        {
+          "he": "תִּקְרָה שֶׁאֵין עָלֶיהָ מַעֲזִיבָה, רַבִּי יְהוּדָה אוֹמֵר, בֵּית שַׁמַּאי אוֹמְרִים, מְפַקְפֵּק וְנוֹטֵל אַחַת מִבֵּינְתַיִם, וּבֵית הִלֵּל אוֹמְרִים, מְפַקְפֵּק אוֹ נוֹטֵל אַחַת מִבֵּינְתַיִם.",
+          "translations": {
+            "en": "For a plank ceiling without plaster, Rabbi Yehuda says: Beit Shammai require moving boards and removing one; Beit Hillel require either moving or removing one."
+          }
+        },
+        {
+          "he": "רַבִּי מֵאִיר אוֹמֵר, נוֹטֵל אַחַת מִבֵּינְתַיִם, וְאֵין מְפַקְפֵּק:",
+          "translations": {
+            "en": "Rabbi Meir says: remove one from among them, but do not move them."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq7-1",
+          "prompt": {
+            "en": "Beit Hillel require…",
+            "he": "בית הלל דורשים…"
+          },
+          "choices": [
+            {
+              "en": "Move OR remove one board",
+              "he": "מפקפק או נוטל אחד"
+            },
+            {
+              "en": "Move AND remove one",
+              "he": "מפקפק ונוטל"
+            },
+            {
+              "en": "Remove two boards",
+              "he": "נוטל שניים"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.7"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-8",
+      "ref": "Mishnah Sukkah 1:8",
+      "heRef": "משנה סוכה א׳:ח׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 8,
+      "phrases": [
+        {
+          "he": "הַמְקָרֶה סֻכָּתוֹ בְשַׁפּוּדִין אוֹ בַאֲרֻכּוֹת הַמִּטָּה, אִם יֵשׁ רֶוַח בֵּינֵיהֶן כְּמוֹתָן, כְּשֵׁרָה.",
+          "translations": {
+            "en": "One who roofs with skewers or bed frame boards: if the space between equals their width, it is fit."
+          }
+        },
+        {
+          "he": "הַחוֹטֵט בְּגָדִישׁ לַעֲשׂוֹת בּוֹ סֻכָּה, אֵינָהּ סֻכָּה:",
+          "translations": {
+            "en": "One who hollows a space in a grain stack to make a sukka — it is not a sukka."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq8-1",
+          "prompt": {
+            "en": "Hollowed grain stack sukka?",
+            "he": "סוכה בגדיש?"
+          },
+          "choices": [
+            {
+              "en": "Not a sukka",
+              "he": "אינה סוכה"
+            },
+            {
+              "en": "Fit",
+              "he": "כשרה"
+            },
+            {
+              "en": "Fit with schach",
+              "he": "כשרה עם סכך"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.8"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-9",
+      "ref": "Mishnah Sukkah 1:9",
+      "heRef": "משנה סוכה א׳:ט׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 9,
+      "phrases": [
+        {
+          "he": "הַמְשַׁלְשֵׁל דְּפָנוֹת מִלְמַעְלָה לְמַטָּה, אִם גָּבוֹהַּ מִן הָאָרֶץ שְׁלֹשָׁה טְפָחִים, פְּסוּלָה.",
+          "translations": {
+            "en": "One who lowers walls from above: if the bottom is three handbreadths above the ground, it is unfit."
+          }
+        },
+        {
+          "he": "מִלְּמַטָּה לְמַעְלָה, אִם גָּבוֹהַּ מִן הָאָרֶץ עֲשָׂרָה טְפָחִים, כְּשֵׁרָה.",
+          "translations": {
+            "en": "From below upward: if the wall is ten handbreadths high, it is fit."
+          }
+        },
+        {
+          "he": "רַבִּי יוֹסֵי אוֹמֵר, כְּשֵׁם שֶׁמִּלְּמַטָּה לְמַעְלָה עֲשָׂרָה טְפָחִים, כָּךְ מִלְמַעְלָה לְמַטָּה עֲשָׂרָה טְפָחִים.",
+          "translations": {
+            "en": "Rabbi Yosei says: top-down walls also need ten handbreadths."
+          }
+        },
+        {
+          "he": "הִרְחִיק אֶת הַסִּכּוּךְ מִן הַדְּפָנוֹת שְׁלשָׁה טְפָחִים, פְּסוּלָה:",
+          "translations": {
+            "en": "If one distanced the schach three handbreadths from the walls, it is unfit."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq9-1",
+          "prompt": {
+            "en": "Wall built bottom-up needs…",
+            "he": "דופן מלמטה למעלה צריכה…"
+          },
+          "choices": [
+            {
+              "en": "Ten handbreadths",
+              "he": "עשרה טפחים"
+            },
+            {
+              "en": "Three handbreadths",
+              "he": "שלושה טפחים"
+            },
+            {
+              "en": "Seven handbreadths",
+              "he": "שבעה טפחים"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq9-2",
+          "prompt": {
+            "en": "Schach 3 tefach from walls?",
+            "he": "סכך רחוק ג׳ טפחים מהדופן?"
+          },
+          "choices": [
+            {
+              "en": "Unfit",
+              "he": "פסול"
+            },
+            {
+              "en": "Fit",
+              "he": "כשר"
+            },
+            {
+              "en": "Fit if temporary",
+              "he": "כשר אם עראי"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-walls",
+          "title": {
+            "en": "Building walls",
+            "he": "בניית דפנות"
+          },
+          "minWallTefachim": 10,
+          "maxGroundGapTefachim": 3
+        }
+      },
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.9"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-10",
+      "ref": "Mishnah Sukkah 1:10",
+      "heRef": "משנה סוכה א׳:י׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 10,
+      "phrases": [
+        {
+          "he": "בַּיִת שֶׁנִּפְחַת וְסִכֵּךְ עַל גַּבָּיו, אִם יֵשׁ מִן הַכֹּתֶל לַסִּכּוּךְ אַרְבַּע אַמּוֹת, פְּסוּלָה.",
+          "translations": {
+            "en": "A breached house roofed for sukka: if four cubits remain from wall to schach, it is unfit."
+          }
+        },
+        {
+          "he": "וְכֵן חָצֵר שֶׁהִיא מֻקֶּפֶת אַכְסַדְרָה.",
+          "translations": {
+            "en": "Likewise a courtyard surrounded by a portico."
+          }
+        },
+        {
+          "he": "סֻכָּה גְדוֹלָה, שֶׁהִקִּיפוּהָ בְדָבָר שֶׁאֵין מְסַכְּכִים בּוֹ, אִם יֵשׁ תַּחְתָּיו אַרְבַּע אַמּוֹת, פְּסוּלָה:",
+          "translations": {
+            "en": "A large sukka ringed with invalid schach: if four cubits lie beneath it, it is unfit."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq10-1",
+          "prompt": {
+            "en": "Four amot of ceiling before schach?",
+            "he": "ד׳ אמות תקרה לפני הסכך?"
+          },
+          "choices": [
+            {
+              "en": "Unfit",
+              "he": "פסול"
+            },
+            {
+              "en": "Fit",
+              "he": "כשר"
+            },
+            {
+              "en": "Fit with dispute",
+              "he": "כשר במחלוקת"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.10"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-sukkah-1-11",
+      "ref": "Mishnah Sukkah 1:11",
+      "heRef": "משנה סוכה א׳:יא׳",
+      "order": "moed",
+      "tractate": "sukkah",
+      "chapter": 1,
+      "number": 11,
+      "phrases": [
+        {
+          "he": "הָעוֹשֶׂה סֻכָּתוֹ כְּמִין צְרִיף, אוֹ שֶׁסְּמָכָהּ לְכֹתֶל, רַבִּי אֱלִיעֶזֶר פּוֹסֵל, מִפְּנֵי שֶׁאֵין לָהּ גָּג, וַחֲכָמִים מַכְשִׁירִין.",
+          "translations": {
+            "en": "One who makes a circular hut sukka or leans branches against a wall: Rabbi Eliezer deems it unfit for lack of a roof; the Sages deem it fit."
+          }
+        },
+        {
+          "he": "מַחְצֶלֶת קָנִים גְּדוֹלָה, עֲשָׂאָהּ לִשְׁכִיבָה, מְקַבֶּלֶת טֻמְאָה וְאֵין מְסַכְּכִין בָּהּ.",
+          "translations": {
+            "en": "A large reed mat made for lying: it receives impurity and may not be used for schach."
+          }
+        },
+        {
+          "he": "לְסִכּוּךְ, מְסַכְּכִין בָּהּ וְאֵינָהּ מְקַבֶּלֶת טֻמְאָה.",
+          "translations": {
+            "en": "Made for schach: one may roof with it and it does not receive impurity."
+          }
+        },
+        {
+          "he": "רַבִּי אֱלִיעֶזֶר אוֹמֵר, אַחַת קְטַנָּה וְאַחַת גְּדוֹלָה, עֲשָׂאָהּ לִשְׁכִיבָה, מְקַבֶּלֶת טֻמְאָה וְאֵין מְסַכְּכִין בָּהּ. לְסִכּוּךְ, מְסַכְּכִין בָּהּ וְאֵינָהּ מְקַבֶּלֶת טֻמְאָה:",
+          "translations": {
+            "en": "Rabbi Eliezer says: whether small or large, if made for lying it is impure and unfit; if made for schach it is fit."
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "id": "sq11-1",
+          "prompt": {
+            "en": "Circular hut sukka — Sages say?",
+            "he": "סוכה כצריף — חכמים?"
+          },
+          "choices": [
+            {
+              "en": "Fit",
+              "he": "מכשירים"
+            },
+            {
+              "en": "Unfit",
+              "he": "פוסלים"
+            },
+            {
+              "en": "Fit only with three walls",
+              "he": "כשר רק עם ג׳ דפנות"
+            }
+          ],
+          "answerIdx": 0
+        },
+        {
+          "id": "sq11-2",
+          "prompt": {
+            "en": "Reed mat made for sleeping?",
+            "he": "מחצלת לשכיבה?"
+          },
+          "choices": [
+            {
+              "en": "May not use for schach",
+              "he": "אין מסככין בה"
+            },
+            {
+              "en": "May use for schach",
+              "he": "מסככין בה"
+            },
+            {
+              "en": "Walls only",
+              "he": "רק לדפנות"
+            }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Sukkah.1.11"
       }
     }
   ]

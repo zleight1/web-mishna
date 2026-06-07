@@ -36,4 +36,29 @@ describe('Diagram2dAid', () => {
     expect(w.text()).toContain('טפחים')
     expect(w.text()).toContain('דפנות')
   })
+
+  it('renders sukkah layers diagram', () => {
+    const aid: VisualAid = {
+      kind: 'diagram2d',
+      spec: { type: 'sukkah-layers', title: { en: 'Placement', he: 'מיקום' } },
+    }
+    const w = mount(Diagram2dAid, { props: { aid, lang: 'en' } })
+    expect(w.text()).toContain('Under a tree')
+    expect(w.text()).toContain('Upper — fit')
+  })
+
+  it('renders sukkah walls diagram', () => {
+    const aid: VisualAid = {
+      kind: 'diagram2d',
+      spec: {
+        type: 'sukkah-walls',
+        title: { en: 'Walls', he: 'דפנות' },
+        minWallTefachim: 10,
+        maxGroundGapTefachim: 3,
+      },
+    }
+    const w = mount(Diagram2dAid, { props: { aid, lang: 'en' } })
+    expect(w.text()).toContain('Bottom → up')
+    expect(w.text()).toContain('10 tefachim')
+  })
 })

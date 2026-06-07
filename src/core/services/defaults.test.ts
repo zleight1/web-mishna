@@ -31,7 +31,7 @@ describe('default services', () => {
     const berakhot = catalog.chapters.find((c) => c.tractate === 'berakhot')
     const sukkah = catalog.chapters.find((c) => c.tractate === 'sukkah')
     expect(berakhot?.mishnayot.length).toBe(5)
-    expect(sukkah?.mishnayot.length).toBe(1)
+    expect(sukkah?.mishnayot.length).toBe(11)
   })
 
   it('loads a chapter by path', async () => {

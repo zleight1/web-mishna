@@ -46,7 +46,23 @@ export const SukkahDimensionsSpecSchema = z.object({
     .optional(),
 })
 
-export const Diagram2dSpecSchema = z.discriminatedUnion('type', [SukkahDimensionsSpecSchema])
+export const SukkahLayersSpecSchema = z.object({
+  type: z.literal('sukkah-layers'),
+  title: LocalizedSchema.optional(),
+})
+
+export const SukkahWallsSpecSchema = z.object({
+  type: z.literal('sukkah-walls'),
+  title: LocalizedSchema.optional(),
+  minWallTefachim: z.number().int().positive(),
+  maxGroundGapTefachim: z.number().int().positive(),
+})
+
+export const Diagram2dSpecSchema = z.discriminatedUnion('type', [
+  SukkahDimensionsSpecSchema,
+  SukkahLayersSpecSchema,
+  SukkahWallsSpecSchema,
+])
 
 export const VisualAidSchema = z.discriminatedUnion('kind', [
   z.object({
@@ -91,6 +107,8 @@ export type Phrase = z.infer<typeof PhraseSchema>
 export type QuizItem = z.infer<typeof QuizItemSchema>
 export type TimelineEvent = z.infer<typeof TimelineEventSchema>
 export type SukkahDimensionsSpec = z.infer<typeof SukkahDimensionsSpecSchema>
+export type SukkahLayersSpec = z.infer<typeof SukkahLayersSpecSchema>
+export type SukkahWallsSpec = z.infer<typeof SukkahWallsSpecSchema>
 export type Diagram2dSpec = z.infer<typeof Diagram2dSpecSchema>
 export type VisualAid = z.infer<typeof VisualAidSchema>
 export type Mishnah = z.infer<typeof MishnahSchema>
