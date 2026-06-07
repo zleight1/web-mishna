@@ -125,12 +125,12 @@
         }
       ],
       "visualAid": {
-        "kind": "diagram2d",
+        "kind": "scene3d",
         "spec": {
-          "type": "sukkah-dimensions",
+          "preset": "sukkah-boss",
           "title": {
-            "en": "Valid sukka dimensions",
-            "he": "מידות סוכה כשרה"
+            "en": "Boss level: build the sukkah!",
+            "he": "שלב הבוס: בונים את הסוכה!"
           },
           "minHeightTefachim": 10,
           "maxHeightAmot": 20,

@@ -141,11 +141,11 @@ For a full chapter with diagrams, see [scripts/author-sukkah-ch1.ts](../scripts/
 
 ### Existing kinds
 
-| `kind`      | Use case                     | Entry component                  |
-| ----------- | ---------------------------- | -------------------------------- |
-| `timeline`  | Time windows (e.g. Shema)    | `src/features/visual/timeline/`  |
-| `diagram2d` | 2D spatial diagrams (Sukkah) | `src/features/visual/diagram2d/` |
-| `scene3d`   | Reserved (not implemented)   | —                                |
+| `kind`      | Use case                                       | Entry component                  |
+| ----------- | ---------------------------------------------- | -------------------------------- |
+| `timeline`  | Time windows (e.g. Shema)                      | `src/features/visual/timeline/`  |
+| `diagram2d` | 2D spatial diagrams (Sukkah)                   | `src/features/visual/diagram2d/` |
+| `scene3d`   | Sukkah boss 3D builder (Three.js, lazy-loaded) | `Scene3dAid` → `SukkahBuilder3d` |
 
 ### New `diagram2d` panel
 

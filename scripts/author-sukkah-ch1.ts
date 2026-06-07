@@ -451,6 +451,11 @@ const QUIZ: Record<number, object[]> = {
 
 const SCENARIO_VISUALS: Record<
   number,
+  | {
+      type: 'sukkah-boss'
+      title: { en: string; he: string }
+      extra?: object
+    }
   | { type: 'sukkah-dimensions'; title: { en: string; he: string }; extra?: object }
   | { type: 'sukkah-layers'; title: { en: string; he: string } }
   | {
@@ -462,8 +467,8 @@ const SCENARIO_VISUALS: Record<
   | { type: 'sukkah-scenario'; scenario: string; title: { en: string; he: string } }
 > = {
   1: {
-    type: 'sukkah-dimensions',
-    title: { en: 'Valid sukka dimensions', he: 'מידות סוכה כשרה' },
+    type: 'sukkah-boss',
+    title: { en: 'Boss level: build the sukkah!', he: 'שלב הבוס: בונים את הסוכה!' },
     extra: {
       minHeightTefachim: 10,
       maxHeightAmot: 20,
@@ -518,6 +523,13 @@ const SCENARIO_VISUALS: Record<
 function visualAid(n: number) {
   const v = SCENARIO_VISUALS[n]
   if (!v) return undefined
+  if (v.type === 'sukkah-boss') {
+    const { extra, title } = v
+    return {
+      kind: 'scene3d' as const,
+      spec: { preset: 'sukkah-boss' as const, title, ...extra },
+    }
+  }
   if (v.type === 'sukkah-dimensions') {
     const { extra, title } = v
     return { kind: 'diagram2d' as const, spec: { type: v.type, title, ...extra } }

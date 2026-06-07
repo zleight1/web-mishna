@@ -82,6 +82,22 @@ export const Diagram2dSpecSchema = z.discriminatedUnion('type', [
   SukkahScenarioSpecSchema,
 ])
 
+export const SukkahBuilder3dSpecSchema = z.object({
+  preset: z.literal('sukkah-boss'),
+  title: LocalizedSchema.optional(),
+  minHeightTefachim: z.number().int().positive(),
+  maxHeightAmot: z.number().int().positive(),
+  minWalls: z.number().int().positive(),
+  dispute: z
+    .object({
+      figure: LocalizedSchema,
+      opinion: LocalizedSchema,
+    })
+    .optional(),
+})
+
+export const Scene3dSpecSchema = SukkahBuilder3dSpecSchema
+
 export const VisualAidSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('timeline'),
@@ -89,7 +105,7 @@ export const VisualAidSchema = z.discriminatedUnion('kind', [
     events: z.array(TimelineEventSchema).min(2),
   }),
   z.object({ kind: z.literal('diagram2d'), spec: Diagram2dSpecSchema }),
-  z.object({ kind: z.literal('scene3d'), model: z.unknown() }),
+  z.object({ kind: z.literal('scene3d'), spec: Scene3dSpecSchema }),
 ])
 
 export const MishnahSchema = z.object({
@@ -129,6 +145,8 @@ export type SukkahLayersSpec = z.infer<typeof SukkahLayersSpecSchema>
 export type SukkahWallsSpec = z.infer<typeof SukkahWallsSpecSchema>
 export type SukkahScenarioId = z.infer<typeof SukkahScenarioIdSchema>
 export type SukkahScenarioSpec = z.infer<typeof SukkahScenarioSpecSchema>
+export type SukkahBuilder3dSpec = z.infer<typeof SukkahBuilder3dSpecSchema>
+export type Scene3dSpec = z.infer<typeof Scene3dSpecSchema>
 export type Diagram2dSpec = z.infer<typeof Diagram2dSpecSchema>
 export type VisualAid = z.infer<typeof VisualAidSchema>
 export type Mishnah = z.infer<typeof MishnahSchema>

@@ -35,10 +35,15 @@ function pickHe(id: string) {
 function pickEn(en: string) {
   if (done.value || !activeHe.value) return
   const pair = props.state.pairs.find((p) => p.id === activeHe.value)
-  const heId = activeHe.value
-  links.value[heId] = en
+  if (!pair) return
+  if (pair.en !== en) {
+    celebrate('wrong')
+    activeHe.value = null
+    return
+  }
+  links.value[pair.id] = en
   activeHe.value = null
-  if (pair) celebrate(pair.en === en ? 'correct' : 'wrong')
+  celebrate('correct')
 }
 
 function submit() {

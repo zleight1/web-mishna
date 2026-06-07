@@ -5,7 +5,6 @@ import { useI18n } from 'vue-i18n'
 import { useServices } from '@app/providers'
 import { useAppLanguage } from '@app/useAppLanguage'
 import { useProgressStore } from '@features/progress/store'
-import { comboBonus } from '@features/progress/combo'
 import { didLevelUp, levelFromXp } from '@features/progress/level'
 import { xpFromResult } from '@features/progress/xp'
 import type { ActivityResult } from '@core/contracts/activity'
@@ -31,7 +30,8 @@ const chapterData = ref<Awaited<
   ReturnType<ReturnType<typeof useServices>['content']['loadChapter']>
 > | null>(null)
 const progress = useProgressStore()
-const { celebrate, showXp, notifyLevelUp, resetCombo, combo } = useCelebration()
+const { celebrate, showXp, notifyLevelUp, resetCombo, beginActivityCombo, comboBonusForActivity } =
+  useCelebration()
 const lessonXpEarned = ref(0)
 const progressSaved = ref(false)
 
@@ -82,9 +82,10 @@ onMounted(async () => {
 })
 
 function onActivityComplete(result: ActivityResult) {
-  const gained = xpFromResult(result) + comboBonus(combo.value)
+  const gained = xpFromResult(result) + comboBonusForActivity()
   showXp(gained)
   machine.onActivityComplete(result)
+  beginActivityCombo()
 }
 
 async function saveLessonProgress() {
@@ -106,10 +107,20 @@ async function saveLessonProgress() {
 watch(
   () => machine.stage.value,
   (stage, prev) => {
+    if ((stage === 'practice' || stage === 'recall') && prev !== stage) {
+      beginActivityCombo()
+    }
     if (stage === 'complete' && prev !== 'complete') {
       celebrate('lessonComplete')
       void saveLessonProgress()
     }
+  },
+)
+
+watch(
+  () => machine.practiceIndex.value,
+  () => {
+    if (machine.stage.value === 'practice') beginActivityCombo()
   },
 )
 </script>

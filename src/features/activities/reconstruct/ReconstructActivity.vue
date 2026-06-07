@@ -35,7 +35,7 @@ function removeWord(index: number) {
 
 function submit() {
   const result = validateReconstruct(props.state, { order: selected.value })
-  celebrate(result.correct ? 'perfect' : result.score >= 0.5 ? 'correct' : 'wrong')
+  celebrate(result.correct ? 'perfect' : 'wrong')
   feedback.value = {
     variant: result.correct ? 'success' : 'error',
     message: result.correct
