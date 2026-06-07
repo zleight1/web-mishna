@@ -15,7 +15,7 @@ This guide explains how to extend the project after the initial foundation: new 
 | **Activities**  | cloze, reconstruct, match, quiz                                                     |
 | **Catalog**     | Home grouped by seder, chapter cards, progress badges                               |
 | **Navigation**  | Breadcrumbs, chapter landing (`/learn/:order/:tractate/:chapter`), header home link |
-| **Progress**    | localStorage XP, streak, per-mishnah completion                                     |
+| **Progress**    | localStorage XP, streak, per-mishnah completion (auto-saves when a lesson finishes) |
 | **Hosting**     | Cloudflare Pages — https://web-mishna.pages.dev/                                    |
 
 ---
@@ -200,7 +200,20 @@ Implemented in [useLessonMachine.ts](../src/features/lesson/useLessonMachine.ts)
 
 - **Read:** `BilingualReader` + optional visual aid
 - **Practice / recall:** activity components from registry
-- **Complete:** `progress.recordResult()` — XP, streak, completion
+- **Complete:** `progress.recordResult()` — XP, streak, completion (persisted via `LocalStorageProgressRepository`, key `web-mishna-progress`)
+
+### Progress: implemented vs stubbed
+
+| Piece                            | Status          | Notes                                                                  |
+| -------------------------------- | --------------- | ---------------------------------------------------------------------- |
+| XP + streak + per-mishnah scores | **Implemented** | [store.ts](../src/features/progress/store.ts), saved to `localStorage` |
+| Home / chapter “done” badges     | **Implemented** | Reads `perMishnah[id].completed` (≥ 80% best score)                    |
+| Lesson auto-save                 | **Implemented** | Fires when the lesson reaches the complete stage                       |
+| SRS scheduling                   | **Stubbed**     | `IdentityScheduler` returns IDs unchanged                              |
+| Telemetry                        | **Stubbed**     | `NoopTelemetry`                                                        |
+| Cloud sync / accounts            | **Not started** | Would be a `RemoteProgressRepository`                                  |
+
+Progress is **per browser / per device** only. Clearing site data or another browser starts fresh.
 
 Routes ([router.ts](../src/app/router.ts)):
 

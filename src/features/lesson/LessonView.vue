@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useServices } from '@app/providers'
 import { useAppLanguage } from '@app/useAppLanguage'
 import { useProgressStore } from '@features/progress/store'
+import { xpFromResult } from '@features/progress/xp'
 import BilingualReader from '@features/reader/BilingualReader.vue'
 import MishnahTextPanel from '@features/reader/MishnahTextPanel.vue'
 import { visualAidRegistry } from '@features/visual/registry'
@@ -25,6 +26,8 @@ const chapterData = ref<Awaited<
   ReturnType<ReturnType<typeof useServices>['content']['loadChapter']>
 > | null>(null)
 const progress = useProgressStore()
+const lessonXpEarned = ref(0)
+const progressSaved = ref(false)
 
 const mishnahNum = computed(() => Number(props.mishnah))
 const currentMishnah = computed(
@@ -75,18 +78,23 @@ onMounted(async () => {
   )
 })
 
-async function finishLesson() {
+async function saveLessonProgress() {
+  if (progressSaved.value || !currentMishnah.value) return
   const avg =
     machine.results.value.reduce((s, r) => s + r.score, 0) /
     Math.max(1, machine.results.value.length)
-  if (currentMishnah.value) {
-    await progress.recordResult(currentMishnah.value.id, {
-      correct: avg >= 0.8,
-      score: avg,
-      attempts: 1,
-    })
-  }
+  const result = { correct: avg >= 0.8, score: avg, attempts: 1 }
+  lessonXpEarned.value = xpFromResult(result)
+  await progress.recordResult(currentMishnah.value.id, result)
+  progressSaved.value = true
 }
+
+watch(
+  () => machine.stage.value,
+  (stage) => {
+    if (stage === 'complete') void saveLessonProgress()
+  },
+)
 </script>
 
 <template>
@@ -162,12 +170,17 @@ async function finishLesson() {
         </svg>
       </div>
       <p class="lesson-complete-title">{{ t('app.complete') }}</p>
+      <p v-if="progressSaved" class="mt-2 text-sm text-[var(--color-text-muted)]">
+        {{ t('app.progressSaved') }}
+      </p>
       <p class="mt-2 text-sm">
+        <span v-if="lessonXpEarned > 0">
+          {{ t('app.lessonXpEarned', { n: lessonXpEarned }) }} ·
+        </span>
         {{ t('app.xp') }}: {{ progress.state?.xp }} · {{ t('app.streak') }}:
         {{ progress.state?.streak }}
       </p>
       <div class="mt-4 flex flex-wrap gap-3">
-        <AppButton @click="finishLesson">{{ t('app.saveProgress') }}</AppButton>
         <RouterLink
           :to="`/learn/${order}/${tractate}/${chapter}`"
           class="text-sm font-semibold text-[var(--color-primary)] hover:underline"
