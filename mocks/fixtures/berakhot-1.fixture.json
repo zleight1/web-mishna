@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "order": "zeraim",
+  "tractate": "berakhot",
+  "chapter": 1,
+  "title": { "en": "Berakhot Chapter 1", "he": "משנה ברכות פרק א׳" },
+  "mishnayot": [
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-berakhot-1-1",
+      "ref": "Mishnah Berakhot 1:1",
+      "heRef": "משנה ברכות א׳:א׳",
+      "order": "zeraim",
+      "tractate": "berakhot",
+      "chapter": 1,
+      "number": 1,
+      "phrases": [
+        {
+          "he": "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּעַרְבִית",
+          "translations": { "en": "From when does one recite Shema in the evening?" },
+          "translit": "Me'eimatai korin et shema ba'arvit"
+        },
+        {
+          "he": "מִשָּׁעָה שֶׁהַכֹּהֲנִים נִכְנָסִים לֶאֱכֹל בִּתְרוּמָתָן",
+          "translations": { "en": "From when the priests enter to eat their teruma" },
+          "translit": "Mishe'ah shehakohanim nichnasim le'echol biterumatan"
+        },
+        {
+          "he": "עַד סוֹף הָאַשְׁמוּרָה הָרִאשׁוֹנָה",
+          "translations": { "en": "until the end of the first watch" },
+          "translit": "Ad sof ha'ashmurah harishonah"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q1-1",
+          "prompt": {
+            "en": "Until when does Rabbi Eliezer say one may recite the evening Shema?",
+            "he": "עד מתי אומר רבי אליעזר לקרות את שמע בערב?"
+          },
+          "choices": [
+            { "en": "Until the end of the first watch", "he": "עד סוף האשמורה הראשונה" },
+            { "en": "Until midnight", "he": "עד חצות" },
+            { "en": "Until dawn", "he": "עד עלות השחר" }
+          ],
+          "answerIdx": 0,
+          "explanation": {
+            "en": "Rabbi Eliezer holds until the end of the first watch.",
+            "he": "רבי אליעזר סובר עד סוף האשמורה הראשונה"
+          }
+        },
+        {
+          "id": "q1-2",
+          "prompt": {
+            "en": "What do the Sages say?",
+            "he": "מה אומרים חכמים?"
+          },
+          "choices": [
+            { "en": "Until midnight", "he": "עד חצות" },
+            { "en": "Until the first watch", "he": "עד האשמורה הראשונה" },
+            { "en": "Until three hours", "he": "עד שלוש שעות" }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "visualAid": {
+        "kind": "timeline",
+        "events": [
+          {
+            "id": "teruma",
+            "at": 0.15,
+            "label": { "en": "Priests eat teruma", "he": "כהנים אוכלים תרומה" },
+            "marker": "nightfall"
+          },
+          {
+            "id": "first-watch",
+            "at": 0.35,
+            "label": { "en": "End of first watch (R. Eliezer)", "he": "סוף האשמורה הראשונה" },
+            "marker": "custom"
+          },
+          {
+            "id": "midnight",
+            "at": 0.5,
+            "label": { "en": "Midnight (Sages)", "he": "חצות (חכמים)" },
+            "marker": "midnight"
+          },
+          {
+            "id": "dawn",
+            "at": 0.85,
+            "label": { "en": "Dawn (R. Gamliel)", "he": "עמוד השחר (רבן גמליאל)" },
+            "marker": "dawn"
+          }
+        ]
+      },
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Berakhot.1.1"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-berakhot-1-2",
+      "ref": "Mishnah Berakhot 1:2",
+      "heRef": "משנה ברכות א׳:ב׳",
+      "order": "zeraim",
+      "tractate": "berakhot",
+      "chapter": 1,
+      "number": 2,
+      "phrases": [
+        {
+          "he": "מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בְּשַׁחֲרִית",
+          "translations": { "en": "From when does one recite Shema in the morning?" },
+          "translit": "Me'eimatai korin et shema bashacharit"
+        },
+        {
+          "he": "מִשֶּׁיַּכִּיר בֵּין תְּכֵלֶת לְלָבָן",
+          "translations": { "en": "From when one can distinguish between sky-blue and white" },
+          "translit": "Mishe'yakir bein techelet lelavan"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q2-1",
+          "prompt": {
+            "en": "When may one begin the morning Shema?",
+            "he": "מתי מתחילים לקרות שמע של שחרית?"
+          },
+          "choices": [
+            { "en": "When one can distinguish blue from white", "he": "כשמבחין בין תכלת ללבן" },
+            { "en": "At sunrise", "he": "בזריחת החמה" },
+            { "en": "At midnight", "he": "בחצות" }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "visualAid": {
+        "kind": "timeline",
+        "events": [
+          {
+            "id": "dawn-color",
+            "at": 0.2,
+            "label": { "en": "Distinguish blue/white", "he": "הבחנה תכלת/לבן" },
+            "marker": "dawn"
+          },
+          {
+            "id": "sunrise",
+            "at": 0.5,
+            "label": { "en": "Sunrise (finish by)", "he": "הנץ החמה" },
+            "marker": "sunrise"
+          },
+          {
+            "id": "three-hours",
+            "at": 0.75,
+            "label": { "en": "Three hours (R. Yehoshua)", "he": "שלוש שעות" },
+            "marker": "midday"
+          }
+        ]
+      },
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Berakhot.1.2"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-berakhot-1-3",
+      "ref": "Mishnah Berakhot 1:3",
+      "heRef": "משנה ברכות א׳:ג׳",
+      "order": "zeraim",
+      "tractate": "berakhot",
+      "chapter": 1,
+      "number": 3,
+      "phrases": [
+        {
+          "he": "בֵּית שַׁמַּאי אוֹמְרִים בָּעֶרֶב כָּל אָדָם יַטּוּ וְיִקְרְאוּ",
+          "translations": {
+            "en": "Beit Shammai say: in the evening every person must recline and recite"
+          },
+          "translit": "Beit Shammai omrim ba'erev kol adam yatu veyikreu"
+        },
+        {
+          "he": "וּבֵית הִלֵּל אוֹמְרִים כָּל אָדָם קוֹרֵא כְדַרְכּוֹ",
+          "translations": { "en": "Beit Hillel say: every person recites as he is" },
+          "translit": "Uveit Hillel omrim kol adam kore kedarko"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q3-1",
+          "prompt": {
+            "en": "What does Beit Hillel hold regarding posture for Shema?",
+            "he": "מה סוברים בית הלל לגבי קריאת שמע?"
+          },
+          "choices": [
+            { "en": "Recite in any comfortable position", "he": "קורא כדרכו" },
+            { "en": "Must recline in evening", "he": "חייב להטות בערב" },
+            { "en": "Must stand always", "he": "חייב לעמוד תמיד" }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Berakhot.1.3"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-berakhot-1-4",
+      "ref": "Mishnah Berakhot 1:4",
+      "heRef": "משנה ברכות א׳:ד׳",
+      "order": "zeraim",
+      "tractate": "berakhot",
+      "chapter": 1,
+      "number": 4,
+      "phrases": [
+        {
+          "he": "בַּשַּׁחַר מְבָרֵךְ שְׁתַּיִם לְפָנֶיהָ וְאַחַת לְאַחֲרֶיהָ",
+          "translations": { "en": "In the morning one recites two blessings before and one after" },
+          "translit": "Bashachar mevarech shtayim lefaneyah ve'achat le'achareyah"
+        },
+        {
+          "he": "וּבָעֶרֶב שְׁתַּיִם לְפָנֶיהָ וּשְׁתַּיִם לְאַחֲרֶיהָ",
+          "translations": { "en": "and in the evening two before and two after" },
+          "translit": "Uva'erev shtayim lefaneyah ushtayim le'achareyah"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q4-1",
+          "prompt": {
+            "en": "How many blessings after Shema in the morning?",
+            "he": "כמה ברכות אחר שמע בשחרית?"
+          },
+          "choices": [
+            { "en": "One", "he": "אחת" },
+            { "en": "Two", "he": "שתיים" },
+            { "en": "Three", "he": "שלוש" }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Berakhot.1.4"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mishnah-berakhot-1-5",
+      "ref": "Mishnah Berakhot 1:5",
+      "heRef": "משנה ברכות א׳:ה׳",
+      "order": "zeraim",
+      "tractate": "berakhot",
+      "chapter": 1,
+      "number": 5,
+      "phrases": [
+        {
+          "he": "מַזְכִּירִין יְצִיאַת מִצְרַיִם בַּלֵּילוֹת",
+          "translations": { "en": "The exodus from Egypt is mentioned at night" },
+          "translit": "Mazkirim yetziat mitzrayim balailot"
+        },
+        {
+          "he": "יְמֵי חַיֶּיךָ הַיָּמִים כֹּל יְמֵי חַיֶּיךָ הַלֵּילוֹת",
+          "translations": {
+            "en": "The days of your life — the days; all the days of your life — the nights"
+          },
+          "translit": "Yemei chayecha hayamim, kol yemei chayecha halailot"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q5-1",
+          "prompt": {
+            "en": "Who derived that Exodus is mentioned at night?",
+            "he": "מי דרש שמזכירים יציאת מצרים בלילות?"
+          },
+          "choices": [
+            { "en": "Ben Zoma", "he": "בן זומא" },
+            { "en": "Rabbi Elazar ben Azarya", "he": "רבי אלעזר בן עזריה" },
+            { "en": "Rabban Gamliel", "he": "רבן גמליאל" }
+          ],
+          "answerIdx": 0
+        }
+      ],
+      "source": {
+        "heVersion": "Torat Emet 357",
+        "enVersion": "Mishnah Yomit by Dr. Joshua Kulp",
+        "license": "CC-BY / Public Domain",
+        "url": "https://www.sefaria.org/Mishnah_Berakhot.1.5"
+      }
+    }
+  ]
+}

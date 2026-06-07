@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-hebrew: 'Frank Ruhl Libre', 'Noto Serif Hebrew', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-primary: #1e4d6b;
+  --color-primary-hover: #163a52;
+  --color-accent: #c9a227;
+  --color-surface: #faf8f5;
+  --color-surface-elevated: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #5c5c5c;
+  --color-success: #2d6a4f;
+  --color-error: #9b2226;
+  --color-border: #e0dcd4;
+}
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+[dir='rtl'] {
+  font-family: var(--font-hebrew), var(--font-sans);
+}
