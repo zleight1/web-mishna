@@ -1,6 +1,6 @@
 # Contributing
 
-1. Read `AGENTS.md` and `CONTRACTS.md`
+1. Read `AGENTS.md`, `CONTRACTS.md`, and `docs/CONTINUING.md`
 2. Branch from `main`: `feat/<wp-id>`
 3. Work only in your owned folder
 4. Run `pnpm typecheck && pnpm lint && pnpm test` before PR

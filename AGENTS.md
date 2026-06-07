@@ -27,6 +27,10 @@ Hobby project. **Exempt from Torq/Stackpulse SP-XXXXX branch and PR naming rules
 
 **Never hand-edit** `src/features/activities/registry.ts` or `src/features/visual/registry.ts` — plugins auto-register via glob.
 
+## Continuing work
+
+See **[docs/CONTINUING.md](docs/CONTINUING.md)** for the content pipeline, adding activities/visual aids, testing checklist, and roadmap.
+
 ## Commands
 
 ```bash

@@ -31,6 +31,10 @@ Requires **Node 22+** and **pnpm** (`corepack enable && corepack prepare pnpm@la
 
 Vue 3 SPA with plugin-based activities and visual aids. See `CONTRACTS.md` and `AGENTS.md`.
 
+## Continuing development
+
+**[docs/CONTINUING.md](docs/CONTINUING.md)** — how to add chapters, tractates, activities, visual aids, run CI, and suggested next steps.
+
 ## Attribution
 
 See `ATTRIBUTION.md`. Hebrew (Torat Emet, PD) and English (Kulp, CC-BY) via Sefaria.
