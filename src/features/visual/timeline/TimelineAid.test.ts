@@ -7,9 +7,7 @@ describe('TimelineAid', () => {
   it('renders one marker per event with readable labels', () => {
     const aid = fixtureMishnah.visualAid!
     const w = mount(TimelineAid, { props: { aid, lang: 'en' } })
-    expect(w.findAll('.timeline-dot').length).toBe(
-      aid.kind === 'timeline' ? aid.events.length : 0,
-    )
+    expect(w.findAll('.timeline-dot').length).toBe(aid.kind === 'timeline' ? aid.events.length : 0)
     expect(w.text()).toContain('Priests eat teruma')
     expect(w.text()).toContain('R. Eliezer')
     expect(w.find('.timeline-edge--start').text()).toBe('Nightfall')
