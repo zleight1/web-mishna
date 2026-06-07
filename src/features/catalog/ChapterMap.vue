@@ -183,13 +183,13 @@ const chapterPct = computed(() =>
 }
 
 .mishnah-grid--embedded {
-  padding: 0 0 0 0.85rem;
+  padding-inline-start: 0.85rem;
 }
 
 .mishnah-grid {
   list-style: none;
   margin: 0;
-  padding: 0 0 0 0.35rem;
+  padding-inline-start: 0.35rem;
   display: grid;
   gap: 0.55rem;
 }
@@ -201,7 +201,8 @@ const chapterPct = computed(() =>
 }
 
 .mishnah-link {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.65rem;
   padding: 0.6rem 0.7rem;
@@ -271,10 +272,12 @@ const chapterPct = computed(() =>
 .mishnah-status {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.2rem;
   font-size: 0.62rem;
   font-weight: 700;
-  flex-shrink: 0;
+  justify-self: end;
+  white-space: nowrap;
   padding: 0.2rem 0.35rem;
   border-radius: 999px;
 }

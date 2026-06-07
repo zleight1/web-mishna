@@ -2,7 +2,7 @@
 
 This guide explains how to extend the project after the initial foundation: new chapters, tractates, activities, visual aids, UI, and deployment.
 
-**Read first:** [README.md](../README.md) (quickstart), [AGENTS.md](../AGENTS.md) (conventions), [CONTRACTS.md](../CONTRACTS.md) (frozen interfaces).
+**Read first:** [PROJECT_STATUS.md](./PROJECT_STATUS.md) (full canon inventory + agent playbook), [README.md](../README.md) (quickstart), [AGENTS.md](../AGENTS.md) (conventions), [CONTRACTS.md](../CONTRACTS.md) (frozen interfaces).
 
 ---
 

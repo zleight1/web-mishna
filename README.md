@@ -33,7 +33,8 @@ Vue 3 SPA with plugin-based activities and visual aids. See `CONTRACTS.md` and `
 
 ## Continuing development
 
-**[docs/CONTINUING.md](docs/CONTINUING.md)** — how to add chapters, tractates, activities, visual aids, run CI, and suggested next steps.
+**[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)** — full project status, all 4,192 mishnayot inventory, agent work packages.  
+**[docs/CONTINUING.md](docs/CONTINUING.md)** — how to add chapters, tractates, activities, visual aids, run CI.
 
 ## Attribution
 

@@ -160,7 +160,7 @@ function chapterProgress(ch: Catalog['chapters'][number]) {
           </div>
         </div>
       </div>
-      <img src="/logo.png" alt="" class="home-hero-art" width="160" height="160" />
+      <img src="/logo.svg" alt="" class="home-hero-art" width="160" height="160" />
     </header>
 
     <div class="catalog-tree">
@@ -287,18 +287,19 @@ function chapterProgress(ch: Catalog['chapters'][number]) {
 
 .home-hero-content {
   position: relative;
-  z-index: 1;
-  max-width: calc(100% - 5rem);
+  z-index: 2;
+  max-width: calc(100% - 5.5rem);
 }
 
 .home-hero-art {
   position: absolute;
-  right: -0.5rem;
+  inset-inline-end: -0.35rem;
   bottom: -0.75rem;
+  z-index: 0;
   width: 7.5rem;
   height: 7.5rem;
   object-fit: contain;
-  opacity: 0.92;
+  opacity: 0.88;
   filter: drop-shadow(0 8px 16px rgb(30 77 107 / 0.12));
   pointer-events: none;
 }
@@ -328,6 +329,8 @@ function chapterProgress(ch: Catalog['chapters'][number]) {
 }
 
 .stat-card {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 0.55rem;
@@ -475,12 +478,12 @@ function chapterProgress(ch: Catalog['chapters'][number]) {
   .home-hero-art {
     width: 9rem;
     height: 9rem;
-    right: 0.5rem;
+    inset-inline-end: 0.35rem;
     bottom: 0;
   }
 
   .home-hero-content {
-    max-width: calc(100% - 8rem);
+    max-width: calc(100% - 9.5rem);
   }
 }
 </style>

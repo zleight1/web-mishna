@@ -21,6 +21,8 @@
     "fetch:sefaria": "tsx scripts/fetch-sefaria.ts",
     "refresh:phrases": "tsx scripts/refresh-phrases-from-sefaria.ts",
     "author:sukkah-ch1": "tsx scripts/author-sukkah-ch1.ts",
+    "catalog:generate": "tsx scripts/generate-mishnah-catalog.ts",
+    "catalog:inventory": "tsx scripts/generate-inventory-md.ts",
     "size-limit": "size-limit",
     "lhci": "lhci autorun",
     "deps:check": "depcruise src --config .dependency-cruiser.cjs",
