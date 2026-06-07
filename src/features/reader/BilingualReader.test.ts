@@ -26,6 +26,6 @@ describe('BilingualReader', () => {
       props: { mishnah: fixtureMishnah, lang: 'en' },
     })
     await w.find('.cursor-pointer').trigger('click')
-    expect(w.text()).toContain('From when does one recite Shema')
+    expect(w.text()).toContain('From what time may one recite the Shema')
   })
 })
