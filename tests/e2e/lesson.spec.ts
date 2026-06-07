@@ -11,10 +11,8 @@ test('lesson smoke: home to lesson flow', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('heading', { name: 'Web Mishnah' }).first()).toBeVisible()
   await expandCatalogToBerakhotChapter1(page)
-  await page
-    .getByRole('link', { name: /Mishnah 1/i })
-    .first()
-    .click()
+  await page.getByRole('link', { name: /Mishnah Berakhot 1:1/i }).click()
+  await expect(page).toHaveURL(/\/learn\/zeraim\/berakhot\/1\/1$/)
   await expect(page.getByRole('heading', { name: 'Mishnah Berakhot 1:1' })).toBeVisible({
     timeout: 10000,
   })

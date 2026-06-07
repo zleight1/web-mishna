@@ -5,13 +5,16 @@ import { useI18n } from 'vue-i18n'
 import { useServices } from '@app/providers'
 import { useAppLanguage } from '@app/useAppLanguage'
 import { useProgressStore } from '@features/progress/store'
+import { comboBonus } from '@features/progress/combo'
+import { didLevelUp, levelFromXp } from '@features/progress/level'
 import { xpFromResult } from '@features/progress/xp'
+import type { ActivityResult } from '@core/contracts/activity'
 import BilingualReader from '@features/reader/BilingualReader.vue'
 import MishnahTextPanel from '@features/reader/MishnahTextPanel.vue'
 import { visualAidRegistry } from '@features/visual/registry'
 import { sederDisplayName } from '@content/catalogLabels'
 import { buildLessonBreadcrumbs } from '@content/catalogNav'
-import { AppButton, AppCard, CatalogBreadcrumb, LessonStepper } from '@ui/index'
+import { AppButton, AppCard, CatalogBreadcrumb, LessonStepper, LevelBadge } from '@ui/index'
 import { useCelebration } from '@features/feedback/useCelebration'
 import { useLessonMachine } from './useLessonMachine'
 
@@ -28,7 +31,7 @@ const chapterData = ref<Awaited<
   ReturnType<ReturnType<typeof useServices>['content']['loadChapter']>
 > | null>(null)
 const progress = useProgressStore()
-const { celebrate } = useCelebration()
+const { celebrate, showXp, notifyLevelUp, resetCombo, combo } = useCelebration()
 const lessonXpEarned = ref(0)
 const progressSaved = ref(false)
 
@@ -69,6 +72,7 @@ const breadcrumbs = computed(() => {
 })
 
 onMounted(async () => {
+  resetCombo()
   await progress.load()
   chapterData.value = await useServices().content.loadChapter(
     props.order,
@@ -77,6 +81,12 @@ onMounted(async () => {
   )
 })
 
+function onActivityComplete(result: ActivityResult) {
+  const gained = xpFromResult(result) + comboBonus(combo.value)
+  showXp(gained)
+  machine.onActivityComplete(result)
+}
+
 async function saveLessonProgress() {
   if (progressSaved.value || !currentMishnah.value) return
   const avg =
@@ -84,7 +94,12 @@ async function saveLessonProgress() {
     Math.max(1, machine.results.value.length)
   const result = { correct: avg >= 0.8, score: avg, attempts: 1 }
   lessonXpEarned.value = xpFromResult(result)
+  const prevXp = progress.state?.xp ?? 0
   await progress.recordResult(currentMishnah.value.id, result)
+  const nextXp = progress.state?.xp ?? prevXp
+  if (didLevelUp(prevXp, nextXp)) {
+    notifyLevelUp(levelFromXp(nextXp).level)
+  }
   progressSaved.value = true
 }
 
@@ -103,9 +118,12 @@ watch(
   <div v-if="currentMishnah" class="lesson-shell">
     <CatalogBreadcrumb :items="breadcrumbs" :nav-label="t('catalog.breadcrumb')" />
 
-    <h2 class="lesson-title">
-      {{ lang === 'he' ? currentMishnah.heRef : currentMishnah.ref }}
-    </h2>
+    <div class="lesson-top">
+      <h2 class="lesson-title">
+        {{ lang === 'he' ? currentMishnah.heRef : currentMishnah.ref }}
+      </h2>
+      <LevelBadge v-if="progress.state" :xp="progress.state.xp" compact />
+    </div>
 
     <LessonStepper :stage="machine.stage.value" />
 
@@ -138,7 +156,7 @@ watch(
           })
         "
         :lang="lang"
-        @complete="machine.onActivityComplete"
+        @complete="onActivityComplete"
       />
     </AppCard>
 
@@ -151,7 +169,7 @@ watch(
           machine.quizActivity.value.generate({ mishnah: currentMishnah, lang, rng: machine.rng })
         "
         :lang="lang"
-        @complete="machine.onActivityComplete"
+        @complete="onActivityComplete"
       />
     </AppCard>
 
@@ -172,6 +190,9 @@ watch(
       <p v-if="progressSaved" class="mt-2 text-sm text-[var(--color-text-muted)]">
         {{ t('app.progressSaved') }}
       </p>
+      <div v-if="progress.state" class="lesson-complete-stats">
+        <LevelBadge :xp="progress.state.xp" />
+      </div>
       <p class="mt-2 text-sm">
         <span v-if="lessonXpEarned > 0">
           {{ t('app.lessonXpEarned', { n: lessonXpEarned }) }} ·
@@ -199,11 +220,24 @@ watch(
   gap: 1rem;
 }
 
+.lesson-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .lesson-title {
   font-size: 1.35rem;
   font-weight: 700;
   margin: 0;
   color: var(--color-primary);
+  flex: 1;
+  min-width: 0;
+}
+
+.lesson-complete-stats {
+  margin-top: 0.35rem;
 }
 
 .lesson-complete-card {

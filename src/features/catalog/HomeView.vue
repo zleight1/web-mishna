@@ -8,7 +8,7 @@ import { sederDisplayName, tractateDisplayName } from '@content/catalogLabels'
 import { chapterPath } from '@content/catalogNav'
 import { useServices } from '@app/providers'
 import { useProgressStore } from '@features/progress/store'
-import { AppLogo, CatalogDisclosure } from '@ui/index'
+import { AppLogo, CatalogDisclosure, LevelBadge } from '@ui/index'
 import { useAppLanguage } from '@app/useAppLanguage'
 import ChapterMap from './ChapterMap.vue'
 import CatalogIcon from './CatalogIcon.vue'
@@ -97,6 +97,9 @@ function chapterProgress(ch: Catalog['chapters'][number]) {
         </div>
 
         <div v-if="progress.state" class="home-stats">
+          <div class="stat-card stat-card--level">
+            <LevelBadge :xp="progress.state.xp" />
+          </div>
           <div class="stat-card">
             <span class="stat-icon stat-icon--xp" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none">
@@ -339,6 +342,10 @@ function chapterProgress(ch: Catalog['chapters'][number]) {
 .stat-card--wide {
   flex: 1 1 12rem;
   min-width: 10rem;
+}
+
+.stat-card--level {
+  min-width: 8.5rem;
 }
 
 .stat-icon {

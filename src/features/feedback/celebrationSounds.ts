@@ -45,7 +45,7 @@ function wobble(ctx: AudioContext, start: number) {
   osc.stop(start + 0.28)
 }
 
-export function playCelebrationSound(kind: CelebrationKind) {
+export function playCelebrationSound(kind: CelebrationKind, combo = 0) {
   const ctx = getCtx()
   if (!ctx) return
   const t = ctx.currentTime
@@ -54,6 +54,12 @@ export function playCelebrationSound(kind: CelebrationKind) {
     tone(ctx, 523.25, t, 0.12)
     tone(ctx, 659.25, t + 0.1, 0.12)
     tone(ctx, 783.99, t + 0.2, 0.18, 'sine', 0.1)
+    if (combo >= 3) {
+      tone(ctx, 1046.5, t + 0.28, 0.14, 'triangle', 0.09)
+    }
+    if (combo >= 5) {
+      tone(ctx, 1318.5, t + 0.36, 0.12, 'triangle', 0.08)
+    }
     return
   }
 

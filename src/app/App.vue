@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { provide } from 'vue'
+import { onMounted, provide } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { createCelebration, celebrationKey } from '@features/feedback/useCelebration'
-import { AppLogo, CelebrationLayer, LangToggle, SoundToggle } from '@ui/index'
+import { useProgressStore } from '@features/progress/store'
+import { AppLogo, CelebrationLayer, LangToggle, LevelBadge, SoundToggle } from '@ui/index'
+
+const progress = useProgressStore()
+onMounted(() => {
+  void progress.load()
+})
 
 const { t } = useI18n()
 const celebration = createCelebration()
@@ -16,6 +22,7 @@ provide(celebrationKey, celebration)
       <div class="app-header-inner">
         <RouterLink to="/" class="app-brand">
           <AppLogo size="sm" heading-tag="h1" />
+          <LevelBadge v-if="progress.state" :xp="progress.state.xp" compact />
         </RouterLink>
         <div class="app-header-center">
           <SoundToggle :muted="celebration.muted.value" @toggle="celebration.toggleMuted()" />
@@ -40,7 +47,11 @@ provide(celebrationKey, celebration)
     <main class="app-main">
       <RouterView />
     </main>
-    <CelebrationLayer :burst="celebration.burst.value" />
+    <CelebrationLayer
+      :burst="celebration.burst.value"
+      :xp-pop="celebration.xpPop.value"
+      :level-up="celebration.levelUp.value"
+    />
   </div>
 </template>
 
@@ -88,6 +99,9 @@ provide(celebrationKey, celebration)
 }
 
 .app-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   text-decoration: none;
   color: inherit;
   border-radius: 0.5rem;

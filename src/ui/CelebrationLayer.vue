@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import type { CelebrationBurst } from '@features/feedback/useCelebration'
+import { useI18n } from 'vue-i18n'
+import type { CelebrationBurst, LevelUpPop, XpPop } from '@features/feedback/useCelebration'
 import type { CelebrationKind } from '@features/feedback/celebrationSounds'
 
 const props = defineProps<{
   burst: CelebrationBurst | null
+  xpPop: XpPop | null
+  levelUp: LevelUpPop | null
 }>()
+
+const { t } = useI18n()
 
 interface Particle {
   id: number
@@ -29,6 +34,10 @@ interface Floater {
 const particles = ref<Particle[]>([])
 const floaters = ref<Floater[]>([])
 const flash = ref<'success' | 'error' | 'gold' | null>(null)
+const showCombo = ref(false)
+const comboCount = ref(0)
+const activeXp = ref<XpPop | null>(null)
+const activeLevelUp = ref<LevelUpPop | null>(null)
 
 const CONFETTI_COLORS = [
   '#c9a227',
@@ -48,22 +57,24 @@ const burstEmoji = computed(() => {
   return '🎉'
 })
 
-function particleCount(kind: CelebrationKind) {
-  if (kind === 'lessonComplete') return 72
-  if (kind === 'perfect') return 48
-  if (kind === 'correct') return 28
-  return 14
+function particleCount(kind: CelebrationKind, combo: number) {
+  let base = 14
+  if (kind === 'lessonComplete') base = 72
+  else if (kind === 'perfect') base = 48
+  else if (kind === 'correct') base = 28
+  return base + Math.min(combo, 7) * 4
 }
 
-function floaterCount(kind: CelebrationKind) {
-  if (kind === 'lessonComplete') return 10
-  if (kind === 'perfect') return 6
-  if (kind === 'correct') return 4
-  return 2
+function floaterCount(kind: CelebrationKind, combo: number) {
+  let base = 2
+  if (kind === 'lessonComplete') base = 10
+  else if (kind === 'perfect') base = 6
+  else if (kind === 'correct') base = 4
+  return base + Math.min(combo, 5)
 }
 
-function spawn(kind: CelebrationKind) {
-  const count = particleCount(kind)
+function spawn(kind: CelebrationKind, combo: number) {
+  const count = particleCount(kind, combo)
   particles.value = Array.from({ length: count }, (_, i) => ({
     id: i,
     left: `${8 + Math.random() * 84}%`,
@@ -74,8 +85,13 @@ function spawn(kind: CelebrationKind) {
     rotate: `${Math.random() * 360}deg`,
   }))
 
-  const emojis = kind === 'wrong' ? ['😅', '💪', '🔁'] : ['🎉', '✨', '⭐', '🌟', '🙌']
-  floaters.value = Array.from({ length: floaterCount(kind) }, (_, i) => ({
+  const emojis =
+    kind === 'wrong'
+      ? ['😅', '💪', '🔁']
+      : combo >= 5
+        ? ['🔥', '⚡', '🌟', '🎉', '💥']
+        : ['🎉', '✨', '⭐', '🌟', '🙌']
+  floaters.value = Array.from({ length: floaterCount(kind, combo) }, (_, i) => ({
     id: i,
     emoji: emojis[i % emojis.length]!,
     left: `${15 + Math.random() * 70}%`,
@@ -85,6 +101,9 @@ function spawn(kind: CelebrationKind) {
   }))
 
   flash.value = kind === 'wrong' ? 'error' : kind === 'lessonComplete' ? 'gold' : 'success'
+  showCombo.value = combo >= 3 && kind !== 'wrong'
+  comboCount.value = combo
+
   /* eslint-disable no-undef -- celebration timers in client-only overlay */
   setTimeout(
     () => {
@@ -92,6 +111,10 @@ function spawn(kind: CelebrationKind) {
     },
     kind === 'lessonComplete' ? 700 : 420,
   )
+
+  setTimeout(() => {
+    showCombo.value = false
+  }, 1200)
 
   setTimeout(() => {
     particles.value = []
@@ -104,7 +127,34 @@ watch(
   () => props.burst?.id,
   (id) => {
     if (id == null || !props.burst) return
-    spawn(props.burst.kind)
+    spawn(props.burst.kind, props.burst.combo)
+  },
+)
+
+watch(
+  () => props.xpPop?.id,
+  (id) => {
+    if (id == null || !props.xpPop) return
+    activeXp.value = props.xpPop
+    /* eslint-disable no-undef -- xp pop timer */
+    setTimeout(() => {
+      activeXp.value = null
+    }, 1100)
+    /* eslint-enable no-undef */
+  },
+)
+
+watch(
+  () => props.levelUp?.id,
+  (id) => {
+    if (id == null || !props.levelUp) return
+    activeLevelUp.value = props.levelUp
+    spawn('lessonComplete', 0)
+    /* eslint-disable no-undef -- level-up timer */
+    setTimeout(() => {
+      activeLevelUp.value = null
+    }, 2200)
+    /* eslint-enable no-undef */
   },
 )
 </script>
@@ -152,6 +202,21 @@ watch(
 
     <div v-if="burst && burst.kind !== 'wrong'" :key="burst.id" class="celebration-hero">
       {{ burstEmoji }}
+    </div>
+
+    <div v-if="showCombo" :key="`combo-${burst?.id}`" class="celebration-combo">
+      🔥 {{ t('app.combo', { n: comboCount }) }}
+    </div>
+
+    <div v-if="activeXp" :key="`xp-${activeXp.id}`" class="celebration-xp">
+      +{{ activeXp.amount }} {{ t('app.xp') }}
+    </div>
+
+    <div v-if="activeLevelUp" :key="`lvl-${activeLevelUp.id}`" class="celebration-level-up">
+      <span class="celebration-level-up-emoji">🎓</span>
+      <span class="celebration-level-up-text">{{
+        t('app.levelUp', { n: activeLevelUp.level })
+      }}</span>
     </div>
   </div>
 </template>
@@ -209,6 +274,59 @@ watch(
   filter: drop-shadow(0 8px 16px rgb(30 77 107 / 0.15));
 }
 
+.celebration-combo {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff6b35, #f7b801);
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgb(255 107 53 / 0.35);
+  animation: celebration-combo-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.celebration-xp {
+  position: absolute;
+  top: 48%;
+  right: 12%;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  text-shadow: 0 2px 8px rgb(201 162 39 / 0.45);
+  animation: celebration-xp-rise 1s ease-out forwards;
+}
+
+.celebration-level-up {
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  animation: celebration-hero-pop 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.celebration-level-up-emoji {
+  font-size: 3.5rem;
+}
+
+.celebration-level-up-text {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+}
+
 @keyframes celebration-fall {
   0% {
     transform: translateY(0) rotate(var(--spin));
@@ -245,6 +363,35 @@ watch(
   }
   100% {
     transform: translateX(-50%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes celebration-combo-pop {
+  0% {
+    transform: translateX(-50%) scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-50%) scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes celebration-xp-rise {
+  0% {
+    transform: translateY(12px) scale(0.7);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-48px) scale(1.05);
     opacity: 0;
   }
 }
