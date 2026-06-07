@@ -65,28 +65,32 @@
       ],
       "visualAid": {
         "kind": "timeline",
+        "range": {
+          "start": { "en": "Nightfall", "he": "צֵאת הַכּוֹכָבִים" },
+          "end": { "en": "Dawn", "he": "עֲלוֹת הַשַּׁחַר" }
+        },
         "events": [
           {
             "id": "teruma",
-            "at": 0.15,
+            "at": 0.12,
             "label": { "en": "Priests eat teruma", "he": "כהנים אוכלים תרומה" },
             "marker": "nightfall"
           },
           {
             "id": "first-watch",
-            "at": 0.35,
+            "at": 0.3,
             "label": { "en": "End of first watch (R. Eliezer)", "he": "סוף האשמורה הראשונה" },
             "marker": "custom"
           },
           {
             "id": "midnight",
-            "at": 0.5,
+            "at": 0.52,
             "label": { "en": "Midnight (Sages)", "he": "חצות (חכמים)" },
             "marker": "midnight"
           },
           {
             "id": "dawn",
-            "at": 0.85,
+            "at": 0.88,
             "label": { "en": "Dawn (R. Gamliel)", "he": "עמוד השחר (רבן גמליאל)" },
             "marker": "dawn"
           }
@@ -137,6 +141,10 @@
       ],
       "visualAid": {
         "kind": "timeline",
+        "range": {
+          "start": { "en": "Dawn", "he": "עֲלוֹת הַשַּׁחַר" },
+          "end": { "en": "Sunrise", "he": "הַנֵּץ הַחַמָּה" }
+        },
         "events": [
           {
             "id": "dawn-color",

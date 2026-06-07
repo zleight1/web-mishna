@@ -25,9 +25,15 @@ export const TimelineEventSchema = z.object({
   marker: z.enum(['nightfall', 'midnight', 'dawn', 'sunrise', 'midday', 'sunset', 'custom']),
 })
 
+const TimelineRangeSchema = z.object({
+  start: z.record(z.string(), z.string()),
+  end: z.record(z.string(), z.string()),
+})
+
 export const VisualAidSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('timeline'),
+    range: TimelineRangeSchema.optional(),
     events: z.array(TimelineEventSchema).min(2),
   }),
   z.object({ kind: z.literal('diagram2d'), spec: z.unknown() }),
