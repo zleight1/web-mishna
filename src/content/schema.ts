@@ -58,10 +58,28 @@ export const SukkahWallsSpecSchema = z.object({
   maxGroundGapTefachim: z.number().int().positive(),
 })
 
+export const SukkahScenarioIdSchema = z.enum([
+  'sheets',
+  'vine-trellis',
+  'bundles',
+  'boards',
+  'ceiling-planks',
+  'skewers-grain',
+  'four-amot',
+  'reed-mat',
+])
+
+export const SukkahScenarioSpecSchema = z.object({
+  type: z.literal('sukkah-scenario'),
+  scenario: SukkahScenarioIdSchema,
+  title: LocalizedSchema.optional(),
+})
+
 export const Diagram2dSpecSchema = z.discriminatedUnion('type', [
   SukkahDimensionsSpecSchema,
   SukkahLayersSpecSchema,
   SukkahWallsSpecSchema,
+  SukkahScenarioSpecSchema,
 ])
 
 export const VisualAidSchema = z.discriminatedUnion('kind', [
@@ -109,6 +127,8 @@ export type TimelineEvent = z.infer<typeof TimelineEventSchema>
 export type SukkahDimensionsSpec = z.infer<typeof SukkahDimensionsSpecSchema>
 export type SukkahLayersSpec = z.infer<typeof SukkahLayersSpecSchema>
 export type SukkahWallsSpec = z.infer<typeof SukkahWallsSpecSchema>
+export type SukkahScenarioId = z.infer<typeof SukkahScenarioIdSchema>
+export type SukkahScenarioSpec = z.infer<typeof SukkahScenarioSpecSchema>
 export type Diagram2dSpec = z.infer<typeof Diagram2dSpecSchema>
 export type VisualAid = z.infer<typeof VisualAidSchema>
 export type Mishnah = z.infer<typeof MishnahSchema>

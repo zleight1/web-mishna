@@ -1,6 +1,6 @@
 # Web Mishnah
 
-A bilingual (Hebrew + English) interactive web game for learning Mishnah — Berakhot chapter 1 (timelines) and Sukkah chapter 1 (spatial diagrams on 1:1, 1:2, 1:9).
+A bilingual (Hebrew + English) interactive web game for learning Mishnah — Berakhot chapter 1 (timelines) and Sukkah chapter 1 (all 11 mishnayot with diagram visual aids).
 
 ## Quickstart
 

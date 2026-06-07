@@ -291,8 +291,41 @@
             }
           ],
           "answerIdx": 0
+        },
+        {
+          "id": "sq3-2",
+          "prompt": {
+            "en": "Sheet on naklitei (2-post) bed?",
+            "he": "סדין על נקליטי מיטה?"
+          },
+          "choices": [
+            {
+              "en": "Permitted",
+              "he": "מותר"
+            },
+            {
+              "en": "Forbidden",
+              "he": "אסור"
+            },
+            {
+              "en": "Walls only",
+              "he": "רק לדפנות"
+            }
+          ],
+          "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "sheets",
+          "title": {
+            "en": "Sheets & beds",
+            "he": "סדינים ומיטות"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
@@ -381,6 +414,17 @@
           "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "vine-trellis",
+          "title": {
+            "en": "Schach materials",
+            "he": "חומרי סכך"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
@@ -463,6 +507,17 @@
           "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "bundles",
+          "title": {
+            "en": "Bundles",
+            "he": "חבילות"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
@@ -545,6 +600,17 @@
           "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "boards",
+          "title": {
+            "en": "Boards",
+            "he": "נסרים"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
@@ -597,8 +663,41 @@
             }
           ],
           "answerIdx": 0
+        },
+        {
+          "id": "sq7-2",
+          "prompt": {
+            "en": "R. Meir says to…",
+            "he": "רבי מאיר אומר…"
+          },
+          "choices": [
+            {
+              "en": "Remove one board only",
+              "he": "נוטל אחד בלבד"
+            },
+            {
+              "en": "Move all boards",
+              "he": "מפקפק הכל"
+            },
+            {
+              "en": "Rebuild entirely",
+              "he": "בונה מחדש"
+            }
+          ],
+          "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "ceiling-planks",
+          "title": {
+            "en": "Old plank ceiling",
+            "he": "תקרת נסרים"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
@@ -651,8 +750,41 @@
             }
           ],
           "answerIdx": 0
+        },
+        {
+          "id": "sq8-2",
+          "prompt": {
+            "en": "Skewers with gaps equal to their width?",
+            "he": "שפודים ורווח כרוחבם?"
+          },
+          "choices": [
+            {
+              "en": "Fit (with schach in gaps)",
+              "he": "כשר"
+            },
+            {
+              "en": "Always unfit",
+              "he": "תמיד פסול"
+            },
+            {
+              "en": "Walls only",
+              "he": "רק לדפנות"
+            }
+          ],
+          "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "skewers-grain",
+          "title": {
+            "en": "Skewers & grain",
+            "he": "שפודים וגדיש"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
@@ -811,8 +943,41 @@
             }
           ],
           "answerIdx": 0
+        },
+        {
+          "id": "sq10-2",
+          "prompt": {
+            "en": "Less than 4 amot ceiling — principle applied?",
+            "he": "פחות מד׳ אמות — איזה עיקרון?"
+          },
+          "choices": [
+            {
+              "en": "Curved wall (fit)",
+              "he": "דופן עקומה"
+            },
+            {
+              "en": "Invalid always",
+              "he": "תמיד פסול"
+            },
+            {
+              "en": "Requires new walls",
+              "he": "צריך דפנות חדשות"
+            }
+          ],
+          "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "four-amot",
+          "title": {
+            "en": "Four amot rule",
+            "he": "כלל ד׳ אמות"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",
@@ -901,6 +1066,17 @@
           "answerIdx": 0
         }
       ],
+      "visualAid": {
+        "kind": "diagram2d",
+        "spec": {
+          "type": "sukkah-scenario",
+          "scenario": "reed-mat",
+          "title": {
+            "en": "Mats & hut shape",
+            "he": "מחצלות וצורה"
+          }
+        }
+      },
       "source": {
         "heVersion": "Torat Emet 357",
         "enVersion": "Mishnah Yomit by Dr. Joshua Kulp (adapted)",

@@ -254,6 +254,16 @@ const QUIZ: Record<number, object[]> = {
       ],
       answerIdx: 0,
     },
+    {
+      id: 'sq3-2',
+      prompt: { en: 'Sheet on naklitei (2-post) bed?', he: 'סדין על נקליטי מיטה?' },
+      choices: [
+        { en: 'Permitted', he: 'מותר' },
+        { en: 'Forbidden', he: 'אסור' },
+        { en: 'Walls only', he: 'רק לדפנות' },
+      ],
+      answerIdx: 0,
+    },
   ],
   4: [
     {
@@ -335,6 +345,16 @@ const QUIZ: Record<number, object[]> = {
       ],
       answerIdx: 0,
     },
+    {
+      id: 'sq7-2',
+      prompt: { en: 'R. Meir says to…', he: 'רבי מאיר אומר…' },
+      choices: [
+        { en: 'Remove one board only', he: 'נוטל אחד בלבד' },
+        { en: 'Move all boards', he: 'מפקפק הכל' },
+        { en: 'Rebuild entirely', he: 'בונה מחדש' },
+      ],
+      answerIdx: 0,
+    },
   ],
   8: [
     {
@@ -344,6 +364,16 @@ const QUIZ: Record<number, object[]> = {
         { en: 'Not a sukka', he: 'אינה סוכה' },
         { en: 'Fit', he: 'כשרה' },
         { en: 'Fit with schach', he: 'כשרה עם סכך' },
+      ],
+      answerIdx: 0,
+    },
+    {
+      id: 'sq8-2',
+      prompt: { en: 'Skewers with gaps equal to their width?', he: 'שפודים ורווח כרוחבם?' },
+      choices: [
+        { en: 'Fit (with schach in gaps)', he: 'כשר' },
+        { en: 'Always unfit', he: 'תמיד פסול' },
+        { en: 'Walls only', he: 'רק לדפנות' },
       ],
       answerIdx: 0,
     },
@@ -381,6 +411,19 @@ const QUIZ: Record<number, object[]> = {
       ],
       answerIdx: 0,
     },
+    {
+      id: 'sq10-2',
+      prompt: {
+        en: 'Less than 4 amot ceiling — principle applied?',
+        he: 'פחות מד׳ אמות — איזה עיקרון?',
+      },
+      choices: [
+        { en: 'Curved wall (fit)', he: 'דופן עקומה' },
+        { en: 'Invalid always', he: 'תמיד פסול' },
+        { en: 'Requires new walls', he: 'צריך דפנות חדשות' },
+      ],
+      answerIdx: 0,
+    },
   ],
   11: [
     {
@@ -406,44 +449,93 @@ const QUIZ: Record<number, object[]> = {
   ],
 }
 
+const SCENARIO_VISUALS: Record<
+  number,
+  | { type: 'sukkah-dimensions'; title: { en: string; he: string }; extra?: object }
+  | { type: 'sukkah-layers'; title: { en: string; he: string } }
+  | {
+      type: 'sukkah-walls'
+      title: { en: string; he: string }
+      minWallTefachim: number
+      maxGroundGapTefachim: number
+    }
+  | { type: 'sukkah-scenario'; scenario: string; title: { en: string; he: string } }
+> = {
+  1: {
+    type: 'sukkah-dimensions',
+    title: { en: 'Valid sukka dimensions', he: 'מידות סוכה כשרה' },
+    extra: {
+      minHeightTefachim: 10,
+      maxHeightAmot: 20,
+      minWalls: 3,
+      dispute: {
+        figure: { en: 'R. Yehuda', he: 'רבי יהודה' },
+        opinion: { en: 'permits above 20 amot', he: 'מכשיר מעל כ׳ אמה' },
+      },
+    },
+  },
+  2: { type: 'sukkah-layers', title: { en: 'Placement rules', he: 'כללי מיקום' } },
+  3: {
+    type: 'sukkah-scenario',
+    scenario: 'sheets',
+    title: { en: 'Sheets & beds', he: 'סדינים ומיטות' },
+  },
+  4: {
+    type: 'sukkah-scenario',
+    scenario: 'vine-trellis',
+    title: { en: 'Schach materials', he: 'חומרי סכך' },
+  },
+  5: { type: 'sukkah-scenario', scenario: 'bundles', title: { en: 'Bundles', he: 'חבילות' } },
+  6: { type: 'sukkah-scenario', scenario: 'boards', title: { en: 'Boards', he: 'נסרים' } },
+  7: {
+    type: 'sukkah-scenario',
+    scenario: 'ceiling-planks',
+    title: { en: 'Old plank ceiling', he: 'תקרת נסרים' },
+  },
+  8: {
+    type: 'sukkah-scenario',
+    scenario: 'skewers-grain',
+    title: { en: 'Skewers & grain', he: 'שפודים וגדיש' },
+  },
+  9: {
+    type: 'sukkah-walls',
+    title: { en: 'Building walls', he: 'בניית דפנות' },
+    minWallTefachim: 10,
+    maxGroundGapTefachim: 3,
+  },
+  10: {
+    type: 'sukkah-scenario',
+    scenario: 'four-amot',
+    title: { en: 'Four amot rule', he: 'כלל ד׳ אמות' },
+  },
+  11: {
+    type: 'sukkah-scenario',
+    scenario: 'reed-mat',
+    title: { en: 'Mats & hut shape', he: 'מחצלות וצורה' },
+  },
+}
+
 function visualAid(n: number) {
-  if (n === 1) {
+  const v = SCENARIO_VISUALS[n]
+  if (!v) return undefined
+  if (v.type === 'sukkah-dimensions') {
+    const { extra, title } = v
+    return { kind: 'diagram2d' as const, spec: { type: v.type, title, ...extra } }
+  }
+  if (v.type === 'sukkah-layers') {
+    return { kind: 'diagram2d' as const, spec: { type: v.type, title: v.title } }
+  }
+  if (v.type === 'sukkah-walls') {
+    const { title, minWallTefachim, maxGroundGapTefachim } = v
     return {
       kind: 'diagram2d' as const,
-      spec: {
-        type: 'sukkah-dimensions' as const,
-        title: { en: 'Valid sukka dimensions', he: 'מידות סוכה כשרה' },
-        minHeightTefachim: 10,
-        maxHeightAmot: 20,
-        minWalls: 3,
-        dispute: {
-          figure: { en: 'R. Yehuda', he: 'רבי יהודה' },
-          opinion: { en: 'permits above 20 amot', he: 'מכשיר מעל כ׳ אמה' },
-        },
-      },
+      spec: { type: v.type, title, minWallTefachim, maxGroundGapTefachim },
     }
   }
-  if (n === 2) {
-    return {
-      kind: 'diagram2d' as const,
-      spec: {
-        type: 'sukkah-layers' as const,
-        title: { en: 'Placement rules', he: 'כללי מיקום' },
-      },
-    }
+  return {
+    kind: 'diagram2d' as const,
+    spec: { type: 'sukkah-scenario' as const, scenario: v.scenario, title: v.title },
   }
-  if (n === 9) {
-    return {
-      kind: 'diagram2d' as const,
-      spec: {
-        type: 'sukkah-walls' as const,
-        title: { en: 'Building walls', he: 'בניית דפנות' },
-        minWallTefachim: 10,
-        maxGroundGapTefachim: 3,
-      },
-    }
-  }
-  return undefined
 }
 
 const chapter = {

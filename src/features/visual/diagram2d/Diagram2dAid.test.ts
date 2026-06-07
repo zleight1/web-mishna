@@ -47,6 +47,20 @@ describe('Diagram2dAid', () => {
     expect(w.text()).toContain('Upper — fit')
   })
 
+  it('renders sukkah scenario diagrams', () => {
+    const aid: VisualAid = {
+      kind: 'diagram2d',
+      spec: {
+        type: 'sukkah-scenario',
+        scenario: 'sheets',
+        title: { en: 'Sheets', he: 'סדינים' },
+      },
+    }
+    const w = mount(Diagram2dAid, { props: { aid, lang: 'en' } })
+    expect(w.text()).toContain('kinof')
+    expect(w.text()).toContain('Naklitei')
+  })
+
   it('renders sukkah walls diagram', () => {
     const aid: VisualAid = {
       kind: 'diagram2d',
