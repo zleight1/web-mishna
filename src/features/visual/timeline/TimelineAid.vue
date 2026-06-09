@@ -138,6 +138,9 @@ const lanes = computed(() => {
 .timeline-figure {
   margin: 1.25rem 0 0.25rem;
   padding: 0;
+  overflow: hidden;
+  /* Decorative — must not block lesson controls below on narrow viewports */
+  pointer-events: none;
 }
 
 .timeline-shell {
@@ -219,7 +222,6 @@ const lanes = computed(() => {
   top: 50%;
   width: min(5.5rem, 24vw);
   transform: translateX(-50%);
-  pointer-events: auto;
 }
 
 .timeline-dot {

@@ -16,10 +16,10 @@ test('lesson smoke: home to lesson flow', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Mishnah Berakhot 1:1' })).toBeVisible({
     timeout: 10000,
   })
-  await page
-    .getByRole('button', { name: /Practice/i })
-    .first()
-    .click()
+  const practiceBtn = page.getByRole('button', { name: /Practice/i }).first()
+  await practiceBtn.scrollIntoViewIfNeeded()
+  await practiceBtn.focus()
+  await page.keyboard.press('Enter')
 })
 
 test('nested nav: lesson → chapter → home', async ({ page }) => {

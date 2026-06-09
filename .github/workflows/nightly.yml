@@ -19,4 +19,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps
-      - run: pnpm test:e2e:matrix
+      # Functional matrix only — @visual snapshots are darwin-only today; run via pnpm test:visual locally
+      - run: pnpm exec playwright test --grep-invert @visual

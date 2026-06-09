@@ -138,7 +138,7 @@ watch(
 
     <LessonStepper :stage="machine.stage.value" />
 
-    <AppCard v-if="machine.stage.value === 'read'" accent>
+    <AppCard v-if="machine.stage.value === 'read'" accent class="lesson-read-card">
       <BilingualReader :mishnah="currentMishnah" :lang="lang" />
       <component
         :is="visualRenderer?.component"
@@ -147,10 +147,13 @@ watch(
         :aid="currentMishnah.visualAid"
         :lang="lang"
       />
-      <AppButton class="mt-4" @click="machine.advanceFromRead()">
+    </AppCard>
+
+    <div v-if="machine.stage.value === 'read'" class="lesson-read-actions">
+      <AppButton @click="machine.advanceFromRead()">
         {{ lang === 'he' ? `← ${t('app.practice')}` : `${t('app.practice')} →` }}
       </AppButton>
-    </AppCard>
+    </div>
 
     <AppCard v-else-if="machine.stage.value === 'practice' && machine.currentPractice.value">
       <MishnahTextPanel class="mb-4" :mishnah="currentMishnah" :lang="lang" compact />
@@ -229,6 +232,32 @@ watch(
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.lesson-read-card {
+  overflow: hidden;
+}
+
+.lesson-read-actions {
+  position: relative;
+  z-index: 2;
+  scroll-margin-top: 1rem;
+  scroll-margin-bottom: 2rem;
+}
+
+@media (max-width: 480px) {
+  .lesson-read-actions {
+    position: sticky;
+    bottom: 0;
+    margin-top: -0.25rem;
+    padding: 0.75rem 0 0.5rem;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--color-surface) 70%, transparent) 35%,
+      var(--color-surface) 65%
+    );
+  }
 }
 
 .lesson-top {

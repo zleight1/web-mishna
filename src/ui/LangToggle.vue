@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import type { LangCode } from '@content/schema'
 import { useAppLanguage } from '@app/useAppLanguage'
 
+const props = withDefaults(defineProps<{ showGlobe?: boolean }>(), { showGlobe: true })
 const { t } = useI18n()
 const { lang } = useAppLanguage()
 
@@ -17,7 +18,7 @@ const activeIndex = computed(() => options.findIndex((o) => o.code === lang.valu
 
 <template>
   <div class="lang-toggle" role="group" :aria-label="t('app.language')">
-    <span class="lang-toggle-globe" aria-hidden="true">
+    <span v-if="props.showGlobe" class="lang-toggle-globe" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
         <path

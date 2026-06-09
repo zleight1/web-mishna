@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-defineProps<{ muted: boolean }>()
+const props = defineProps<{ muted: boolean; iconOnly?: boolean }>()
 const emit = defineEmits<{ toggle: [] }>()
 const { t } = useI18n()
 </script>
@@ -10,7 +10,7 @@ const { t } = useI18n()
   <button
     type="button"
     class="sound-toggle"
-    :class="{ 'sound-toggle--muted': muted }"
+    :class="{ 'sound-toggle--muted': props.muted, 'sound-toggle--icon-only': props.iconOnly }"
     :aria-pressed="!muted"
     :title="muted ? t('app.soundOff') : t('app.soundOn')"
     @click="emit('toggle')"
@@ -43,7 +43,9 @@ const { t } = useI18n()
         stroke-linecap="round"
       />
     </svg>
-    <span class="sound-toggle-label">{{ muted ? t('app.soundMuted') : t('app.soundOn') }}</span>
+    <span v-if="!iconOnly" class="sound-toggle-label">{{
+      muted ? t('app.soundMuted') : t('app.soundOn')
+    }}</span>
   </button>
 </template>
 
@@ -51,6 +53,7 @@ const { t } = useI18n()
 .sound-toggle {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
   padding: 0.38rem 0.6rem;
   border-radius: 999px;
@@ -86,6 +89,12 @@ const { t } = useI18n()
 
 .sound-toggle-label {
   line-height: 1;
+}
+
+.sound-toggle--icon-only {
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
 }
 
 @media (max-width: 420px) {

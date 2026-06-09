@@ -14,7 +14,7 @@
     "test:watch": "vitest",
     "test:integration": "vitest run --dir tests/integration",
     "test:e2e": "playwright test --project=chromium-smoke --project=webkit-phone --grep-invert @visual",
-    "test:e2e:matrix": "playwright test",
+    "test:e2e:matrix": "playwright test --grep-invert @visual",
     "test:visual": "playwright test --grep @visual",
     "validate:content": "tsx scripts/validate-content.ts",
     "build:content": "tsx scripts/build-content.ts",

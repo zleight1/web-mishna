@@ -248,8 +248,8 @@ Breadcrumb helpers: [src/content/catalogNav.ts](../src/content/catalogNav.ts)
 | Content          | `pnpm validate:content` | All `src/content/data/**/*.json`                                 |
 | Contracts        | `tests/contracts/`      | Registry + schema smoke                                          |
 | E2e smoke        | `pnpm test:e2e`         | Home → lesson, nested nav, a11y                                  |
-| E2e matrix       | `pnpm test:e2e:matrix`  | All browser/viewport projects                                    |
-| Visual           | `pnpm test:visual`      | Tagged `@visual`; update snapshots when UI changes intentionally |
+| E2e matrix       | `pnpm test:e2e:matrix`  | All browser/viewport projects (excludes `@visual`)               |
+| Visual           | `pnpm test:visual`      | Tagged `@visual`; darwin snapshots — update locally when UI changes |
 
 Playwright serves `pnpm build && pnpm preview` — always builds fresh dist before e2e.
 
@@ -263,7 +263,7 @@ Playwright serves `pnpm build && pnpm preview` — always builds fresh dist befo
 | ----------------------------------------------- | ---------------- | ------------------------------------------------------------- |
 | [ci.yml](../.github/workflows/ci.yml)           | push / PR        | typecheck, lint, deps, test, validate, build, size-limit, e2e |
 | [deploy.yml](../.github/workflows/deploy.yml)   | push `main`, PRs | build → Cloudflare Pages                                      |
-| [nightly.yml](../.github/workflows/nightly.yml) | schedule         | full e2e matrix                                               |
+| [nightly.yml](../.github/workflows/nightly.yml) | schedule         | full e2e matrix (all browsers; excludes `@visual` snapshots)  |
 
 Production URL: **https://web-mishna.pages.dev/** (SPA fallback in `public/_redirects`).
 
