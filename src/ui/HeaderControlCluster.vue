@@ -10,7 +10,7 @@ const emit = defineEmits<{ toggleSound: [] }>()
 
 const { t } = useI18n()
 const open = ref(false)
-const root = ref<HTMLElement | null>(null)
+const root = ref<{ contains(node: unknown): boolean } | null>(null)
 
 function close() {
   open.value = false
@@ -20,16 +20,17 @@ function toggle() {
   open.value = !open.value
 }
 
-function onDocumentClick(event: MouseEvent) {
+function onDocumentClick(event: { target: unknown }) {
   if (!open.value || !root.value) return
-  if (!root.value.contains(event.target as Node)) close()
+  if (!root.value.contains(event.target)) close()
 }
 
-function onDocumentKeydown(event: KeyboardEvent) {
+function onDocumentKeydown(event: { key: string }) {
   if (event.key === 'Escape') close()
 }
 
 onMounted(() => {
+  /* eslint-disable no-undef -- client-only panel dismiss handlers */
   document.addEventListener('click', onDocumentClick)
   document.addEventListener('keydown', onDocumentKeydown)
 })
@@ -37,6 +38,7 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('click', onDocumentClick)
   document.removeEventListener('keydown', onDocumentKeydown)
+  /* eslint-enable no-undef */
 })
 </script>
 

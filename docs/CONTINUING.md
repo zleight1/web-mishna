@@ -242,13 +242,13 @@ Breadcrumb helpers: [src/content/catalogNav.ts](../src/content/catalogNav.ts)
 
 ## Testing strategy
 
-| Layer            | Command                 | Notes                                                            |
-| ---------------- | ----------------------- | ---------------------------------------------------------------- |
-| Unit / component | `pnpm test`             | Coverage thresholds on core logic                                |
-| Content          | `pnpm validate:content` | All `src/content/data/**/*.json`                                 |
-| Contracts        | `tests/contracts/`      | Registry + schema smoke                                          |
-| E2e smoke        | `pnpm test:e2e`         | Home → lesson, nested nav, a11y                                  |
-| E2e matrix       | `pnpm test:e2e:matrix`  | All browser/viewport projects (excludes `@visual`)               |
+| Layer            | Command                 | Notes                                                               |
+| ---------------- | ----------------------- | ------------------------------------------------------------------- |
+| Unit / component | `pnpm test`             | Coverage thresholds on core logic                                   |
+| Content          | `pnpm validate:content` | All `src/content/data/**/*.json`                                    |
+| Contracts        | `tests/contracts/`      | Registry + schema smoke                                             |
+| E2e smoke        | `pnpm test:e2e`         | Home → lesson, nested nav, a11y                                     |
+| E2e matrix       | `pnpm test:e2e:matrix`  | All browser/viewport projects (excludes `@visual`)                  |
 | Visual           | `pnpm test:visual`      | Tagged `@visual`; darwin snapshots — update locally when UI changes |
 
 Playwright serves `pnpm build && pnpm preview` — always builds fresh dist before e2e.
